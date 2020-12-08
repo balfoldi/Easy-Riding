@@ -1,6 +1,11 @@
 Rails.application.routes.default_url_options[:host] = 'localhost:3001'
 
 Rails.application.routes.draw do
+  resources :bookings
+  resources :offers
+  resources :tags
+  resources :specs
+  resources :bikes
   root 'front_app#react'
 
   namespace :api, defaults: { format: :json } do
