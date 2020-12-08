@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'webpacker', '~> 5.x'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise-jwt', '~> 0.7.0'
