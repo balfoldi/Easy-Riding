@@ -1,0 +1,2 @@
+class JoinTableBikesTag < ApplicationRecord
+end

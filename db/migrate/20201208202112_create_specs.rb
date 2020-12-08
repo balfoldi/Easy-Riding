@@ -13,7 +13,6 @@ class CreateSpecs < ActiveRecord::Migration[6.0]
       t.string :fuel_tank_capacity
       t.string :number_of_gears
       t.integer :zero_to_100
-
       t.timestamps
     end
   end

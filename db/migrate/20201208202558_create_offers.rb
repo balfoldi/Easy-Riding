@@ -9,7 +9,7 @@ class CreateOffers < ActiveRecord::Migration[6.0]
       t.string :city
       t.integer :zip_code
       t.string :street
-
+      t.belongs_to :bikes, index: true
       t.timestamps
     end
   end

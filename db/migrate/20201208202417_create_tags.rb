@@ -4,7 +4,6 @@ class CreateTags < ActiveRecord::Migration[6.0]
       t.string :scaffold
       t.string :name
       t.string :color
-
       t.timestamps
     end
   end
