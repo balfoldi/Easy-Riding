@@ -1,15 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import ExampleComponent from './components/ExampleComponent'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import Home from './pages/Home';
+import NavMain from './components/NavMain';
 
 const App = () => {
+
   return (
     <div>
-      <h1>Bienvenue sur Easy Riding !</h1>
-      <ExampleComponent />
+      <NavMain />
+      <Home />
     </div>
   )
+
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
