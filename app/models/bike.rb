@@ -4,4 +4,8 @@ class Bike < ApplicationRecord
   has_one :offer
   has_many :join_table_bikes_tags
   has_many :tags, through: :join_table_bikes_tags
+
+  def api
+    self.build("owner", "spec", "tags")
+  end
 end

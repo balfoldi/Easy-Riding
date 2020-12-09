@@ -10,7 +10,7 @@ class BikesController < ApplicationController
 
   # GET /bikes/1
   def show
-    render json: @bike
+    render_jsonapi_response(@bike)
   end
 
   # POST /bikes
