@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
 if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
@@ -38,11 +31,12 @@ if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
     tag_names.each do |tag_name|
         Tag.create( name: tag_name, color: Faker::Color.hex_color )
     end
+    tp Tag.last
 end
 
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
-    10.times do
     User.delete_all
+    10.times do
         User.create( 
             first_name: Faker::Name.first_name, 
             last_name: Faker::Name.last_name, 
@@ -71,10 +65,11 @@ end
 
 if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
     Offer.delete_all
+    regions = ["Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté","Bretagne","Centre-Val de Loire","Corse","Grand Est","Hauts-de-France","Île-de-France","Normandie","Nouvelle-Aquitaine","Occitanie","Pays de la Loire","Provence-Alpes-Côte d'Azur"]
     Bike.all.first(5).each do |bike|
         zip_code=""
         5.times { zip_code += rand(9).to_s}
-        Offer.create(
+        offer = Offer.new(
             title: "#{Faker::Hipster.word} #{bike.spec.model}",
             description: Faker::Hipster.paragraph(sentence_count: 10),
             daily_price: bike.spec.price ?  bike.spec.price/150.round : 100,
@@ -83,21 +78,31 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
             city: Faker::Address.city,
             zip_code: zip_code,
             street: Faker::Address.street_name,
-            bike: bike
+            region: regions.sample,
+            bike: bike,
+            users: User.all.sample(3)
         )
-        tp Offer.last
+        if offer.save
+            tp offer
+        else
+            puts offer.errors.messages
+        end
     end
 end
 
 if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Booking.delete_all
     5.times do 
-        Booking.create(
+        booking = Booking.new(
             start_date: Date.new + 1,
             end_date: Date.new + rand(1..3),
             tenant: User.all.sample,
             offer: Offer.all.sample
         )
-        tp Booking.last
+        if booking.save
+            tp booking
+        else
+            puts booking.errors.messages
+        end    
     end
 end
