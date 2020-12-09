@@ -1,3 +1,3 @@
 class Spec < ApplicationRecord
-    has_many :bike
+    has_many :bikes
 end
