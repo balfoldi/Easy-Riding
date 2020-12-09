@@ -10,15 +10,86 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_143834) do
+ActiveRecord::Schema.define(version: 2020_12_08_213455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bikes", force: :cascade do |t|
+    t.text "description"
+    t.bigint "owners_id"
+    t.bigint "specs_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owners_id"], name: "index_bikes_on_owners_id"
+    t.index ["specs_id"], name: "index_bikes_on_specs_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "tenant_id_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "tenant_id"
+    t.bigint "offer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offer_id"], name: "index_bookings_on_offer_id"
+    t.index ["tenant_id"], name: "index_bookings_on_tenant_id"
+    t.index ["tenant_id_id"], name: "index_bookings_on_tenant_id_id"
+  end
+
+  create_table "join_table_bikes_tags", force: :cascade do |t|
+    t.bigint "bike_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bike_id"], name: "index_join_table_bikes_tags_on_bike_id"
+    t.index ["tag_id"], name: "index_join_table_bikes_tags_on_tag_id"
+  end
 
   create_table "jwt_denylists", force: :cascade do |t|
     t.string "jti"
     t.datetime "exp"
     t.index ["jti"], name: "index_jwt_denylists_on_jti"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "daily_price"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "city"
+    t.integer "zip_code"
+    t.string "street"
+    t.bigint "bike_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bike_id"], name: "index_offers_on_bike_id"
+  end
+
+  create_table "specs", force: :cascade do |t|
+    t.string "company_name"
+    t.string "model"
+    t.integer "price"
+    t.string "status"
+    t.string "body_type"
+    t.string "fuel_type"
+    t.integer "displacement"
+    t.string "maximum_power"
+    t.string "maximum_torque"
+    t.string "fuel_tank_capacity"
+    t.string "number_of_gears"
+    t.integer "zero_to_100"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,6 +100,13 @@ ActiveRecord::Schema.define(version: 2020_12_08_143834) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.string "phone_number"
+    t.string "password"
+    t.string "avatar"
+    t.string "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
