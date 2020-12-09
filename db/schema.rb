@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
 
   create_table "bikes", force: :cascade do |t|
     t.text "description"
-    t.bigint "owners_id"
-    t.bigint "specs_id"
+    t.bigint "owner_id"
+    t.bigint "spec_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owners_id"], name: "index_bikes_on_owners_id"
-    t.index ["specs_id"], name: "index_bikes_on_specs_id"
+    t.index ["owner_id"], name: "index_bikes_on_owner_id"
+    t.index ["spec_id"], name: "index_bikes_on_spec_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
   create_table "specs", force: :cascade do |t|
     t.string "company_name"
     t.string "model"
-    t.integer "price"
+    t.float "price"
     t.string "status"
     t.string "body_type"
     t.string "fuel_type"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
     t.string "maximum_torque"
     t.string "fuel_tank_capacity"
     t.string "number_of_gears"
-    t.integer "zero_to_100"
+    t.float "zero_to_100"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
     t.string "username"
     t.string "phone_number"
     t.string "password"
-    t.string "avatar"
     t.string "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
