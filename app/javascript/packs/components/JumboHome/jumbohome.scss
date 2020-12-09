@@ -1,0 +1,128 @@
+$myColor: #b26b6b;
+$hoverColor: #874e4e;
+
+$phone:512px;
+$tablet-phone:768px;
+$sm-desktop:769px;
+$lg-desktop:1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content
+  }
+};
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content
+  }
+};
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content
+  }
+};
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content
+  }
+};
+
+#jumbotron  {
+  background-color:white !important;
+  height:95vh;
+  display:flex;
+  @include sm-desktop {
+    flex-direction: row;
+    justify-content:center;
+  }
+  @include tablet-phone {
+    flex-direction:column;
+  }
+  #info {
+      font-family: 'Zilla Slab', serif;
+      @include lg-desktop {
+        position:relative;
+
+        width:50%;
+        display:flex;
+        flex-direction:column;
+      }
+      @include sm-desktop {
+        position:relative;
+        margin-left:10vh;
+        width:50%;
+        display:flex;
+        flex-direction:column;
+      }
+      @include tablet-phone {
+        position: relative;
+        display:inline-block;
+        font-size: 2rem;
+        text-align: center;
+      }
+    p {
+      font-weight:bold;
+      @include lg-desktop {
+        padding-right:10rem;
+        margin-left:5vh;
+
+      }
+      @include sm-desktop {
+        font-size:5rem;
+        margin-top:20%;
+      }
+    }
+    Button {
+      background-color:$myColor;
+      border:1px solid $myColor;
+      font-size: 1.5rem;
+      width:10rem;
+      &:hover {
+        background-color:$hoverColor;
+        border:1px solid $hoverColor;
+        transition:0.5s;
+      }
+      @include lg-desktop {
+        margin-left:5vh;
+      }
+    }
+
+  }
+  #map {
+    position:relative;
+    @include sm-desktop {
+      width:50%;
+      margin-right:10vh;
+    }
+    @include tablet-phone {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2vh;
+    }
+    img {
+      @include lg-desktop {
+        height:90vh;
+        margin-left: 10%;
+        margin-top:10%;
+        position: absolute;
+      }
+      @include sm-desktop {
+        height:70vh;
+        margin-top:10%;
+        position: absolute;
+      }
+      @include tablet-phone {
+        height:60vmax;
+        position: relative;
+      }
+      @include phone {
+        margin-top:1rem;
+        height:45vmax;
+        position: relative;
+      }
+    }
+  }
+}
