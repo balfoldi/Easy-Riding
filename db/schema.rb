@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "tenant_id_id"
     t.datetime "start_date"
     t.datetime "end_date"
     t.bigint "tenant_id"
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["offer_id"], name: "index_bookings_on_offer_id"
     t.index ["tenant_id"], name: "index_bookings_on_tenant_id"
-    t.index ["tenant_id_id"], name: "index_bookings_on_tenant_id_id"
   end
 
   create_table "join_table_bikes_tags", force: :cascade do |t|
