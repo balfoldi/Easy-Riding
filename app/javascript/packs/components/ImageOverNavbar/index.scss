@@ -1,0 +1,42 @@
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content;
+  }
+}
+
+.HeaderImage {
+  background-image: url(../assets/img/firethenavbar.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: $lg-desktop;
+  height: 558px;
+  padding-top: -40px;
+
+  &__logo {
+    width: 10%;
+    height: 10%;
+  }
+}

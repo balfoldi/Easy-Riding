@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav, NavDropdown, Button } from "react-bootstrap";
 import "./navmain.scss";
+import HeaderImage from "../ImageOverNavbar";
 
 const NavMain = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -14,9 +15,10 @@ const NavMain = () => {
     setIsAuthenticated(false);
   };
 
-  const navBar = () => {
-    if (isAuthenticated) {
-      return (
+  if (isAuthenticated) {
+    return (
+      <React.Fragment>
+        <HeaderImage/>
         <Navbar id="nav-main" collapseOnSelect expand="lg">
           <Navbar.Brand id="title-main" href="#">
             Easy Riding
@@ -43,29 +45,27 @@ const NavMain = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      );
-    } else {
-      return (
-        <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main" href="#">
-            Easy Riding
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav id="right-align">
-              <Nav.Link onClick={connectUser} className="auth-links" href="#">
-                Connexion
-              </Nav.Link>
-              <Nav.Link className="auth-links" href="#pricing">
-                Inscription
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      );
-    }
-  };
-  return navBar();
+      </React.Fragment>
+    );
+  }
+  return (
+    <Navbar id="nav-main" collapseOnSelect expand="lg">
+      <Navbar.Brand id="title-main" href="#">
+        Easy Riding
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav id="right-align">
+          <Nav.Link onClick={connectUser} className="auth-links" href="#">
+            Connexion
+          </Nav.Link>
+          <Nav.Link className="auth-links" href="#pricing">
+            Inscription
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
 };
 
 export default NavMain;
