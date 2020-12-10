@@ -21,4 +21,14 @@ class ApplicationController < ActionController::API
     }, status: 400
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  rescue
+    render_404
+  end
+
+  def render_404
+    render file: "#{Rails.root}/app/views/front_app/react", status: :not_found
+  end
+
 end

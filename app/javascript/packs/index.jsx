@@ -1,19 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "bootstrap/dist/css/bootstrap.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Offers from "./pages/Offers";
 import NavMain from "./components/NavMain";
 import FooterMain from "./components/FooterMain";
-import BreadCrumb from "./components/BreadCrumb";
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <NavMain />
-      <BreadCrumb />
-      <Home />
-      <FooterMain />
-    </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/mon-compte" component={Profile} />
+        <Route path="/annonces" component={Offers} />
+      </Switch>
+      <div>
+        <FooterMain />
+      </div>
+    </Router>
   );
 };
 
