@@ -1,0 +1,74 @@
+$myColor: #b26b6b;
+$hoverColor: #874e4e;
+$myBlack: #383838;
+
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content;
+  }
+}
+
+#form-container {
+  height:95vh;
+  font-family: "Zilla Slab", serif;
+  @include tablet-phone {
+    margin-top:5vh;
+  }
+  @include sm-desktop {
+    margin-top:15vh;
+  }
+  #intro {
+    font-weight:bold;
+    display: flex;
+    justify-content: center;
+    @include phone {
+      font-size:1em;
+    }
+    @include tablet-phone {
+      font-size:1.3em;
+    }
+    @include sm-desktop {
+      font-size:4em;
+    }
+  }
+  #button {
+    background-color: $myColor;
+    border: 1px solid $myColor;
+    font-size: 1.5em;
+    width: 10rem;
+    &:hover {
+      background-color: $hoverColor;
+      border: 1px solid $hoverColor;
+      transition: 0.5s;
+    }
+    @include tablet-phone {
+      display: block;
+      margin: 0 auto;
+      font-size: 1em;
+      width:auto;
+    }
+  }
+}
