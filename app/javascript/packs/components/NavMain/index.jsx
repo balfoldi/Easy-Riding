@@ -17,38 +17,37 @@ const NavMain = () => {
 
   if (isAuthenticated) {
     return (
-      <React.Fragment>
-        <HeaderImage/>
-        <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main" href="#">
-            Easy Riding
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav id="right-align">
-              <Nav className="mr-auto">
-                <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#">Mon Profil</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mon Garage</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Annonces</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Réservations</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Favoris</NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link onClick={disconnectUser} className="auth-links" href="#">
-                  Déconnexion
-                </Nav.Link>
+      <React.Fragment >
+        <HeaderImage />
+          <Navbar id="nav-main" collapseOnSelect expand="lg">
+            <Navbar.Brand id="title-main" href="#">
+              Easy Riding
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav id="right-align">
+                <Nav className="mr-auto">
+                  <NavDropdown title="Menu" id="collasible-nav-dropdown">
+                    <NavDropdown.Item href="#">Mon Profil</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#">Mon Garage</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#">Mes Annonces</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#">Mes Réservations</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#">Mes Favoris</NavDropdown.Item>
+                  </NavDropdown>
+                  <Nav.Link onClick={disconnectUser} className="auth-links" href="#">
+                    Déconnexion
+                  </Nav.Link>
+                </Nav>
               </Nav>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+            </Navbar.Collapse>
+          </Navbar>
       </React.Fragment>
     );
-  }
-  return (
+  } return (
     <Navbar id="nav-main" collapseOnSelect expand="lg">
       <Navbar.Brand id="title-main" href="#">
         Easy Riding
