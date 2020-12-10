@@ -5,8 +5,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
 import NavMain from "./components/NavMain";
@@ -22,12 +22,12 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/mon-compte" component={Profile} />
         <Route path="/annonces" component={Offers} />
+        <Route component={NotFound} />
       </Switch>
       <div>
         <FooterMain />
       </div>
     </Router>
-
   );
 };
 
