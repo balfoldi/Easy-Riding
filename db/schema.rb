@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_213455) do
+ActiveRecord::Schema.define(version: 2020_12_09_164927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
     t.index ["tag_id"], name: "index_join_table_bikes_tags_on_tag_id"
   end
 
+  create_table "join_table_favorites_offers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "offer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offer_id"], name: "index_join_table_favorites_offers_on_offer_id"
+    t.index ["user_id"], name: "index_join_table_favorites_offers_on_user_id"
+  end
+
   create_table "jwt_denylists", force: :cascade do |t|
     t.string "jti"
     t.datetime "exp"
@@ -60,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_213455) do
     t.string "city"
     t.integer "zip_code"
     t.string "street"
+    t.string "region"
     t.bigint "bike_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
