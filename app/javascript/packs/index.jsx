@@ -12,7 +12,7 @@ const App = () => {
     <div>
       <NavMain />
       <BreadCrumb />
-      <ScrollToTop smooth showUnder={190}/>
+      <ScrollToTop/>
       <Home />
       <FooterMain />
     </div>
