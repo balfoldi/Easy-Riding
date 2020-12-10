@@ -1,40 +1,71 @@
-import React from 'react';
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
-import {Nav, NavDropdown, Button} from "react-bootstrap";
+import { Nav, NavDropdown, Button } from "react-bootstrap";
 import "./navmain.scss";
 
 const NavMain = () => {
-  return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
-        </Nav>
-        <Nav>
-          <Nav.Link href="#deets">3</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            4
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  )
-}
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const connectUser = () => {
+    setIsAuthenticated(true);
+  };
+
+  const disconnectUser = () => {
+    setIsAuthenticated(false);
+  };
+
+  const navBar = () => {
+    if (isAuthenticated) {
+      return (
+        <Navbar id="nav-main" collapseOnSelect expand="lg">
+          <Navbar.Brand id="title-main" href="#">
+            Easy Riding
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav id="right-align">
+              <Nav className="mr-auto">
+                <NavDropdown title="Menu" id="collasible-nav-dropdown">
+                  <NavDropdown.Item href="#">Mon Profil</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#">Mon Garage</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#">Mes Annonces</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#">Mes Réservations</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#">Mes Favoris</NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link onClick={disconnectUser} className="auth-links" href="#">
+                  Déconnexion
+                </Nav.Link>
+              </Nav>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      );
+    } else {
+      return (
+        <Navbar id="nav-main" collapseOnSelect expand="lg">
+          <Navbar.Brand id="title-main" href="#">
+            Easy Riding
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav id="right-align">
+              <Nav.Link onClick={connectUser} className="auth-links" href="#">
+                Connexion
+              </Nav.Link>
+              <Nav.Link className="auth-links" href="#pricing">
+                Inscription
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      );
+    }
+  };
+  return navBar();
+};
 
 export default NavMain;

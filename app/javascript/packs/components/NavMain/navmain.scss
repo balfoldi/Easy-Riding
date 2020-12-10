@@ -1,0 +1,45 @@
+$myColor: #b26b6b;
+$hoverColor: #874e4e;
+$myBlack: #383838;
+
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content;
+  }
+}
+
+#nav-main {
+  background-color: transparent !important;
+  color: $myBlack;
+  font-family: "Zilla Slab", serif;
+  #title-main {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  #right-align {
+    margin-left: auto;
+  }
+}

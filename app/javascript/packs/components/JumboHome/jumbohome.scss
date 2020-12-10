@@ -1,101 +1,100 @@
 $myColor: #b26b6b;
 $hoverColor: #874e4e;
+$myBlack: #383838;
 
-$phone:512px;
-$tablet-phone:768px;
-$sm-desktop:769px;
-$lg-desktop:1440px;
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
 
 @mixin phone {
   @media (max-width: $phone) {
-    @content
+    @content;
   }
-};
+}
 
 @mixin tablet-phone {
   @media (max-width: $tablet-phone) {
-    @content
+    @content;
   }
-};
+}
 
 @mixin sm-desktop {
   @media (min-width: $sm-desktop) {
-    @content
+    @content;
   }
-};
+}
 
 @mixin lg-desktop {
   @media (min-width: $lg-desktop) {
-    @content
+    @content;
   }
-};
+}
 
-#jumbotron  {
-  background-color:white !important;
-  height:95vh;
-  display:flex;
+#jumbotron {
+  background-color: white !important;
+  height: 95vh;
+  display: flex;
   @include sm-desktop {
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
   }
   @include tablet-phone {
-    flex-direction:column;
+    flex-direction: column;
   }
   #info {
-      font-family: 'Zilla Slab', serif;
-      @include lg-desktop {
-        position:relative;
-
-        width:50%;
-        display:flex;
-        flex-direction:column;
-      }
-      @include sm-desktop {
-        position:relative;
-        margin-left:10vh;
-        width:50%;
-        display:flex;
-        flex-direction:column;
-      }
-      @include tablet-phone {
-        position: relative;
-        display:inline-block;
-        font-size: 2rem;
-        text-align: center;
-      }
+    font-family: "Zilla Slab", serif;
+    color: $myBlack;
+    @include lg-desktop {
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    @include sm-desktop {
+      position: relative;
+      margin-left: 10vh;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    @include tablet-phone {
+      position: relative;
+      display: inline-block;
+      font-size: 2rem;
+      text-align: center;
+    }
     p {
-      font-weight:bold;
+      font-weight: bold;
       @include lg-desktop {
-        padding-right:10rem;
-        margin-left:5vh;
-
+        padding-right: 10rem;
+        margin-left: 5vh;
       }
       @include sm-desktop {
-        font-size:5rem;
-        margin-top:20%;
+        font-size: 5rem;
+        margin-top: 20%;
       }
     }
     Button {
-      background-color:$myColor;
-      border:1px solid $myColor;
+      background-color: $myColor;
+      border: 1px solid $myColor;
       font-size: 1.5rem;
-      width:10rem;
+      width: 10rem;
       &:hover {
-        background-color:$hoverColor;
-        border:1px solid $hoverColor;
-        transition:0.5s;
+        background-color: $hoverColor;
+        border: 1px solid $hoverColor;
+        transition: 0.5s;
       }
       @include lg-desktop {
-        margin-left:5vh;
+        margin-left: 5vh;
       }
     }
-
   }
   #map {
-    position:relative;
+    position: relative;
     @include sm-desktop {
-      width:50%;
-      margin-right:10vh;
+      width: 50%;
+      margin-right: 10vh;
     }
     @include tablet-phone {
       margin-left: auto;
@@ -104,23 +103,23 @@ $lg-desktop:1440px;
     }
     img {
       @include lg-desktop {
-        height:90vh;
+        height: 90vh;
         margin-left: 10%;
-        margin-top:10%;
+        margin-top: 10%;
         position: absolute;
       }
       @include sm-desktop {
-        height:70vh;
-        margin-top:10%;
+        height: 70vh;
+        margin-top: 10%;
         position: absolute;
       }
       @include tablet-phone {
-        height:60vmax;
+        height: 60vmax;
         position: relative;
       }
       @include phone {
-        margin-top:1rem;
-        height:45vmax;
+        margin-top: 1rem;
+        height: 45vmax;
         position: relative;
       }
     }

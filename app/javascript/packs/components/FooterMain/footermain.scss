@@ -1,0 +1,106 @@
+$myColor: #b26b6b;
+$hoverColor: #874e4e;
+$myBlack: #383838;
+
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content;
+  }
+}
+
+#main-footer {
+  font-family: "Zilla Slab", serif;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  line-height: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  background-color: $myBlack;
+  .container {
+    display: flex;
+    @include sm-desktop {
+      flex-direction: row;
+      #col-1 {
+        margin-right: auto;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      #col-2 {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      a {
+        color:white;
+        &:hover {
+          color:white;
+          text-decoration: underline;
+        }
+      }
+      }
+      #col-3 {
+        margin-left: auto;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      .footer-title, .contributors {
+        margin-right: auto;
+        font-weight: bold;
+        font-size: 2rem;
+      }
+    }
+    @include tablet-phone {
+      flex-direction: column;
+      #col-1, #col-2, #col-3 {
+        margin:auto;
+        text-align: center;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      .footer-title, .contributors {
+        margin-right: auto;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
