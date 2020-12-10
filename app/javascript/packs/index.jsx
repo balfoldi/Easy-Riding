@@ -5,13 +5,13 @@ import Home from "./pages/Home";
 import NavMain from "./components/NavMain";
 import FooterMain from "./components/FooterMain";
 import BreadCrumb from "./components/BreadCrumb";
+import LoginForm from "./components/LoginForm";
 
 const App = () => {
   return (
     <div>
       <NavMain />
-      <BreadCrumb />
-      <Home />
+      <LoginForm />
       <FooterMain />
     </div>
   );
