@@ -33,7 +33,6 @@ $lg-desktop: 1440px;
 
 #form-container {
   color:$myBlack;
-  height:110vh;
   font-family: "Zilla Slab", serif;
   a {
     text-decoration: underline;
@@ -45,9 +44,11 @@ $lg-desktop: 1440px;
   }
   @include tablet-phone {
     margin-top:5vh;
+    height:130vh;
   }
   @include sm-desktop {
     margin-top:8vh;
+    height:100vh;
   }
   #intro {
     font-weight:bold;
@@ -67,7 +68,7 @@ $lg-desktop: 1440px;
     background-color: $myColor;
     border: 1px solid $myColor;
     font-size: 1.5em;
-    width: 10rem;
+    width: 12rem;
     margin-top:1rem;
     &:hover {
       background-color: $hoverColor;
@@ -80,6 +81,7 @@ $lg-desktop: 1440px;
       font-size: 1em;
       width:auto;
       margin-top:1rem;
+      width:9rem;
     }
   }
 }

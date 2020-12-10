@@ -105,6 +105,11 @@ const SignupForm = () => {
           />
         </Form.Group>
 
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Description</Form.Label>
+          <Form.Control name="description" as="textarea" placeholder="Parlez-nous de vous en quelques mots..." rows={3} />
+        </Form.Group>
+
         <Form.Row>
           <Form.Group as={Col} controlId="formBasicEmail">
             <Form.Label>Votre adresse email</Form.Label>
@@ -120,7 +125,6 @@ const SignupForm = () => {
             name="phone_number" type="tel" placeholder="Entrez votre numéro de téléphone" />
           </Form.Group>
         </Form.Row>
-
 
         <Form.Row>
         <Form.Group as={Col} controlId="formGridPassword">
