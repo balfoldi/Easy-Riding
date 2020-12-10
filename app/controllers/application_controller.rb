@@ -2,6 +2,8 @@ class ApplicationController < ActionController::API
 
   rescue_from ActiveRecord::RecordNotUnique, with: :record_not_unique
 
+
+
   def render_jsonapi_response(resource)
     if resource.errors.empty?
       render json: resource.api
