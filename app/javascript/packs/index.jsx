@@ -24,9 +24,7 @@ const App = () => {
         <Route path="/annonces" component={Offers} />
         <Route component={NotFound} />
       </Switch>
-      <div>
         <FooterMain />
-      </div>
     </Router>
   );
 };
