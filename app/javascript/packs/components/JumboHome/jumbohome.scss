@@ -75,11 +75,17 @@ $lg-desktop: 1440px;
         margin-top: 20%;
       }
     }
-    Button {
+    #home-button {
       background-color: $myColor;
       border: 1px solid $myColor;
       font-size: 1.5rem;
       width: 10rem;
+      #home-link {
+        color:white;
+        &:hover {
+        text-decoration:none;
+        }
+      }
       &:hover {
         background-color: $hoverColor;
         border: 1px solid $hoverColor;

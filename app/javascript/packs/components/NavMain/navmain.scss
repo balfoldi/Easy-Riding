@@ -38,6 +38,20 @@ $lg-desktop: 1440px;
   #title-main {
     font-weight: bold;
     font-size: 2rem;
+    a {
+      color:$myBlack;
+      &:hover {
+        text-decoration: none;
+        color:#595959;
+        transition:0.3s;
+      }
+    }
+  }
+  #item-link {
+    color:$myBlack;
+    &:hover {
+      text-decoration:none;
+    }
   }
   #right-align {
     margin-left: auto;
