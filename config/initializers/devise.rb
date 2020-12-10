@@ -1,20 +1,27 @@
 # frozen_string_literal: true
 
-# Assuming you have not yet modified this file, each configuration option below
-# is set to its default value. Note that some are commented out while others
-# are not: uncommented lines are intended to protect your configuration from
-# breaking changes in upgrades (i.e., in the event that future versions of
-# Devise change the default values for those options).
-#
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require 'dotenv'
+Dotenv.load
+
 Devise.setup do |config|
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+		jwt.dispatch_requests = [
+	    ['POST', %r{^/api/login$}]
+	  ]
+	  jwt.revocation_requests = [
+	    ['DELETE', %r{^/api/logout$}]
+	  ]
+	  jwt.expiration_time = 1.day.to_i
+  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'a143e3e7d5f3639f618a1b76105eff58ac8c26ec1fb8109f120a69d34f4fa434e42e81844ad273dccc855669111b50f20e5a2906d43ded3d378a25eb0d0b6784'
+  # config.secret_key = '19dd50900032a49a4686bf855205e3e3412fe53a326e763aec936089f25054650ab0497b59e42b6e6faeb833ffed049bf981db808fc41ff5fa145f9b76b4135e'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -74,10 +81,7 @@ Devise.setup do |config|
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
-  # enable it only for database authentication.
-  # For API-only applications to support authentication "out-of-the-box", you will likely want to
-  # enable this with :database unless you are using a custom strategy.
-  # The supported strategies are:
+  # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
 
@@ -112,21 +116,18 @@ Devise.setup do |config|
   # config.reload_routes = true
 
   # ==> Configuration for :database_authenticatable
-  # For bcrypt, this is the cost for hashing the password and defaults to 12. If
+  # For bcrypt, this is the cost for hashing the password and defaults to 11. If
   # using other algorithms, it sets how many times you want the password to be hashed.
-  # The number of stretches used for generating the hashed password are stored
-  # with the hashed password. This allows you to change the stretches without
-  # invalidating existing passwords.
   #
   # Limiting the stretches to just one in testing will increase the performance of
   # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 12
+  config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '138faeb0e8e792cc1b2c79d4d16c6e11f7b4ce3f1a03f3af958eaae195ae7e81ef6e31dcf4434bac66ec0f620ea75505665c3b7a01ed3d957ab2cac39a0f1666'
+  # config.pepper = '02a9b26c7e7f8a10a1b1205663dbb954f10c4e72a43f5d05192535f3ae505f4a61f3a5b409d0bd0fa5f5c333b193aaad53c3a7c57471e222a4fb6a7562e779b2'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -253,7 +254,7 @@ Devise.setup do |config|
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
   # config.sign_out_all_scopes = true
-
+  config.navigational_formats = []
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
   # :html, should redirect to the sign in page when the user does not have
