@@ -9,7 +9,7 @@ const JumboHome = () => {
     <Jumbotron fluid id="jumbotron">
       <div id="info">
         <p id="presentation">Visiter la France sur la moto de mes rêves ? </p>
-        <Button id="home-button"><Link to="/annonces">C'est parti</Link></Button>
+        <Button id="home-button"><Link to="/annonces" id="home-link">C'est parti</Link></Button>
       </div>
       <div id="map">
         <Image src={France} />

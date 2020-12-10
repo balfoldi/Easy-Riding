@@ -27,7 +27,7 @@ const NavMain = () => {
             <Nav id="right-align">
               <Nav className="mr-auto">
                 <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <NavDropdown.Item><Link to='/mon-compte'>Mon Profil</Link></NavDropdown.Item>
+                  <NavDropdown.Item><Link to='/mon-compte' id="item-link">Mon Profil</Link></NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item>Mon Garage</NavDropdown.Item>
                   <NavDropdown.Divider />
