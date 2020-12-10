@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import Navbar from "react-bootstrap/Navbar";
-import { Nav, NavDropdown, Button } from "react-bootstrap";
+import { Nav, NavDropdown } from "react-bootstrap";
 import "./navmain.scss";
 
 const NavMain = () => {
@@ -18,25 +19,25 @@ const NavMain = () => {
     if (isAuthenticated) {
       return (
         <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main" href="#">
-            Easy Riding
+          <Navbar.Brand id="title-main">
+            <Link to='/'>Easy Riding</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav id="right-align">
               <Nav className="mr-auto">
                 <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#">Mon Profil</NavDropdown.Item>
+                  <NavDropdown.Item><Link to='/mon-compte'>Mon Profil</Link></NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mon Garage</NavDropdown.Item>
+                  <NavDropdown.Item>Mon Garage</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Annonces</NavDropdown.Item>
+                  <NavDropdown.Item>Mes Annonces</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Réservations</NavDropdown.Item>
+                  <NavDropdown.Item>Mes Réservations</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#">Mes Favoris</NavDropdown.Item>
+                  <NavDropdown.Item>Mes Favoris</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link onClick={disconnectUser} className="auth-links" href="#">
+                <Nav.Link onClick={disconnectUser} className="auth-links">
                   Déconnexion
                 </Nav.Link>
               </Nav>
@@ -47,16 +48,16 @@ const NavMain = () => {
     } else {
       return (
         <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main" href="#">
-            Easy Riding
+          <Navbar.Brand id="title-main">
+            <Link to='/'>Easy Riding</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav id="right-align">
-              <Nav.Link onClick={connectUser} className="auth-links" href="#">
+              <Nav.Link onClick={connectUser} className="auth-links">
                 Connexion
               </Nav.Link>
-              <Nav.Link className="auth-links" href="#pricing">
+              <Nav.Link className="auth-links">
                 Inscription
               </Nav.Link>
             </Nav>

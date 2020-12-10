@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root 'front_app#react'
 
+  get '*path' => "front_app#react"
+
   scope '/api', defaults: { format: :json } do
     resources :bookings
     resources :offers

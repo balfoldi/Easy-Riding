@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {Jumbotron, Button, Image} from "react-bootstrap";
 import "./jumbohome.scss";
 import France from "../../assets/img/france.png";
@@ -8,7 +9,7 @@ const JumboHome = () => {
     <Jumbotron fluid id="jumbotron">
       <div id="info">
         <p id="presentation">Visiter la France sur la moto de mes rêves ? </p>
-        <Button id="home-button">C'est parti</Button>
+        <Button id="home-button"><Link to="/annonces">C'est parti</Link></Button>
       </div>
       <div id="map">
         <Image src={France} />

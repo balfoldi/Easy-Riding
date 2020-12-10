@@ -4,4 +4,8 @@ class Offer < ApplicationRecord
 
     has_many :join_table_favorites_offers
     has_many :users, through: :join_table_favorites_offers
+
+    def api
+        self.build("users", "bookings")
+    end
 end
