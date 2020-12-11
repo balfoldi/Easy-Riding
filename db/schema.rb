@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_164927) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "city"
-    t.integer "zip_code"
+    t.string "zip_code"
     t.string "street"
     t.string "region"
     t.bigint "bike_id"

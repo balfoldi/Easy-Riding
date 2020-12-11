@@ -1,10 +1,88 @@
 fr:
-  hello: "Hello world"
   activerecord:
     models:
       user: Utilisateur
+      bike: Moto
     attributes:
       user:
-        email: "L'email"
-        password: "Le mot de passe"
-        password_confirmation: "Le mot de passe de confirmation"                
+        email: L'email
+        password: Le mot de passe
+        password_confirmation: Le mot de passe de confirmation
+        description: La description
+        username: Le psedonyme
+      bike:
+        description: La description
+      offer:
+        start_date: La date de début
+        end_date: La date de fin
+        description: La description
+        title: Le titre      
+        daily_price: Le prix à la journée
+        city: La ville
+        street: La voix
+        zip_code: Le code postal
+        region: La région
+    errors:
+      models:
+        bike: 
+          attributes:
+            description: 
+              blank: "%{attribute} doit être présente"
+              too_short: "%{attribute} doit faire au moin %{count} charactères"
+              too_long: "%{attribute} doit faire moin de %{count} charactères"
+        user:
+          attributes:
+            last_name:
+              too_short: "doit faire au moin %{count} charactères"
+              too_long: "doit faire moin de %{count} charactères"            
+            first_name:
+              too_short: "doit faire au moin %{count} charactères"
+              too_long: "doit faire moin de %{count} charactères"            
+            username:
+              blank: "doit être présent"
+              too_short: "doit faire au moin %{count} charactères"
+              too_long: "doit faire moin de %{count} charactères"            
+            descrition:
+              too_short: "doit faire au moin %{count} charactères"
+              too_long: "doit faire moin de %{count} charactères"    
+        offer:
+          attributes:
+            title:                 
+              blank: "%{attribute} doit être présent"
+              too_short: "%{attribute} doit faire au moin %{count} charactères"
+              too_long: "%{attribute} doit faire moin de %{count} charactères"       
+            description:
+              blank: "%{attribute} doit être présent"
+              too_short: "%{attribute} doit faire au moin %{count} charactères"
+              too_long: "%{attribute} doit faire moin de %{count} charactères"  
+            daily_price:
+              blank: "%{attribute} doit être présent"
+              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} euros"
+              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} euros"
+            start_date:
+              blank: "%{attribute} doit être présente"
+              past: "%{attribute} est passée"
+            end_date:
+              blank: "%{attribute} doit être présente"
+              too_soon: "%{attribute} ne peut pas dépasser la date de début"
+            city:
+              blank: "%{attribute} doit être présente"
+              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} charactères"
+              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} charactères"            
+            street:
+              blank: "%{attribute} doit être présente"
+              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} charactères"
+              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} charactères"            
+            region:
+              blank: "%{attribute} doit être présente"
+            zip_code:
+              blank: "%{attribute} doit être présent"
+              wrong_length: "%{attribute} doit faire 5 chiffres"
+        booking:
+          attributes:
+            start_date:
+              blank: "%{attribute} doit être présente"
+              past: "%{attribute} est passée"
+            end_date:
+              blank: "%{attribute} doit être présente"
+              too_soon: "%{attribute} ne peut pas dépasser la date de début"            

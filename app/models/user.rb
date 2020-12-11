@@ -7,6 +7,11 @@ class User < ApplicationRecord
     has_many :join_table_favorites_offers
     has_many :offers, through: :join_table_favorites_offers
 
+    validates :last_name, length: { maximum: 20 }
+    validates :first_name, length: { maximum: 20 }
+    validates :username, length: { maximum: 20 }, presence: true, uniqueness: true
+    validates :description, length: { in: 20..3000}, allow_blank: true
+
     def api
       self.build("bikes", "offers")
   end

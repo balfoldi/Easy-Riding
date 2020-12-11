@@ -14,5 +14,18 @@ class ApplicationRecord < ActiveRecord::Base
     end
     return api
   end
+
+
+  def end_date_exceeds_start_date
+    unless self.end_date.blank?
+        errors.add(:end_date, :too_soon) if self.end_date < self.start_date
+    end
+end
+
+def start_date_not_past
+    unless self.start_date.blank?
+        errors.add(:start_date, :past) if self.start_date < Time.new 
+    end
+end
   
 end
