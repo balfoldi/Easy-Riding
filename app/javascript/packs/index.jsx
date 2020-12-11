@@ -13,14 +13,18 @@ import NavMain from "./components/NavMain";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import FooterMain from "./components/FooterMain";
-import BreadCrumb from "./components/BreadCrumb";
 import { ScrollTo, ScrollArea } from "react-scroll-to";
 
 const App = () => {
   return (
     <Router>
       <NavMain />
-      <BreadCrumb />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/mon-compte" component={Profile} />
+          <Route path="/annonces" component={Offers} />
+          <Route component={NotFound} />
+        </Switch>
       <Home />
       <ScrollTo className="ScrollSomewhere">
         {({ scroll }) => (
@@ -28,14 +32,6 @@ const App = () => {
         )}
       </ScrollTo>
       <FooterMain />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/mon-compte" component={Profile} />
-        <Route path="/annonces" component={Offers} />
-        <Route component={NotFound} />
-      </Switch>
-      <ScrollToTop/>
-        <FooterMain />
     </Router>
   );
 };
