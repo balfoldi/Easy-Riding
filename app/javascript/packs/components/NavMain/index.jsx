@@ -27,17 +27,15 @@ const NavMain = () => {
             <Nav id="right-align">
               <Nav className="mr-auto">
                 <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <NavDropdown.Item>
-                    <Link to='/mon-compte' id="item-link">Mon Compte</Link>
-                  </NavDropdown.Item>
+                    <Link to='/mon-compte' id="item-link">MON COMPTE</Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item>Mon Garage</NavDropdown.Item>
+                    <Link to='/mon-compte/mon-garage' id="item-link">Mon Garage</Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item>Mes Annonces</NavDropdown.Item>
+                  <Link to='/mon-compte/mes-annonces' id="item-link">Mes Annonces</Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item>Mes Réservations</NavDropdown.Item>
+                    <Link to='/mon-compte/mes-réservations' id="item-link">Mes Réservations</Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item>Mes Favoris</NavDropdown.Item>
+                    <Link to='/mon-compte/mes-favoris' id="item-link">Mes Favoris</Link>
                 </NavDropdown>
                 <Nav.Link onClick={disconnectUser} className="auth-links">
                   Déconnexion
