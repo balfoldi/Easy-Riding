@@ -1,5 +1,5 @@
 import React from "react";
-import JumboHome from "../components/JumboHome";
+import JumboHome from "./JumboHome";
 
 const Home = () => {
   return (

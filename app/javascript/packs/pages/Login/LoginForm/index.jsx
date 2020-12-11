@@ -1,8 +1,8 @@
+import "./loginform.scss";
 import React from "react";
 import { Container, Button, Form, Alert } from "react-bootstrap";
 // import Cookies from "js-cookie";
 // import { StoreContext } from "../../store/index.jsx";
-import "./loginform.scss";
 
 
 const LoginForm = () => {

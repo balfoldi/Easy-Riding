@@ -9,10 +9,10 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
-import NavMain from "./components/NavMain";
-import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
-import FooterMain from "./components/FooterMain";
+import NavMain from "./components/layout/NavMain";
+import FooterMain from "./components/layout/FooterMain";
+import LoginForm from "./pages/Login/LoginForm";
+import SignupForm from "./pages/Signup/SignupForm";
 import { ScrollTo, ScrollArea } from "react-scroll-to";
 
 const App = () => {
