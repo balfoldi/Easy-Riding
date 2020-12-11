@@ -15,7 +15,7 @@ const App = () => {
       <Home />
       <ScrollTo className="ScrollSomewhere">
         {({ scroll }) => (
-          <button onClick={() => scroll({ x: 10, y: 0, smooth: true })}>Scroll to top</button>
+          <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>
         )}
       </ScrollTo>
       <FooterMain />
