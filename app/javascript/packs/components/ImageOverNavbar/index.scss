@@ -1,0 +1,65 @@
+$phone: 512px;
+$tablet-phone: 768px;
+$sm-desktop: 769px;
+$lg-desktop: 1440px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet-phone {
+  @media (max-width: $tablet-phone) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media (min-width: $lg-desktop) {
+    @content;
+  }
+}
+
+.__logo:hover {
+  opacity: 0.4;
+  border-bottom-style: dashed;
+  border-bottom-style: solid;
+}
+
+.HeaderImage {
+  background: url(../assets/img/firethenavbar.jpg) no-repeat center center;
+  background-size: 100%;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  @include sm-desktop {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @include tablet-phone {
+    flex-direction: column;
+  }
+
+  &__logo {
+    height: 20%;
+    width: 20%;
+    display: flex;
+    @include sm-desktop {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    @include tablet-phone {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
