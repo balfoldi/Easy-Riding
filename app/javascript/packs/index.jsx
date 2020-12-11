@@ -25,7 +25,6 @@ const App = () => {
           <Route path="/annonces" component={Offers} />
           <Route component={NotFound} />
         </Switch>
-      <Home />
       <ScrollTo className="ScrollSomewhere">
         {({ scroll }) => (
           <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>

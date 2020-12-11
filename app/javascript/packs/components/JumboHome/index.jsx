@@ -1,7 +1,7 @@
+import "./jumbohome.scss";
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Jumbotron, Button, Image} from "react-bootstrap";
-import "./jumbohome.scss";
+import { Jumbotron, Button, Image } from "react-bootstrap";
 import France from "../../assets/img/france.png";
 
 const JumboHome = () => {
