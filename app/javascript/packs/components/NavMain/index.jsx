@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav, NavDropdown, Button } from "react-bootstrap";
 import "./navmain.scss";
 import HeaderImage from "../ImageOverNavbar";
+import { ScrollTo } from "react-scroll-to";
 
 const NavMain = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -19,7 +20,7 @@ const NavMain = () => {
     return (
       <React.Fragment >
         <HeaderImage />
-          <Navbar id="nav-main" collapseOnSelect expand="lg">
+          <Navbar type="id" element="navbar" id="nav-main" collapseOnSelect expand="lg">
             <Navbar.Brand id="title-main" href="#">
               Easy Riding
             </Navbar.Brand>
