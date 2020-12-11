@@ -73,58 +73,15 @@ const SignupForm = () => {
         <Alert variant="warning">{error.detail}</Alert>
       ))} */}
       <p id="intro">Bienvenue à bord !</p>
+      <p id="second">Remplissez ces champs pour vous inscrire :</p>
       <Form>
 
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Identifiant</Form.Label>
+          <Form.Label>Votre adresse email</Form.Label>
           <Form.Control
-            //onChange={handleInputChange}
-            name="first_name"
-            type="text"
-            placeholder="Choisissez votre identifiant (ex : riderdelextremedu57...)"
-          />
+          //onChange={handleInputChange}
+          name="email" type="email" placeholder="Entrez une adresse email valide" />
         </Form.Group>
-
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Prénom</Form.Label>
-          <Form.Control
-            //onChange={handleInputChange}
-            name="first_name"
-            type="text"
-            placeholder="Entrez votre prénom"
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Nom de famille</Form.Label>
-          <Form.Control
-            //onChange={handleInputChange}
-            name="last_name"
-            type="text"
-            placeholder="Entrez votre nom de famille"
-          />
-        </Form.Group>
-
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description</Form.Label>
-          <Form.Control name="description" as="textarea" placeholder="Parlez-nous de vous en quelques mots..." rows={3} />
-        </Form.Group>
-
-        <Form.Row>
-          <Form.Group as={Col} controlId="formBasicEmail">
-            <Form.Label>Votre adresse email</Form.Label>
-            <Form.Control
-            //onChange={handleInputChange}
-            name="email" type="email" placeholder="Entrez une adresse email valide" />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Téléphone</Form.Label>
-            <Form.Control
-            //onChange={handleInputChange}
-            name="phone_number" type="tel" placeholder="Entrez votre numéro de téléphone" />
-          </Form.Group>
-        </Form.Row>
 
         <Form.Row>
         <Form.Group as={Col} controlId="formGridPassword">

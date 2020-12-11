@@ -13,18 +13,25 @@ import NavMain from "./components/NavMain";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import FooterMain from "./components/FooterMain";
+import { ScrollTo, ScrollArea } from "react-scroll-to";
 
 const App = () => {
   return (
     <Router>
       <NavMain />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/mon-compte" component={Profile} />
-        <Route path="/annonces" component={Offers} />
-        <Route component={NotFound} />
-      </Switch>
-        <FooterMain />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/mon-compte" component={Profile} />
+          <Route path="/annonces" component={Offers} />
+          <Route component={NotFound} />
+        </Switch>
+      <Home />
+      <ScrollTo className="ScrollSomewhere">
+        {({ scroll }) => (
+          <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>
+        )}
+      </ScrollTo>
+      <FooterMain />
     </Router>
   );
 };

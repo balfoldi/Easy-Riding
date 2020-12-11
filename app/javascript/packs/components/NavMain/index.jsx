@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "react-bootstrap/Navbar";
 import { Nav, NavDropdown } from "react-bootstrap";
 import "./navmain.scss";
+import HeaderImage from "../ImageOverNavbar";
 
 const NavMain = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -15,11 +16,12 @@ const NavMain = () => {
     setIsAuthenticated(false);
   };
 
-  const navBar = () => {
-    if (isAuthenticated) {
-      return (
-        <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main">
+  if (isAuthenticated) {
+    return (
+      <React.Fragment >
+        <HeaderImage />
+          <Navbar id="nav-main" collapseOnSelect expand="lg">
+            <Navbar.Brand id="title-main" href="#">
             <Link to='/'>Easy Riding</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -41,32 +43,31 @@ const NavMain = () => {
                   Déconnexion
                 </Nav.Link>
               </Nav>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      );
-    } else {
-      return (
-        <Navbar id="nav-main" collapseOnSelect expand="lg">
-          <Navbar.Brand id="title-main">
-            <Link to='/'>Easy Riding</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav id="right-align">
-              <Nav.Link onClick={connectUser} className="auth-links">
-                Connexion
-              </Nav.Link>
-              <Nav.Link className="auth-links">
-                Inscription
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      );
-    }
-  };
-  return navBar();
+            </Navbar.Collapse>
+          </Navbar>
+      </React.Fragment>
+    );
+  } return (
+   <React.Fragment >
+    <HeaderImage />
+      <Navbar id="nav-main" collapseOnSelect expand="lg">
+        <Navbar.Brand id="title-main" href="#">
+          <Link to='/'>Easy Riding</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav id="right-align">
+            <Nav.Link onClick={connectUser} className="auth-links" href="#">
+              Connexion
+            </Nav.Link>
+            <Nav.Link className="auth-links" href="#pricing">
+              Inscription
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </React.Fragment>
+  );
 };
 
 export default NavMain;
