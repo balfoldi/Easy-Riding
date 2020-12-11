@@ -14,7 +14,7 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import FooterMain from "./components/FooterMain";
 import BreadCrumb from "./components/BreadCrumb";
-import ScrollToTop from "react-scroll-to-top";
+import { ScrollTo, ScrollArea } from "react-scroll-to";
 
 const App = () => {
   return (
@@ -22,6 +22,11 @@ const App = () => {
       <NavMain />
       <BreadCrumb />
       <Home />
+      <ScrollTo className="ScrollSomewhere">
+        {({ scroll }) => (
+          <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>
+        )}
+      </ScrollTo>
       <FooterMain />
       <Switch>
         <Route exact path="/" component={Home} />
