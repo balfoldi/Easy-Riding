@@ -1,9 +1,8 @@
-import React, { Component, useState } from "react";
+import "./index.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav, NavDropdown } from "react-bootstrap";
-import "./navmain.scss";
-import HeaderImage from "./ImageOverNavbar";
 
 const NavMain = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -18,8 +17,6 @@ const NavMain = () => {
 
   if (isAuthenticated) {
     return (
-      <React.Fragment>
-        <HeaderImage />
         <Navbar id="nav-main" collapseOnSelect expand="lg">
           <Navbar.Brand id="title-main" href="#">
             <Link to="/">Easy Riding</Link>
@@ -56,12 +53,9 @@ const NavMain = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </React.Fragment>
     );
   }
   return (
-    <React.Fragment>
-      <HeaderImage />
       <Navbar id="nav-main" collapseOnSelect expand="lg">
         <Navbar.Brand id="title-main" href="#">
           <Link to="/">Easy Riding</Link>
@@ -78,7 +72,6 @@ const NavMain = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </React.Fragment>
   );
 };
 

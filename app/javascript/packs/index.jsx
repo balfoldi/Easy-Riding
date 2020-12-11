@@ -1,3 +1,4 @@
+import './index.scss';
 import React from "react";
 import ReactDOM from "react-dom";
 import {
@@ -13,7 +14,7 @@ import NavMain from "./components/layout/NavMain";
 import FooterMain from "./components/layout/FooterMain";
 import LoginForm from "./pages/Login/LoginForm";
 import SignupForm from "./pages/Signup/SignupForm";
-import { ScrollTo, ScrollArea } from "react-scroll-to";
+import { ScrollTo } from "react-scroll-to";
 
 const App = () => {
   return (

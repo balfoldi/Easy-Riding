@@ -1,9 +1,14 @@
+import './index.scss';
 import React from "react";
-import JumboHome from "./JumboHome";
+import Jumbo from "./Jumbo";
+import HeaderImage from "./HeaderImage";
 
 const Home = () => {
   return (
-  <JumboHome />
+    <>
+      <HeaderImage />
+      <Jumbo />
+    </>
   )
 };
 

@@ -9,7 +9,7 @@ fr:
         password: Le mot de passe
         password_confirmation: Le mot de passe de confirmation
         description: La description
-        username: Le psedonyme
+        username: Le pseudonyme
       bike:
         description: La description
       offer:
@@ -19,7 +19,7 @@ fr:
         title: Le titre      
         daily_price: Le prix à la journée
         city: La ville
-        street: La voix
+        street: La voie
         zip_code: Le code postal
         region: La région
     errors:
@@ -28,37 +28,37 @@ fr:
           attributes:
             description: 
               blank: "%{attribute} doit être présente"
-              too_short: "%{attribute} doit faire au moin %{count} charactères"
-              too_long: "%{attribute} doit faire moin de %{count} charactères"
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"
         user:
           attributes:
             last_name:
-              too_short: "doit faire au moin %{count} charactères"
-              too_long: "doit faire moin de %{count} charactères"            
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
             first_name:
-              too_short: "doit faire au moin %{count} charactères"
-              too_long: "doit faire moin de %{count} charactères"            
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
             username:
               blank: "doit être présent"
-              too_short: "doit faire au moin %{count} charactères"
-              too_long: "doit faire moin de %{count} charactères"            
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
             descrition:
-              too_short: "doit faire au moin %{count} charactères"
-              too_long: "doit faire moin de %{count} charactères"    
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"    
         offer:
           attributes:
             title:                 
               blank: "%{attribute} doit être présent"
-              too_short: "%{attribute} doit faire au moin %{count} charactères"
-              too_long: "%{attribute} doit faire moin de %{count} charactères"       
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"       
             description:
               blank: "%{attribute} doit être présent"
-              too_short: "%{attribute} doit faire au moin %{count} charactères"
-              too_long: "%{attribute} doit faire moin de %{count} charactères"  
+              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
+              too_long: "%{attribute} ne doit pas excéder %{count} caractères"  
             daily_price:
               blank: "%{attribute} doit être présent"
-              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} euros"
-              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} euros"
+              less_than_or_equal_to: "%{attribute} doit être au plus de %{count} euros"
+              greater_than_or_equal_to: "%{attribute} doit être au moins %{count} euros"
             start_date:
               blank: "%{attribute} doit être présente"
               past: "%{attribute} est passée"
@@ -67,17 +67,17 @@ fr:
               too_soon: "%{attribute} ne peut pas dépasser la date de début"
             city:
               blank: "%{attribute} doit être présente"
-              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} charactères"
-              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} charactères"            
+              less_than_or_equal_to: "%{attribute} doit être au plus de %{count} caractères"
+              greater_than_or_equal_to: "%{attribute} doit être au moins %{count} caractères"            
             street:
               blank: "%{attribute} doit être présente"
-              less_than_or_equal_to: "%{attribute} doit faire au plus %{count} charactères"
-              greater_than_or_equal_to: "%{attribute} doit faire au moin %{count} charactères"            
+              less_than_or_equal_to: "%{attribute} doit être au plus de %{count} caractères"
+              greater_than_or_equal_to: "%{attribute} doit être au moins de %{count} caractères"            
             region:
               blank: "%{attribute} doit être présente"
             zip_code:
               blank: "%{attribute} doit être présent"
-              wrong_length: "%{attribute} doit faire 5 chiffres"
+              wrong_length: "%{attribute} doit être 5 chiffres"
         booking:
           attributes:
             start_date:

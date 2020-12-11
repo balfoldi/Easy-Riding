@@ -4,13 +4,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import NavProfile from "./NavProfile";
 import Favorites from "./Favorites";
-import ProfileInfo from "./ProfileInfo"
 import Garage from "./Garage";
-import MyOffers from "./MyOffers";
 import MyBookings from "./MyBookings";
-import NotFound from "../pages/NotFound";
+import MyOffers from "./MyOffers";
+import NavProfile from "./NavProfile";
+import ProfileInfo from "./ProfileInfo"
+import NotFound from "../NotFound";
 
 const Profile = () => {
   return (
