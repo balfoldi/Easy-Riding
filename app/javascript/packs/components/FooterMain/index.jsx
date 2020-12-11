@@ -10,7 +10,7 @@ const FooterMain = () => {
           <p><a href="#">GitHub</a></p>
         </div>
         <div id="col-2">
-          <p className="contributors">Contributors</p>
+          <p className="contributors">Contributeurs</p>
           <p><a href="#">Boris Alföldi</a></p>
           <p><a href="#">Lucas Gautier</a></p>
           <p><a href="#">Maxime Castillo</a></p>
