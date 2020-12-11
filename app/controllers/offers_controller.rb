@@ -46,6 +46,6 @@ class OffersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def offer_params
-      params.require(:offer).permit(:title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street)
+      params.require(:offer).permit(:bike_id, :title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street)
     end
 end
