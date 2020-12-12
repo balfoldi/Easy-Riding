@@ -6,7 +6,6 @@ import HeaderImage from "./HeaderImage";
 const Home = () => {
   return (
     <>
-      <HeaderImage />
       <Jumbo />
     </>
   )
