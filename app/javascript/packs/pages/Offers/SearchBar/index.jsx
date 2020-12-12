@@ -1,7 +1,5 @@
 import "./index.scss";
-
 import React, { useContext, useState, useEffect } from "react";
-
 import { Container, FormControl, Col, Row, Button, Form, Group } from "react-bootstrap";
 
 const SearchBar = () => {
