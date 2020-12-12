@@ -1,13 +1,30 @@
-import "./index.scss";
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
+import { Container, FormControl, Col, Row, Button, Form, Group } from "react-bootstrap";
 
-const BikeList = () => {
+import Breadcrumb from "../../../components/layout/BreadCrumb";
+import SearchBar from "../SearchBar";
+import AsideBar from "../AsideBar";
+
+const Offers = () => {
   return (
-    <div className="blue_background">
-      Lorem Ipsum
-    </div>
-
+      <React.Fragment>
+        <Breadcrumb />
+        <SearchBar />
+        <Container>
+          <Row>
+            <Col sm={4}>
+              <br></br>
+              <AsideBar />
+            </Col>
+            <Col sm={8}>
+              <br></br>
+              <BikeList />
+            </Col>
+          </Row>
+        </Container>
+      </React.Fragment>
   )
 };
 
-export default BikeList;
+export default Offers;
+
