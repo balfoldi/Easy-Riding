@@ -14,7 +14,6 @@ import NavMain from "./components/layout/NavMain";
 import FooterMain from "./components/layout/FooterMain";
 import LoginForm from "./pages/Login/LoginForm";
 import SignupForm from "./pages/Signup/SignupForm";
-import { ScrollTo } from "react-scroll-to";
 
 const App = () => {
   return (
@@ -26,11 +25,6 @@ const App = () => {
           <Route path="/annonces" component={Offers} />
           <Route component={NotFound} />
         </Switch>
-      <ScrollTo className="ScrollSomewhere">
-        {({ scroll }) => (
-          <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>
-        )}
-      </ScrollTo>
       <FooterMain />
     </Router>
   );
