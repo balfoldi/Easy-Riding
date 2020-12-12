@@ -1,4 +1,12 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 
-const Offers = () => <h2>Page Offers en cours de construction...</h2>
-export default Offers
+const Offers = () => {
+  return (
+    <>
+      <SearchBar />
+    </>
+  )
+};
+
+export default Offers;
