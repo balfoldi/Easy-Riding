@@ -1,11 +1,11 @@
 require 'faker'
 
-if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
+if ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
     datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
     datas.each do |data|
-        rupy_price = data[3].split(" ")[1] #+ (data[3].split(" ")[3] === nil ? 0 : data[3].split(" ")[3])
+        rupy_price = data[3].split(" ")[1]
         euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
         Spec.create(
             company_name: data[1], 
@@ -38,8 +38,8 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
         User.create( 
-            first_name: Faker::Name.first_name, 
-            last_name: Faker::Name.last_name, 
+            first_name: Faker::Name.first_name,
+            last_name: Faker::Name.last_name,
             email: Faker::Internet.email,
             username: Faker::Books::Dune.character[0], 
             phone_number: Faker::PhoneNumber.phone_number, 
@@ -72,9 +72,9 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         offer = Offer.new(
             title: "#{Faker::Hipster.word} #{bike.spec.model}",
             description: Faker::Hipster.paragraph(sentence_count: 10),
-            daily_price: bike.spec.price ?  bike.spec.price/150.round : 100,
-            start_date: Date.new,
-            end_date: Date.new + 5,
+            daily_price: rand(20..300),
+            start_date: Date.today,
+            end_date: Date.today + rand(5),
             city: Faker::Address.city,
             zip_code: zip_code,
             street: Faker::Address.street_name,
@@ -94,8 +94,8 @@ if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Booking.delete_all
     5.times do 
         booking = Booking.new(
-            start_date: Date.new + 1,
-            end_date: Date.new + rand(1..3),
+            start_date: Date.today,
+            end_date: Date.today + rand(5),
             tenant: User.all.sample,
             offer: Offer.all.sample
         )
@@ -106,3 +106,5 @@ if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
         end    
     end
 end
+
+
