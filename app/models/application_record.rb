@@ -24,7 +24,7 @@ end
 
 def start_date_not_past
     unless self.start_date.blank?
-        errors.add(:start_date, :past) if self.start_date < Time.new 
+        errors.add(:start_date, :past) if self.start_date < Date.today
     end
 end
   
