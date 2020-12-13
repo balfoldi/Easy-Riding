@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, FormControl, Col, Row, Button, Form, Group } from "react-bootstrap";
+import { Container, Col, Row, } from "react-bootstrap";
 
 import Breadcrumb from "../../components/layout/BreadCrumb";
 import SearchBar from "./SearchBar";
@@ -8,7 +8,7 @@ import BikeList from "./BikeList";
 
 const Offers = () => {
   return (
-    <>
+    <React.Fragment>
       <Breadcrumb />
       <SearchBar />
       <Container>
@@ -23,8 +23,7 @@ const Offers = () => {
           </Col>
         </Row>
       </Container>
-
-    </>
+    </React.Fragment>
   )
 };
 
