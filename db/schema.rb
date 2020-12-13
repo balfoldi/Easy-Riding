@@ -17,12 +17,17 @@ ActiveRecord::Schema.define(version: 2020_12_09_164927) do
 
   create_table "bikes", force: :cascade do |t|
     t.text "description"
+    t.integer "kilometrage"
     t.bigint "owner_id"
-    t.bigint "spec_id"
+    t.string "model"
+    t.string "company_name"
+    t.string "body_type"
+    t.string "maximum_power"
+    t.string "maximum_torque"
+    t.string "zero_to_100"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_bikes_on_owner_id"
-    t.index ["spec_id"], name: "index_bikes_on_spec_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -77,18 +82,12 @@ ActiveRecord::Schema.define(version: 2020_12_09_164927) do
   end
 
   create_table "specs", force: :cascade do |t|
-    t.string "company_name"
     t.string "model"
-    t.float "price"
-    t.string "status"
+    t.string "company_name"
     t.string "body_type"
-    t.string "fuel_type"
-    t.integer "displacement"
     t.string "maximum_power"
     t.string "maximum_torque"
-    t.string "fuel_tank_capacity"
-    t.string "number_of_gears"
-    t.float "zero_to_100"
+    t.string "zero_to_100"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
