@@ -5,14 +5,15 @@ import ModelAutocompleteInput from "./ModelAutocompleteInput";
 import Cookies from "js-cookie"
 
 const BikeFormModal = ({ toggle, modal }) => {
-  const [input, setInput] = useState({
-    spec: {
+  const [input, setInput] = useState(
+    {
       body_type: "",
       maximum_power: "",
       maximum_torque: "",
       zero_to_100: "",
-    },
-  });
+      company_name: ""
+    }
+  );
   const [spec, setSpec] = useState([]);
 
   const handleInputChange = (event) => {
@@ -39,17 +40,13 @@ const BikeFormModal = ({ toggle, modal }) => {
     console.log(input);
     fetch("/api/bikes", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      headers: { 
+          "Content-Type": "application/json",
+          "Authorization" : Cookies.get('EasyRiderToken')
+        },
+      body: JSON.stringify({bike:input}),
     })
-      .then((response) => {
-        for (var pair of response.headers.entries()) {
-          if (pair[0] === "authorization") {
-            Cookies.set("token", pair[1]);
-          }
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((response) => {
         console.log(response);
         console.log(Cookies.get("token"));
@@ -70,7 +67,7 @@ const BikeFormModal = ({ toggle, modal }) => {
   return (
     <div>
       <Modal isOpen={true /*modal*/} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
 
         <ModalBody>
           <Form>
@@ -103,7 +100,7 @@ const BikeFormModal = ({ toggle, modal }) => {
               <Form.Label>Marque</Form.Label>
               <Form.Control
                 onChange={handleInputChange}
-                name="compagny_name"
+                name="company_name"
                 type="text"
                 placeholder="Honda"
                 value={input.company_name}
@@ -157,7 +154,7 @@ const BikeFormModal = ({ toggle, modal }) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" onClick={()=>console.log(input)}>
+          <Button color="primary" onClick={postBike}>
             Envoyer
           </Button>
           <Button color="secondary" onClick={toggle}>

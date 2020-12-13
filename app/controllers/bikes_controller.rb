@@ -16,12 +16,13 @@ class BikesController < ApplicationController
   # POST /bikes
   def create
     @bike = Bike.new(bike_params)
+    puts "$" *100
+    puts current_user
+    puts "$" *100
+    @bike[:owner_id] = current_user.id
+    @bike.save
+    render_jsonapi_response(@bike)
 
-    if @bike.save
-      render json: @bike, status: :created, location: @bike
-    else
-      render json: @bike.errors, status: :unprocessable_entity
-    end
   end
 
   # PATCH/PUT /bikes/1
@@ -47,18 +48,14 @@ class BikesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def bike_params
       params.require(:bike).permit(
-        :owner_id,
-        :title,
         :description,
-        :daily_price,
-        :start_date,
-        :end_date,
-        :city,
-        :zip_code,
-        :street,
-        :region,
-        :bike,
-        :users
+        :kilometrage,
+        :model,
+        :company_name,
+        :body_type,
+        :maximum_power,
+        :maximum_torque,
+        :zero_to_100
       )
     end
 end
