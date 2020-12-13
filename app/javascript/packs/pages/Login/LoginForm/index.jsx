@@ -1,43 +1,62 @@
 import './index.scss';
-import React from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { observer } from 'mobx-react';
+import authStore from '../../../stores/Auth';
+import { useHistory } from 'react-router-dom';
+import { Container, Button, Form, Alert } from "react-bootstrap";
 
 
 const LoginForm = () => {
+  const { login, error, isLogged } = authStore;
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    login(email, password);
+  };
+
+  useEffect(() => {
+    if (isLogged) {
+      history.push('/');
+    }
+  }, [isLogged]);
+
   return (
     <Container id="form-container">
-      {/* {errors.map((error) => (
-      <Alert variant="warning">{error.detail}</Alert>
-      ))} */}
+
       <p id="intro">Ravis de vous retrouver !</p>
-      <Form>
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Identifiant</Form.Label>
+
+      {error && <Alert variant="warning">{error}</Alert>}
+
+      <Form onSubmit={handleSubmit} >
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            //onChange={handleInputChange}
-            name="username"
-            type="username"
-            placeholder="Votre pseudonyme"
+            name="email"
+            type="email"
+            placeholder="Votre email"
           />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Mot de passe</Form.Label>
           <Form.Control
-            //onChange={handleInputChange}
             name="password"
             type="password"
             placeholder="Votre mot de passe"
           />
         </Form.Group>
-        </Form>
 
-      <Button //onClick={clickFetch}
-      id="button" type="submit">
-        Se connecter
-      </Button>
+        <Button
+          id="button" type="submit">
+          Se connecter
+        </Button>
+      </Form>
+
     </Container>
   )
 }
 
-export default LoginForm;
+export default observer(LoginForm);
