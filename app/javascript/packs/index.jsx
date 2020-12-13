@@ -1,3 +1,4 @@
+import './index.scss';
 import React from "react";
 import ReactDOM from "react-dom";
 import {
@@ -5,15 +6,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Home from "./pages/Home";
+import NavMain from "./components/layout/NavMain";
 import NotFound from "./pages/NotFound";
+import FooterMain from "./components/layout/FooterMain";
+import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
-import NavMain from "./components/NavMain";
-import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
-import FooterMain from "./components/FooterMain";
-import { ScrollTo, ScrollArea } from "react-scroll-to";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -23,14 +22,9 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/mon-compte" component={Profile} />
           <Route path="/annonces" component={Offers} />
+          <Route path="/connexion" component={Login} />
           <Route component={NotFound} />
         </Switch>
-      <Home />
-      <ScrollTo className="ScrollSomewhere">
-        {({ scroll }) => (
-          <button onClick={() => scroll({ x: 20, y: 800, smooth: true })}>Scroll to top</button>
-        )}
-      </ScrollTo>
       <FooterMain />
     </Router>
   );

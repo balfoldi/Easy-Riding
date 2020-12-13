@@ -1,0 +1,110 @@
+@import "../../../variables.scss";
+
+#jumbotron {
+  background-color: white !important;
+  height: 95vh;
+  display: flex;
+  @include sm-desktop {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @include tablet-phone {
+    flex-direction: column;
+  }
+  #info {
+    font-family: "Zilla Slab", serif;
+    color: $myBlack;
+    @include lg-desktop {
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    @include sm-desktop {
+      position: relative;
+      margin-left: 10vh;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    @include tablet-phone {
+      position: relative;
+      display: inline-block;
+      font-size: 2rem;
+      text-align: center;
+    }
+    p {
+      font-weight: bold;
+      @include lg-desktop {
+        padding-right: 10rem;
+        margin-left: 5vh;
+      }
+      @include sm-desktop {
+        font-size: 5rem;
+        margin-top: 20%;
+      }
+    }
+    #home-link {
+      border-radius:0.25rem;
+      height:auto;
+      text-align:center;
+      @include sm-desktop {
+      max-width:10rem;
+      }
+      #home-button {
+        background-color: $myColor;
+        border:none;
+        color:white;
+        @include sm-desktop {
+          font-size:1.5rem;
+          width:10rem;
+        }
+        @include tablet-phone {
+          font-size:1.5rem;
+        }
+        &:hover {
+          background-color:$hoverColor;
+        }
+
+      }
+
+      @include lg-desktop {
+        margin-left: 5vh;
+      }
+    }
+  }
+  #map {
+    position: relative;
+    @include sm-desktop {
+      width: 50%;
+      margin-right: 10vh;
+    }
+    @include tablet-phone {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2vh;
+    }
+    img {
+      @include lg-desktop {
+        height: 90vh;
+        margin-left: 10%;
+        margin-top: 10%;
+        position: absolute;
+      }
+      @include sm-desktop {
+        height: 70vh;
+        margin-top: 10%;
+        position: absolute;
+      }
+      @include tablet-phone {
+        height: 60vmax;
+        position: relative;
+      }
+      @include phone {
+        margin-top: 1rem;
+        height: 45vmax;
+        position: relative;
+      }
+    }
+  }
+}
