@@ -40,7 +40,7 @@ class AuthStore {
 
       for (let pair of response.headers.entries()) {
         if (pair[0] === "authorization") {
-          Cookies.set("EasyRiderToken", pair[1]);
+          Cookies.set("EasyRiderUserToken", pair[1].split(' ')[1]);
         }
       }
 
