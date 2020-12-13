@@ -3,9 +3,9 @@ class SpecsController < ApplicationController
 
   # GET /specs
   def index
-    @specs = Spec.all
-
-    render json: @specs
+    specs = Spec.all
+    response = specs.map{|spec| { :model => spec.model , :id => spec.id}}
+    render json: response
   end
 
   # GET /specs/1

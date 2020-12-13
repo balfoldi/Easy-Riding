@@ -3,9 +3,9 @@ class BikesController < ApplicationController
 
   # GET /bikes
   def index
-    @bikes = Bike.all
+    bikes = Bike.all
 
-    render json: @bikes
+    render json: bikes
   end
 
   # GET /bikes/1
