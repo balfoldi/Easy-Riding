@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Container, Button, Form, Alert, Col } from "react-bootstrap";
 import ModelAutocompleteInput from "./ModelAutocompleteInput";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
-const BikeFormModal = ({ toggle, modal }) => {
-  const [input, setInput] = useState(
-    {
-      body_type: "",
-      maximum_power: "",
-      maximum_torque: "",
-      zero_to_100: "",
-      company_name: ""
-    }
-  );
+const BikeFormModal = ({ toggle, modal, setModal }) => {
+  const [input, setInput] = useState({
+    body_type: "",
+    maximum_power: "",
+    maximum_torque: "",
+    zero_to_100: "",
+    company_name: "",
+  });
   const [spec, setSpec] = useState([]);
+  const [alerts, setAlerts] = useState([]);
 
   const handleInputChange = (event) => {
     setInput({
@@ -40,27 +39,32 @@ const BikeFormModal = ({ toggle, modal }) => {
     console.log(input);
     fetch("/api/bikes", {
       method: "post",
-      headers: { 
-          "Content-Type": "application/json",
-          "Authorization" : Cookies.get('EasyRiderToken')
-        },
-      body: JSON.stringify({bike:input}),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+      },
+      body: JSON.stringify({ bike: input }),
     })
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
         console.log(Cookies.get("token"));
         if (!response.errors) {
-          //console.log(response.errors)
-          setErrors([]);
-          Cookies.set("currentUser", JSON.stringify(response))
+          setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
+          setTimeout(() => {
+            setModal(false);
+            setAlerts([]);
+          }, 3000);
           store.setCurrentUser(response);
         } else {
-          console.log("setErrors");
-          setErrors(response.errors);
+          console.log("fetch errors");
+          setAlerts(
+            response.errors.map((error) => {
+              return { variant: "warning", message: error.detail };
+            })
+          );
+          console.log(alerts);
         }
-        console.log("store is");
-        console.log(store.currentUser);
       });
   };
 
@@ -68,7 +72,9 @@ const BikeFormModal = ({ toggle, modal }) => {
     <div>
       <Modal isOpen={true /*modal*/} toggle={toggle}>
         <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
-
+        {alerts.map((alert) => {
+          <Alert variant={alert.variant}>{alert.message}</Alert>;
+        })}
         <ModalBody>
           <Form>
             <Form.Group>

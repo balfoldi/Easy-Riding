@@ -1,5 +1,6 @@
 class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:update, :create, :destroy]
 
   # GET /bikes
   def index
@@ -16,13 +17,9 @@ class BikesController < ApplicationController
   # POST /bikes
   def create
     @bike = Bike.new(bike_params)
-    puts "$" *100
-    puts current_user
-    puts "$" *100
     @bike[:owner_id] = current_user.id
     @bike.save
     render_jsonapi_response(@bike)
-
   end
 
   # PATCH/PUT /bikes/1

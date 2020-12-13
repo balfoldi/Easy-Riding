@@ -8,7 +8,6 @@ const Garage = () => {
   return (
     <>
       <Button color="danger" onClick={toggle}>
-        cc
       </Button>
       <BikeFormModal modal={modal} toggle={toggle} setModal={setModal}/>
     </>

@@ -6,6 +6,12 @@ class Bike < ApplicationRecord
 
   validates :description, length: { in: 3..3000 }, presence: true
 
+  validates :model, length: {maximum: 20 }
+  validates :company_name, length: {maximum: 20 }
+  validates :body_type, length: {maximum: 20 }
+  validates :maximum_power, length: {maximum: 20 }
+  validates :maximum_torque, length: {maximum: 20 }
+  validates :zero_to_100, length: {maximum: 20 }
   def api
     self.build("owner", "spec", "tags")
   end

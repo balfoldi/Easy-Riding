@@ -48,16 +48,10 @@ end
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     10.times do
-<<<<<<< HEAD
         spec = Spec.all.sample
         Bike.create( 
             kilometrage: rand(20000),
             owner: User.all.sample,
-=======
-        Bike.create(
-            owner: User.all.sample,
-            spec: Spec.all.sample,
->>>>>>> abf9a9a13c960c807e187f0f8de637396cb451cd
             description: Faker::Movies::StarWars.quote,
             tags: Tag.all.sample(rand(1..3)),
             model: spec.model,
