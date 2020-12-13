@@ -17,6 +17,7 @@ if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
         )
         tp Spec.last
     end
+  tp Spec.last
 end
 
 if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
@@ -31,13 +32,13 @@ end
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
-        User.create( 
+        User.create(
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
             email: Faker::Internet.email,
-            username: Faker::Books::Dune.character[0], 
-            phone_number: Faker::PhoneNumber.phone_number, 
-            password: 123123, 
+            username: Faker::Books::Dune.character[0],
+            phone_number: Faker::PhoneNumber.phone_number,
+            password: 123123,
             description: Faker::Hipster.paragraph(sentence_count: 10)
         )
         tp User.last
@@ -47,10 +48,16 @@ end
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     10.times do
+<<<<<<< HEAD
         spec = Spec.all.sample
         Bike.create( 
             kilometrage: rand(20000),
             owner: User.all.sample,
+=======
+        Bike.create(
+            owner: User.all.sample,
+            spec: Spec.all.sample,
+>>>>>>> abf9a9a13c960c807e187f0f8de637396cb451cd
             description: Faker::Movies::StarWars.quote,
             tags: Tag.all.sample(rand(1..3)),
             model: spec.model,
@@ -93,7 +100,7 @@ end
 
 if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Booking.delete_all
-    5.times do 
+    5.times do
         booking = Booking.new(
             start_date: Date.today,
             end_date: Date.today + rand(5),
@@ -104,8 +111,6 @@ if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
             tp booking
         else
             puts booking.errors.messages
-        end    
+        end
     end
 end
-
-

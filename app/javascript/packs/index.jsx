@@ -6,14 +6,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Home from "./pages/Home";
+import NavMain from "./components/layout/NavMain";
 import NotFound from "./pages/NotFound";
+import FooterMain from "./components/layout/FooterMain";
+import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
-import NavMain from "./components/layout/NavMain";
-import FooterMain from "./components/layout/FooterMain";
-import LoginForm from "./pages/Login/LoginForm";
-import SignupForm from "./pages/Signup/SignupForm";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -23,6 +22,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/mon-compte" component={Profile} />
           <Route path="/annonces" component={Offers} />
+          <Route path="/connexion" component={Login} />
           <Route component={NotFound} />
         </Switch>
       <FooterMain />
