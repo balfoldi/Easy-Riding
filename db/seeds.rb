@@ -5,25 +5,20 @@ if ENV["specs"] === "true" || ENV["all"] === "true"
     require "csv"
     datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
     datas.each do |data|
-      rupy_price = data[3].split(" ")[1]
-      euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
-      Spec.create(
-        company_name: data[1],
-        model: data[2],
-        price: euro_price,
-        status: data[4],
-        body_type: data[5],
-        fuel_type: data[6],
-        displacement: data[7].split(" ")[0],
-        maximum_power: data[8],
-        maximum_torque: data[9],
-        fuel_tank_capacity: data[10],
-        number_of_gears: data[11],
-        zero_to_100: data[12].split(" ")[0]
-      )
+        rupy_price = data[3].split(" ")[1]
+        euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
+        Spec.create(
+            model: data[2],
+            company_name: data[1],
+            body_type: data[5],
+            maximum_power: data[8],
+            maximum_torque: data[9],
+            zero_to_100: data[12].split(" ")[0]
+        )
     end
-  tp Spec.last
 end
+
+puts "Specs done"
 
 if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
     Tag.destroy_all
@@ -31,8 +26,9 @@ if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
     tag_names.each do |tag_name|
         Tag.create( name: tag_name, color: Faker::Color.hex_color )
     end
-    tp Tag.last
 end
+
+puts "Tags done"
 
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
@@ -46,22 +42,26 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
             password: 123123,
             description: Faker::Hipster.paragraph(sentence_count: 10)
         )
-        tp User.last
     end
 end
+
+puts "Users done"
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     10.times do
+        spec = Spec.all.sample
         Bike.create(
+            kilometrage: rand(20000),
             owner: User.all.sample,
             spec: Spec.all.sample,
             description: Faker::Movies::StarWars.quote,
             tags: Tag.all.sample(rand(1..3))
             )
-        tp Bike.last
     end
 end
+
+puts "Bikes done"
 
 if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
     Offer.delete_all
@@ -82,13 +82,13 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
             bike: bike,
             users: User.all.sample(3)
         )
-        if offer.save
-            tp offer
-        else
+        if !offer.save
             puts offer.errors.messages
         end
     end
 end
+
+puts "Offers done"
 
 if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Booking.delete_all
@@ -99,10 +99,10 @@ if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
             tenant: User.all.sample,
             offer: Offer.all.sample
         )
-        if booking.save
-            tp booking
-        else
+        if !booking.save
             puts booking.errors.messages
         end
     end
 end
+
+puts "Bookings done"
