@@ -23,8 +23,7 @@ const BikeShow = (props) => {
     <h1>{bike.model}</h1>
     <hr></hr>
     <Card>
-      <Card.Img variant='top' src={bike.pictures ? bike.pictures[0] : "rien"} />
-      {bike.pictures ? bike.pictures[0] : "rien"}
+      {bike.pictures && <Card.Img variant='top' src={bike.pictures[0]} />}
       <Row>
       <Col sm='6'>
         <Container>
