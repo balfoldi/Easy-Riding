@@ -9,7 +9,6 @@ class Bike < ApplicationRecord
 
   validates :model, length: {maximum: 20 }, presence: true
   validates :company_name, length: {maximum: 20 }
-  validates :company_name, length: {maximum: 20 }
   validates :body_type, length: {maximum: 20 }
   validates :maximum_power, length: {maximum: 20 }
   validates :maximum_torque, length: {maximum: 20 }
