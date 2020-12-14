@@ -8,7 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
       if self.send(association).to_s.include?("Associations_CollectionProxy")
         associateds = self.send(association).map { |associated| associated.attributes}
       else
-        associateds = self.send(association).attributes
+        associateds = self.send(association).attributes if self.send(association)
       end
       api[association] = associateds
     end

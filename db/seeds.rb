@@ -1,26 +1,21 @@
 require 'faker'
 
-if ENV["specs"] === "true" || ENV["all"] === "true"
+if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
     datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
     datas.each do |data|
-      rupy_price = data[3].split(" ")[1]
-      euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
-      Spec.create(
-        company_name: data[1],
-        model: data[2],
-        price: euro_price,
-        status: data[4],
-        body_type: data[5],
-        fuel_type: data[6],
-        displacement: data[7].split(" ")[0],
-        maximum_power: data[8],
-        maximum_torque: data[9],
-        fuel_tank_capacity: data[10],
-        number_of_gears: data[11],
-        zero_to_100: data[12].split(" ")[0]
-      )
+        rupy_price = data[3].split(" ")[1]
+        euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
+        Spec.create(
+            model: data[2], 
+            company_name: data[1], 
+            body_type: data[5],
+            maximum_power: data[8],
+            maximum_torque: data[9],
+            zero_to_100: data[12].split(" ")[0]
+        )
+        tp Spec.last
     end
   tp Spec.last
 end
@@ -53,11 +48,18 @@ end
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     10.times do
-        Bike.create(
+        spec = Spec.all.sample
+        Bike.create( 
+            kilometrage: rand(20000),
             owner: User.all.sample,
-            spec: Spec.all.sample,
             description: Faker::Movies::StarWars.quote,
-            tags: Tag.all.sample(rand(1..3))
+            tags: Tag.all.sample(rand(1..3)),
+            model: spec.model,
+            company_name: spec.company_name,
+            body_type: spec.body_type,
+            maximum_power: spec.maximum_power,
+            maximum_torque: spec.maximum_torque,
+            zero_to_100: spec.zero_to_100
             )
         tp Bike.last
     end
@@ -70,7 +72,7 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
-            title: "#{Faker::Hipster.word} #{bike.spec.model}",
+            title: "#{Faker::Hipster.word} #{Spec.all.sample.model}",
             description: Faker::Hipster.paragraph(sentence_count: 10),
             daily_price: rand(20..300),
             start_date: Date.today,

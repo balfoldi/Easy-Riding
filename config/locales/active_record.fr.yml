@@ -12,6 +12,12 @@ fr:
         username: Le pseudonyme
       bike:
         description: La description
+        model: Le modèle
+        company_name: La marque
+        body_type: La catégorie
+        maximum_power: La puissance
+        maximum_torque: Le couple
+        zero_to_100: Le 0 à 100
       offer:
         start_date: La date de début
         end_date: La date de fin
@@ -27,9 +33,22 @@ fr:
         bike: 
           attributes:
             description: 
-              blank: "%{attribute} doit être présente"
-              too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
-              too_long: "%{attribute} ne doit pas excéder %{count} caractères"
+              blank: "doit être présente"
+              too_short: "doit avoire un minimum de %{count} caractères"
+              too_long: "ne doit pas excéder %{count} caractères"
+            model:
+              blank: "doit être présente"
+              too_long: "ne doit pas excéder %{count} caractères"              
+            company_name:
+              too_long: "ne doit pas excéder %{count} caractères"              
+            body_type:
+              too_long: "ne doit pas excéder %{count} caractères"              
+            maximum_power:
+              too_long: "ne doit pas excéder %{count} caractères"              
+            maximum_torque:
+              too_long: "ne doit pas excéder %{count} caractères"              
+            zero_to_100:
+              too_long: "ne doit pas excéder %{count} caractères"              
         user:
           attributes:
             last_name:
@@ -39,6 +58,7 @@ fr:
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
             username:
+              taken: "est déjà pris"
               blank: "doit être présent"
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
