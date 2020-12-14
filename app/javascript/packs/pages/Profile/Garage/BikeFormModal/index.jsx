@@ -85,7 +85,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 as="textarea"
                 onChange={handleInputChange}
                 name="description"
-                placeholder="bon état, la moto a toujours dormi au sec"
+                placeholder="Bon état, la moto a toujours dormi au sec."
               />
             </Form.Group>
 
@@ -150,6 +150,17 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 type="text"
                 placeholder="43 Nm à 6 500 tr/min"
                 value={input.maximum_torque}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>La cylindrée</Form.Label>
+              <Form.Control
+                onChange={handleInputChange}
+                name="displacement"
+                type="text"
+                placeholder="471 m³"
+                value={input.displacement}
               />
             </Form.Group>
 

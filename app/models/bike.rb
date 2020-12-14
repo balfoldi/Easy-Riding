@@ -13,6 +13,7 @@ class Bike < ApplicationRecord
   validates :maximum_power, length: {maximum: 20 }
   validates :maximum_torque, length: {maximum: 20 }
   validates :zero_to_100, length: {maximum: 20 }
+  validates :displacement, length: {maximum: 20 }
   def api
     self.build("owner","offer")
   end
