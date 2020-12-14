@@ -12,8 +12,10 @@
     flex-direction: column;
   }
   #info {
-    font-family: "Zilla Slab", serif;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: -0.045em;
     color: $myBlack;
+    line-height: calc(65px + 2.2vh);
     @include lg-desktop {
       position: relative;
       width: 50%;
