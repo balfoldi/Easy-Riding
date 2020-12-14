@@ -3,9 +3,8 @@ class SpecsController < ApplicationController
 
   # GET /specs
   def index
-    @specs = Spec.all
-
-    render json: @specs
+    specs = Spec.all
+    render json: specs
   end
 
   # GET /specs/1
