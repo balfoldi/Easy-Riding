@@ -14,7 +14,6 @@ const Garage = () => {
     fetch("/api/bikes")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBikes(response);
         setBike(response[0]);
       });
@@ -36,7 +35,7 @@ const Garage = () => {
             </Button>
             <hr></hr>
             {bikes.map((bike) => (
-              <Button variant="light" onClick={() => setBike(bike)}>
+              <Button key={bikes.indexOf(bike)} variant="light" onClick={() => setBike(bike)}>
                 {bike.model}
               </Button>
             ))}

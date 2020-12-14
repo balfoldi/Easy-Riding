@@ -1,8 +1,8 @@
+import "./style.scss";
 import React, { useEffect, useState } from "react";
 import { Form, Card } from "react-bootstrap";
-import "./style.scss";
 
-const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChange }) => {
+const ModelAutocompleteInput = ({ modal, setSpec, handleChildrenInputChange }) => {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [specs, setSpecs] = useState([]);
@@ -11,7 +11,6 @@ const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChang
     fetch("/api/specs")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setSpecs(response);
       });
   };
@@ -28,10 +27,14 @@ const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChang
       : [];
   };
 
+  useEffect(()=>{
+    if(modal){
+      setInput('')
+    }
+  },[modal])
+
   useEffect(() => {
-    console.log(input);
     setSuggestions(getSuggestions(input, specs));
-    console.log(suggestions);
   }, [input]);
 
   const autocomplete = (suggestion) => {
@@ -41,10 +44,7 @@ const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChang
   };
 
   const handleInputChange = (event) => {
-    console.log({[event.target.name]: event.target.value})
-    console.log(masterInput)
     setInput(event.target.value);
-    console.log(masterInput)
     handleChildrenInputChange(input)
   };
 
@@ -59,7 +59,7 @@ const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChang
       />
       <Card id="sugestions-container">
         {suggestions.map((suggestion) => (
-          <Card.Title onClick={() => autocomplete(suggestion)}>
+          <Card.Title key={suggestions.indexOf(suggestion)} onClick={() => autocomplete(suggestion)}>
             {suggestion.model}
           </Card.Title>
         ))}
