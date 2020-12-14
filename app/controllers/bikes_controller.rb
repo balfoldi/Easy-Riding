@@ -1,11 +1,12 @@
 class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:update, :create, :destroy]
 
   # GET /bikes
   def index
-    @bikes = Bike.all
+    bikes = Bike.all
 
-    render json: @bikes
+    render json: bikes
   end
 
   # GET /bikes/1
@@ -16,12 +17,9 @@ class BikesController < ApplicationController
   # POST /bikes
   def create
     @bike = Bike.new(bike_params)
-
-    if @bike.save
-      render json: @bike, status: :created, location: @bike
-    else
-      render json: @bike.errors, status: :unprocessable_entity
-    end
+    @bike[:owner_id] = current_user.id
+    @bike.save
+    render_jsonapi_response(@bike)
   end
 
   # PATCH/PUT /bikes/1
@@ -46,6 +44,16 @@ class BikesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bike_params
-      params.require(:bike).permit(:description, :owner_id, :spec_id)
+      params.require(:bike).permit(
+        :description,
+        :kilometrage,
+        :model,
+        :company_name,
+        :body_type,
+        :maximum_power,
+        :maximum_torque,
+        :zero_to_100,
+        :displacement
+      )
     end
 end

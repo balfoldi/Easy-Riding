@@ -10,19 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_164927) do
+ActiveRecord::Schema.define(version: 2020_12_14_025458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "bikes", force: :cascade do |t|
     t.text "description"
+    t.integer "kilometrage"
     t.bigint "owner_id"
-    t.bigint "spec_id"
+    t.string "model"
+    t.string "company_name"
+    t.string "body_type"
+    t.string "maximum_power"
+    t.string "maximum_torque"
+    t.string "zero_to_100"
+    t.string "displacement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_bikes_on_owner_id"
-    t.index ["spec_id"], name: "index_bikes_on_spec_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -77,18 +104,13 @@ ActiveRecord::Schema.define(version: 2020_12_09_164927) do
   end
 
   create_table "specs", force: :cascade do |t|
-    t.string "company_name"
     t.string "model"
-    t.float "price"
-    t.string "status"
+    t.string "company_name"
     t.string "body_type"
-    t.string "fuel_type"
-    t.integer "displacement"
     t.string "maximum_power"
     t.string "maximum_torque"
-    t.string "fuel_tank_capacity"
-    t.string "number_of_gears"
-    t.float "zero_to_100"
+    t.string "zero_to_100"
+    t.string "displacement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -118,4 +140,5 @@ ActiveRecord::Schema.define(version: 2020_12_09_164927) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
