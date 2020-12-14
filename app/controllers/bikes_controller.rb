@@ -44,7 +44,7 @@ class BikesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bike_params
-      params.require(:bike).permit(
+      params.permit(
         :description,
         :kilometrage,
         :model,
@@ -53,7 +53,8 @@ class BikesController < ApplicationController
         :maximum_power,
         :maximum_torque,
         :zero_to_100,
-        :displacement
+        :displacement,
+        pictures: []
       )
     end
 end

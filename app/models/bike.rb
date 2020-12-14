@@ -3,7 +3,7 @@ class Bike < ApplicationRecord
   has_one :offer
   has_many :join_table_bikes_tags
   has_many :tags, through: :join_table_bikes_tags
-  has_many_attached :images
+  has_many_attached :pictures
 
   validates :description, length: { in: 3..3000 }, presence: true
 
@@ -15,6 +15,14 @@ class Bike < ApplicationRecord
   validates :zero_to_100, length: {maximum: 20 }
   validates :displacement, length: {maximum: 20 }
   def api
-    self.build("owner","offer")
+    with_relations = self.build("owner","offer")
+    pictures_urls = []
+    self.pictures.each do |picture|
+      pictures_urls.push(Rails.application.routes.url_helpers.url_for(picture))
+    end
+    
+    with_relations[:pictures] = pictures_urls
+
+    return with_relations
   end
 end

@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap";
 import { Button, Form, Alert } from "react-bootstrap";
 import ModelAutocompleteInput from "./ModelAutocompleteInput";
 import Cookies from "js-cookie";
+import PictureInput from "./PicturesInput";
 
 const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    description: "",
+    kilometrage: "",
+    model: "",
+    company_name: "",
+    body_type: "",
+    maximum_power: "",
+    maximum_torque: "",
+    zero_to_100: "",
+    displacement: "",
+  });
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
+  const [pictures, setPictures] = useState([]);
 
   const handleInputChange = (event) => {
     setInput({
@@ -24,7 +36,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
   };
 
   useEffect(() => {
-    console.log(input)
+    console.log(input);
   }, [input]);
 
   useEffect(() => {
@@ -34,23 +46,41 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     });
   }, [spec]);
 
-  useEffect(()=>{
-    if(modal){
-      setInput({})
+  useEffect(() => {
+    if (modal) {
+      setInput({});
+      setAlerts([]);
+      setPictures([])
     }
-  },[modal])
+  }, [modal]);
 
   const postBike = () => {
+    if (Object.keys(input).length === 0) {
+      return;
+    }
+    const formData = new FormData();
+
+    formData.append("description", input)
+
+    Object.keys(input).forEach((key)=>{
+      formData.append(`${key}`, input[key]);
+    })
+
+    pictures.forEach((picture)=>{
+      formData.append("pictures[]", picture);
+    })
+
+    console.log(formData)
     fetch("/api/bikes", {
       method: "post",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`
       },
-      body: JSON.stringify({ bike: input }),
-    })
+      body: formData,
+    }).catch(error=>console.log(error))
       .then((response) => response.json())
       .then((response) => {
+        console.log(response);
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
           fetchMyBikes();
@@ -68,17 +98,15 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       });
   };
 
-
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
 
         <ModalBody>
-          {alerts.map((alert) => (
-            <Alert key={alerts.indexOf(alert)} variant={alert.variant}>{alert.message}</Alert>
-          ))}
           <Form>
+            <PictureInput pictures={pictures} setPictures={setPictures} />
+
             <Form.Group>
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -88,101 +116,124 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 placeholder="Bon état, la moto a toujours dormi au sec."
               />
             </Form.Group>
+            <Row>
+              <Col sm="6">
+                <Form.Group>
+                  <Form.Label>Modèle</Form.Label>
+                  <ModelAutocompleteInput
+                    masterInput={input}
+                    setSpec={setSpec}
+                    handleChildrenInputChange={handleChildrenInputChange}
+                    modal={modal}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Form.Group>
-              <Form.Label>Kilométrage</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="kilometrage"
-                type="text-field"
-                placeholder="20500 km"
-              />
-            </Form.Group>
+              <Col sm="6">
+                <Form.Group>
+                  <Form.Label>Marque</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="company_name"
+                    type="text"
+                    placeholder="Honda"
+                    value={input.company_name}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="3">
+                <Form.Group>
+                  <Form.Label>Kilométrage</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="kilometrage"
+                    type="text-field"
+                    placeholder="20500km"
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="3">
+                <Form.Group>
+                  <Form.Label>Zéro à 100</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="zero_to_100"
+                    type="text"
+                    placeholder="5,4 sec"
+                    value={input.zero_to_100}
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="3">
+                <Form.Group>
+                  <Form.Label>Catégorie</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="body_type"
+                    type="text"
+                    placeholder="Roadster"
+                    value={input.body_type}
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="3">
+                <Form.Group>
+                  <Form.Label>La cylindrée</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="displacement"
+                    type="text"
+                    placeholder="471 m³"
+                    value={input.displacement}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="6">
+                <Form.Group>
+                  <Form.Label>Puissance maximum</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="maximum_power"
+                    type="text"
+                    placeholder="35 kW à 8 600 tr/min"
+                    value={input.maximum_power}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Form.Group>
-              <Form.Label>Modèle</Form.Label>
-              <ModelAutocompleteInput
-                masterInput={input}
-                setSpec={setSpec}
-                handleChildrenInputChange={handleChildrenInputChange}
-                modal={modal}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Marque</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="company_name"
-                type="text"
-                placeholder="Honda"
-                value={input.company_name}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Catégorie</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="body_type"
-                type="text"
-                placeholder="Roadster"
-                value={input.body_type}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Puissance maximum</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="maximum_power"
-                type="text"
-                placeholder="35 kW à 8 600 tr/min"
-                value={input.maximum_power}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Le couple</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="maximum_torque"
-                type="text"
-                placeholder="43 Nm à 6 500 tr/min"
-                value={input.maximum_torque}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>La cylindrée</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="displacement"
-                type="text"
-                placeholder="471 m³"
-                value={input.displacement}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Zéro à 100</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="zero_to_100"
-                type="text"
-                placeholder="5,4 seconds"
-                value={input.zero_to_100}
-              />
-            </Form.Group>
+              <Col sm="6">
+                <Form.Group>
+                  <Form.Label>Le couple</Form.Label>
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="maximum_torque"
+                    type="text"
+                    placeholder="43 Nm à 6 500 tr/min"
+                    value={input.maximum_torque}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
           </Form>
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" onClick={postBike}>
+          <Row>
+            {alerts.map((alert) => (
+              <Alert key={alerts.indexOf(alert)} variant={alert.variant}>
+                {alert.message}
+              </Alert>
+            ))}
+          </Row>
+          <Button variant="primary" onClick={postBike}>
             Envoyer
           </Button>
-          <Button color="Annuler" onClick={toggle}>
-            Cancel
+          <Button variant="secondary" onClick={toggle}>
+            Annuler
           </Button>
         </ModalFooter>
       </Modal>
