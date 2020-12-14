@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Autosuggest from "react-autosuggest";
-import { Container, Button, Form, Alert, Col } from "react-bootstrap";
+import { Container, Button, Form, Alert, Col, Card } from "react-bootstrap";
 import "./style.scss";
 
-const ModelAutocompleteInput = ({ setSpec, setMasterInput }) => {
+const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChange }) => {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [specs, setSpecs] = useState([]);
@@ -36,14 +36,17 @@ const ModelAutocompleteInput = ({ setSpec, setMasterInput }) => {
   }, [input]);
 
   const autocomplete = (suggestion) => {
-    setMasterInput({model: suggestion.model});
     setInput(suggestion.model)
     setSpec(suggestion);
     setSuggestions([]);
   };
 
   const handleInputChange = (event) => {
+    console.log({[event.target.name]: event.target.value})
+    console.log(masterInput)
     setInput(event.target.value);
+    console.log(masterInput)
+    handleChildrenInputChange(input)
   };
 
   return (
@@ -55,13 +58,13 @@ const ModelAutocompleteInput = ({ setSpec, setMasterInput }) => {
         placeholder="Honda CB500F"
         value={input}
       />
-      <div id="sugestions-container">
+      <Card id="sugestions-container">
         {suggestions.map((suggestion) => (
-          <div className="border" onClick={() => autocomplete(suggestion)}>
+          <Card.Title onClick={() => autocomplete(suggestion)}>
             {suggestion.model}
-          </div>
+          </Card.Title>
         ))}
-      </div>
+      </Card>
     </div>
   );
 };

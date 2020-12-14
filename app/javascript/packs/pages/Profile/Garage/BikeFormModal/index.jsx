@@ -4,14 +4,8 @@ import { Container, Button, Form, Alert, Col } from "react-bootstrap";
 import ModelAutocompleteInput from "./ModelAutocompleteInput";
 import Cookies from "js-cookie";
 
-const BikeFormModal = ({ toggle, modal, setModal }) => {
-  const [input, setInput] = useState({
-    body_type: "",
-    maximum_power: "",
-    maximum_torque: "",
-    zero_to_100: "",
-    company_name: "",
-  });
+const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
+  const [input, setInput] = useState({});
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
 
@@ -19,6 +13,13 @@ const BikeFormModal = ({ toggle, modal, setModal }) => {
     setInput({
       ...input,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleChildrenInputChange = (content) => {
+    setInput({
+      ...input,
+      model: content,
     });
   };
 
@@ -51,31 +52,36 @@ const BikeFormModal = ({ toggle, modal, setModal }) => {
         console.log(Cookies.get("token"));
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
+          fetchMyBikes();
           setTimeout(() => {
             setModal(false);
             setAlerts([]);
-          }, 3000);
+          }, 1000);
           store.setCurrentUser(response);
         } else {
           console.log("fetch errors");
+          console.log(response.errors);
           setAlerts(
             response.errors.map((error) => {
               return { variant: "warning", message: error.detail };
             })
           );
-          console.log(alerts);
         }
       });
   };
 
+  useEffect(() => {
+    console.log(alerts);
+  }, [alerts]);
   return (
     <div>
-      <Modal isOpen={true /*modal*/} toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
-        {alerts.map((alert) => {
-          <Alert variant={alert.variant}>{alert.message}</Alert>;
-        })}
+
         <ModalBody>
+          {alerts.map((alert) => (
+            <Alert variant={alert.variant}>{alert.message}</Alert>
+          ))}
           <Form>
             <Form.Group>
               <Form.Label>Description</Form.Label>
@@ -99,7 +105,11 @@ const BikeFormModal = ({ toggle, modal, setModal }) => {
 
             <Form.Group>
               <Form.Label>Modèle</Form.Label>
-              <ModelAutocompleteInput setSpec={setSpec} setMasterInput={setInput} />
+              <ModelAutocompleteInput
+                masterInput={input}
+                setSpec={setSpec}
+                handleChildrenInputChange={handleChildrenInputChange}
+              />
             </Form.Group>
 
             <Form.Group>
