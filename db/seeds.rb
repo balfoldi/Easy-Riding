@@ -1,6 +1,6 @@
 require 'faker'
 
-if ENV["specs"] === "true" || ENV["all"] === "true"
+if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
     datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
@@ -51,12 +51,17 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     10.times do
         spec = Spec.all.sample
-        Bike.create(
+        Bike.create( 
             kilometrage: rand(20000),
             owner: User.all.sample,
-            spec: Spec.all.sample,
             description: Faker::Movies::StarWars.quote,
-            tags: Tag.all.sample(rand(1..3))
+            tags: Tag.all.sample(rand(1..3)),
+            model: spec.model,
+            company_name: spec.company_name,
+            body_type: spec.body_type,
+            maximum_power: spec.maximum_power,
+            maximum_torque: spec.maximum_torque,
+            zero_to_100: spec.zero_to_100
             )
     end
 end
@@ -70,7 +75,7 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
-            title: "#{Faker::Hipster.word} #{bike.spec.model}",
+            title: "#{Faker::Hipster.word} #{Spec.all.sample.model}",
             description: Faker::Hipster.paragraph(sentence_count: 10),
             daily_price: rand(20..300),
             start_date: Date.today,
