@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BikeFormModal from "./BikeFormModal";
-import { Card, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "reactstrap";
 import BikeShow  from './BikeShow'
 

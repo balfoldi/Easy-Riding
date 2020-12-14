@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Autosuggest from "react-autosuggest";
-import { Container, Button, Form, Alert, Col, Card } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 import "./style.scss";
 
 const ModelAutocompleteInput = ({ setSpec, masterInput, handleChildrenInputChange }) => {
