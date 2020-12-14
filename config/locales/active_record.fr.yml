@@ -18,6 +18,7 @@ fr:
         maximum_power: La puissance
         maximum_torque: Le couple
         zero_to_100: Le 0 à 100
+        displacement: La cylindrée
       offer:
         start_date: La date de début
         end_date: La date de fin
@@ -48,7 +49,9 @@ fr:
             maximum_torque:
               too_long: "ne doit pas excéder %{count} caractères"              
             zero_to_100:
-              too_long: "ne doit pas excéder %{count} caractères"              
+              too_long: "ne doit pas excéder %{count} caractères"     
+            displacement:
+              too_long: "ne doit pas excéder %{count} caractères"     
         user:
           attributes:
             last_name:

@@ -5,15 +5,15 @@ if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     require "csv"
     datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
     datas.each do |data|
-        rupy_price = data[3].split(" ")[1]
-        euro_price = rupy_price ? rupy_price.delete(",").to_f * 0.0112074.round(2) : rupy_price
+
         Spec.create(
             model: data[2],
             company_name: data[1],
             body_type: data[5],
-            maximum_power: data[8],
-            maximum_torque: data[9],
-            zero_to_100: data[12].split(" ")[0]
+            maximum_power: data[11] === "NaN" ? "" : data[11],
+            maximum_torque: data[12] === "NaN" ? "" : data[12],
+            zero_to_100: data[31] === "NaN" ? "" : data[31],
+            displacement: data[10] === "NaN" ? "" : data[10]
         )
     end
 end

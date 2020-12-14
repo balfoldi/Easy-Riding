@@ -52,7 +52,8 @@ class BikesController < ApplicationController
         :body_type,
         :maximum_power,
         :maximum_torque,
-        :zero_to_100
+        :zero_to_100,
+        :displacement
       )
     end
 end

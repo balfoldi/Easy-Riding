@@ -10,6 +10,7 @@ class CreateBikes < ActiveRecord::Migration[6.0]
       t.string :maximum_power
       t.string :maximum_torque
       t.string :zero_to_100
+      t.string :displacement
       t.timestamps
     end
   end

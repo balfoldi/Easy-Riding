@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_025458) do
     t.string "maximum_power"
     t.string "maximum_torque"
     t.string "zero_to_100"
+    t.string "displacement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_bikes_on_owner_id"
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_025458) do
     t.string "maximum_power"
     t.string "maximum_torque"
     t.string "zero_to_100"
+    t.string "displacement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
