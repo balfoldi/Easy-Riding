@@ -16,7 +16,7 @@ fr:
         company_name: La marque
         body_type: La catégorie
         maximum_power: La puissance
-        maximum_torque: La torque
+        maximum_torque: Le couple
         zero_to_100: Le 0 à 100
       offer:
         start_date: La date de début

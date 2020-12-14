@@ -24,7 +24,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
   };
 
   useEffect(() => {
-    console.log(input);
+    console.log(input)
   }, [input]);
 
   useEffect(() => {
@@ -32,12 +32,15 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       ...input,
       ...spec,
     });
-    console.log(spec);
   }, [spec]);
 
+  useEffect(()=>{
+    if(modal){
+      setInput({})
+    }
+  },[modal])
+
   const postBike = () => {
-    console.log("fetchUser()");
-    console.log(input);
     fetch("/api/bikes", {
       method: "post",
       headers: {
@@ -48,8 +51,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        console.log(Cookies.get("token"));
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
           fetchMyBikes();
@@ -57,10 +58,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
             setModal(false);
             setAlerts([]);
           }, 1000);
-          store.setCurrentUser(response);
         } else {
-          console.log("fetch errors");
-          console.log(response.errors);
           setAlerts(
             response.errors.map((error) => {
               return { variant: "warning", message: error.detail };
@@ -70,9 +68,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       });
   };
 
-  useEffect(() => {
-    console.log(alerts);
-  }, [alerts]);
+
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
@@ -80,7 +76,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
 
         <ModalBody>
           {alerts.map((alert) => (
-            <Alert variant={alert.variant}>{alert.message}</Alert>
+            <Alert key={alerts.indexOf(alert)} variant={alert.variant}>{alert.message}</Alert>
           ))}
           <Form>
             <Form.Group>
@@ -89,7 +85,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 as="textarea"
                 onChange={handleInputChange}
                 name="description"
-                placeholder="Bonne état, a surtout été entreposé dans un garage"
+                placeholder="bon état, la moto a toujours dormi au sec"
               />
             </Form.Group>
 
@@ -99,7 +95,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 onChange={handleInputChange}
                 name="kilometrage"
                 type="text-field"
-                placeholder="20.500 km"
+                placeholder="20500 km"
               />
             </Form.Group>
 
@@ -109,6 +105,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 masterInput={input}
                 setSpec={setSpec}
                 handleChildrenInputChange={handleChildrenInputChange}
+                modal={modal}
               />
             </Form.Group>
 
@@ -146,7 +143,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Torque maximum</Form.Label>
+              <Form.Label>Le couple</Form.Label>
               <Form.Control
                 onChange={handleInputChange}
                 name="maximum_torque"
@@ -173,7 +170,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
           <Button color="primary" onClick={postBike}>
             Envoyer
           </Button>
-          <Button color="secondary" onClick={toggle}>
+          <Button color="Annuler" onClick={toggle}>
             Cancel
           </Button>
         </ModalFooter>
