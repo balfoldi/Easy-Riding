@@ -15,7 +15,6 @@ if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
             zero_to_100: data[31] === "NaN" ? "" : data[31],
             displacement: data[10] === "NaN" ? "" : data[10]
         )
-        tp Spec.last
     end
 end
 
