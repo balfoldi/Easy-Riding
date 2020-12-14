@@ -31,22 +31,26 @@ $lg-desktop: 1440px;
   }
 }
 
+.logo {
+  font-family: 'Stint Ultra Expanded', cursive;
+  font-size: 0,09vh;
+}
+
 #nav-main {
   background-color: transparent !important;
   color: $myBlack;
-  font-family: "Zilla Slab", serif;
-  #title-main {
-    font-weight: bold;
-    font-size: 2rem;
-    a {
-      color:$myBlack;
-      &:hover {
-        text-decoration: none;
-        color:#595959;
-        transition:0.3s;
+  font-family: 'Roboto', sans-serif;
+    #title-main {
+      font-size: 2rem;
+      a {
+        color:$myBlack;
+        &:hover {
+          text-decoration: none;
+          color:#595959;
+          transition:0.3s;
+        }
       }
     }
-  }
   #item-link {
     color:$myBlack;
     &:hover {
