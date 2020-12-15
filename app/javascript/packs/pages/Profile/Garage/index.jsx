@@ -23,6 +23,7 @@ const Garage = () => {
     fetchMyBikes();
   }, []);
 
+
   return (
     <Container>
       {bike ? (

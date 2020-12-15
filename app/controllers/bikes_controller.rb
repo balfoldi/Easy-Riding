@@ -24,11 +24,35 @@ class BikesController < ApplicationController
 
   # PATCH/PUT /bikes/1
   def update
-    if @bike.update(bike_params)
-      render json: @bike
-    else
-      render json: @bike.errors, status: :unprocessable_entity
+    @bike.update(params.permit(
+      :description,
+      :kilometrage,
+      :model,
+      :company_name,
+      :body_type,
+      :maximum_power,
+      :maximum_torque,
+      :zero_to_100,
+      :displacement,
+    ))
+
+    puts params[:new_pictures]
+    @bike.pictures.attach(params[:new_pictures]) if params[:new_pictures]
+
+    print params[:current_pictures]
+    puts ""
+
+    params[:current_pictures].map{|current_picture|current_picture.split(",")}.each do |current_picture|
+      puts current_picture
+      if current_picture[1] == "true"
+        puts "killing"
+        @bike.pictures.find(current_picture[0]).purge
+      else
+        puts "keeping"
+      end
     end
+
+    render_jsonapi_response(@bike)
   end
 
   # DELETE /bikes/1
@@ -54,7 +78,7 @@ class BikesController < ApplicationController
         :maximum_torque,
         :zero_to_100,
         :displacement,
-        pictures: []
+        pictures: [0..2]
       )
     end
 end

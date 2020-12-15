@@ -14,11 +14,12 @@ class Bike < ApplicationRecord
   validates :maximum_torque, length: {maximum: 20 }
   validates :zero_to_100, length: {maximum: 20 }
   validates :displacement, length: {maximum: 20 }
+
   def api
     with_relations = self.build("owner","offer")
     pictures_urls = []
     self.pictures.each do |picture|
-      pictures_urls.push(Rails.application.routes.url_helpers.rails_blob_path(picture), only_path: true)
+      pictures_urls.push({url: Rails.application.routes.url_helpers.rails_blob_path(picture), id: picture.id})
     end
     
     with_relations[:pictures] = pictures_urls

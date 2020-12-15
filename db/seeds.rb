@@ -1,4 +1,4 @@
-
+require 'faker'
 if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
