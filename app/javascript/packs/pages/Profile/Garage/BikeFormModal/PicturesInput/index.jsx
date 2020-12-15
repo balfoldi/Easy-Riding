@@ -13,7 +13,9 @@ const PictureInput = ({ pictures, setPictures }) => {
       return;
     }
     console.log("adding");
-    setPictures(pictures.concat(event.target.files[0]));
+    if(event.target.files[0]){
+      setPictures(pictures.concat(event.target.files[0]));
+    }
   };
 
   const errorCheck = () => {

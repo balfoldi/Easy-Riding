@@ -64,7 +64,6 @@ const PictureInput = ({ newPictures, setNewPictures, currentPictures, setCurrent
           onChange={onImageChange}
           label="Photos, entre une et trois"
         />
-        <i>Nouvelles photos</i>
         <Card>
           <Card.Body>
             <Row>
