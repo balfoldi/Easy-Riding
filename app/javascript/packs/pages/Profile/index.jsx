@@ -1,35 +1,39 @@
 import "./index.scss";
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import React, { useState } from "react";
 import Favorites from "./Favorites";
 import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
-import NavProfile from "./NavProfile";
 import ProfileInfo from "./ProfileInfo"
-import NotFound from "../NotFound";
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 const Profile = () => {
+  const [key, setKey] = useState('ProfileInfo');
+
   return (
-    <div id="body">
-      <Router>
-      <h2>Page Profile en cours de construction...</h2>
-      <NavProfile />
-        <Switch>
-          <Route exact path="/mon-compte" component={ProfileInfo} />
-          <Route path="/mon-compte/mon-garage" component={Garage} />
-          <Route path="/mon-compte/mes-annonces" component={MyOffers} />
-          <Route path="/mon-compte/mes-favoris" component={Favorites} />
-          <Route path="/mon-compte/mes-réservations" component={MyBookings} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
-    </div>
-  )
+    <Tabs
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+    >
+      <Tab eventKey="ProfileInfo" id="tab-profile" title="Mon profil">
+        <div id="tab-body"><ProfileInfo /></div>
+      </Tab>
+      <Tab eventKey="Garage" id="tab-garage" title="Mon garage">
+        <div id="tab-body"><Garage /></div>
+      </Tab>
+      <Tab eventKey="MyOffers" id="tab-offers" title="Mes annonces">
+        <div id="tab-body"><MyOffers /></div>
+      </Tab>
+      <Tab eventKey="Favorites" id="tab-favorites" title="Mes favoris">
+        <div id="tab-body"><Favorites /></div>
+      </Tab>
+      <Tab eventKey="MyBookings" id="tab-bookings" title="Mes réservations">
+        <div id="tab-body"><MyBookings /></div>
+      </Tab>
+    </Tabs>
+  );
 }
 
-export default Profile
+export default Profile;
