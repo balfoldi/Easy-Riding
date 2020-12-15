@@ -78,7 +78,7 @@ class BikesController < ApplicationController
         :maximum_torque,
         :zero_to_100,
         :displacement,
-        pictures: [0..2]
+        pictures: []
       )
     end
 end

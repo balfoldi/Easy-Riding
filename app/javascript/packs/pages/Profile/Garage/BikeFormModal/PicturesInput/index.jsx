@@ -37,7 +37,7 @@ const PictureInput = ({ pictures, setPictures }) => {
 
   return (
     <>
-      {alert && <Alert variant="warning">Trois photos maximume</Alert>}
+      {alert && <Alert variant="warning">Trois photos maximum</Alert>}
 
       <Form.Group>
         <Form.File
