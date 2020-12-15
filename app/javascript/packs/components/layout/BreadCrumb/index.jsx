@@ -1,14 +1,14 @@
 import "./index.scss";
 import React from "react";
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import { Container } from "react-bootstrap";
 
 const BreadCrumb = () => {
   return (
     <Container>
       <Breadcrumb className="breadcrumb">
-        <div id="Introductionphrase">Vous etes ici :</div>
-        <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil</Breadcrumb.Item>
+        <div>
+        Vous etes ici : </div>
+        <Breadcrumb.Item href="/" className="ml-3 mr-3 breadcrumb_link">Accueil</Breadcrumb.Item>
         <Breadcrumb.Item active className="color breadcrumb_link">Exemple de breadcrumb</Breadcrumb.Item>
       </Breadcrumb>
     </Container>

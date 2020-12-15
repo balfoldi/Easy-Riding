@@ -10,17 +10,19 @@ import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
 import NavProfile from "./NavProfile";
-import ProfileInfo from "./ProfileInfo"
+import ProfileInfo from "./ProfileInfo";
 import NotFound from "../NotFound";
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Container } from "react-bootstrap";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
   return (
     <div id="body">
-      <React.Fragment>
+    <React.Fragment>
         <Container >
+        <FontAwesomeIcon icon={faArrowRight} />
           <Breadcrumb className="breadcrumb">
             <div id="Introductionphrase">Vous etes ici :</div>
             <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil</Breadcrumb.Item>
