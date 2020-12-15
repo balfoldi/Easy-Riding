@@ -79,6 +79,7 @@ fr:
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"  
             daily_price:
+              not_a_number: doit comporter des chiffres uniquement
               blank: "%{attribute} doit être présent"
               less_than_or_equal_to: "%{attribute} doit être au plus de %{count} euros"
               greater_than_or_equal_to: "%{attribute} doit être au moins %{count} euros"

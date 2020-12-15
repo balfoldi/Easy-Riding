@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import Cookies from "js-cookie";
-import MyBikeList from "./MyBikeList"
+import MyBikeList from "./MyBikeList";
 
-const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
+const OfferFormModal = ({ toggle, modal, fetchMyBikes }) => {
   const [input, setInput] = useState({});
   const [alerts, setAlerts] = useState([]);
 
@@ -28,13 +28,13 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
 
   const postOffer = () => {
     console.log(input);
-    fetch("/api/bikes", {
+    fetch("/api/offers", {
       method: "post",
       headers: {
         Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(input),
+      body: JSON.stringify({offer: input}),
     })
       .catch((error) => console.log(error))
       .then((response) => response.json())
@@ -43,7 +43,7 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
           setTimeout(() => {
-            setModal(false);
+            toggle()
             setAlerts([]);
           }, 1000);
         } else {
@@ -59,24 +59,24 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
   return (
     <div>
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
-        <MyBikeList input={input} setInput={setInput}/>
+        <ModalHeader toggle={toggle}>Créer une offre</ModalHeader>
         <ModalBody>
           <Form>
+            <MyBikeList input={input} setInput={setInput} />
             <Row>
-              <Col sm="6">
+              <Col sm="9">
                 <Form.Group>
                   <Form.Label>Titre</Form.Label>
                   <Form.Control
                     onChange={handleInputChange}
-                    name="titre"
+                    name="title"
                     placeholder="Une CB incoyable"
-                    value={input.titre}
+                    value={input.title}
                   />
                 </Form.Group>
               </Col>
-              <Col sm="6">
-                <Form.Label>Prix journalier</Form.Label>
+              <Col sm="3">
+                <Form.Label>Prix au jour</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
                     onChange={handleInputChange}
@@ -92,13 +92,13 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
             </Row>
 
             <Form.Group>
-              <Form.Label>La meilleur offre pour la meilleur moto</Form.Label>
+              <Form.Label>Présentation</Form.Label>
               <Form.Control
                 as="textarea"
                 onChange={handleInputChange}
                 name="description"
                 type="text"
-                placeholder="Honda"
+                placeholder="Vennez essayer ma super meul et arsouiller ses cales pieds sur les routes de pars chez moi."
                 value={input.description}
               />
             </Form.Group>
@@ -110,7 +110,7 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     onChange={handleInputChange}
                     name="region"
                     type="text-field"
-                    placeholder="20500km"
+                    placeholder="île-de-France"
                     value={input.region}
                   />
                 </Form.Group>
@@ -122,7 +122,7 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     onChange={handleInputChange}
                     name="zip_code"
                     type="text"
-                    placeholder="5,4 sec"
+                    placeholder="91000"
                     value={input.zip_code}
                   />
                 </Form.Group>
@@ -134,7 +134,7 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     onChange={handleInputChange}
                     name="city"
                     type="text"
-                    placeholder="471 m³"
+                    placeholder="Yvries"
                     value={input.city}
                   />
                 </Form.Group>
@@ -146,23 +146,11 @@ const OfferFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 onChange={handleInputChange}
                 name="street"
                 type="text"
-                placeholder="Roadster"
+                placeholder="33 rue des alpageurs"
                 value={input.street}
               />
             </Form.Group>
 
-            <Col sm="6">
-              <Form.Group>
-                <Form.Label>Le couple</Form.Label>
-                <Form.Control
-                  onChange={handleInputChange}
-                  name="maximum_torque"
-                  type="text"
-                  placeholder="43 Nm à 6 500 tr/min"
-                  value={input.maximum_torque}
-                />
-              </Form.Group>
-            </Col>
           </Form>
         </ModalBody>
 

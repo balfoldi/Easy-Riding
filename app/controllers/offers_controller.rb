@@ -16,12 +16,8 @@ class OffersController < ApplicationController
   # POST /offers
   def create
     @offer = Offer.new(offer_params)
-
-    if @offer.save
-      render json: @offer, status: :created, location: @offer
-    else
-      render json: @offer.errors, status: :unprocessable_entity
-    end
+    @offer.save
+    render_jsonapi_response(@offer)
   end
 
   # PATCH/PUT /offers/1
@@ -46,6 +42,6 @@ class OffersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def offer_params
-      params.require(:offer).permit(:bike_id, :title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street)
+      params.require(:offer).permit(:bike_id, :title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street, :region)
     end
 end
