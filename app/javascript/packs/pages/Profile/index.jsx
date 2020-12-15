@@ -17,19 +17,19 @@ const Profile = () => {
       activeKey={key}
       onSelect={(k) => setKey(k)}
     >
-      <Tab eventKey="ProfileInfo" id="tab-profile" title="Mon profil">
+      <Tab eventKey="ProfileInfo" title="Profil">
         <div id="tab-body"><ProfileInfo /></div>
       </Tab>
-      <Tab eventKey="Garage" id="tab-garage" title="Mon garage">
+      <Tab eventKey="Garage" title="Garage">
         <div id="tab-body"><Garage /></div>
       </Tab>
-      <Tab eventKey="MyOffers" id="tab-offers" title="Mes annonces">
+      <Tab eventKey="MyOffers" title="Annonces">
         <div id="tab-body"><MyOffers /></div>
       </Tab>
-      <Tab eventKey="Favorites" id="tab-favorites" title="Mes favoris">
+      <Tab eventKey="Favorites" title="Favoris">
         <div id="tab-body"><Favorites /></div>
       </Tab>
-      <Tab eventKey="MyBookings" id="tab-bookings" title="Mes réservations">
+      <Tab eventKey="MyBookings" title="Réservations">
         <div id="tab-body"><MyBookings /></div>
       </Tab>
     </Tabs>
