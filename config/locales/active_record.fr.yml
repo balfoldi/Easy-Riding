@@ -38,7 +38,7 @@ fr:
               too_short: "doit avoire un minimum de %{count} caractères"
               too_long: "ne doit pas excéder %{count} caractères"
             model:
-              blank: "doit être présente"
+              blank: "doit être présent"
               too_long: "ne doit pas excéder %{count} caractères"              
             company_name:
               too_long: "ne doit pas excéder %{count} caractères"              
@@ -65,7 +65,7 @@ fr:
               blank: "doit être présent"
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"            
-            descrition:
+            description:
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"    
         offer:
