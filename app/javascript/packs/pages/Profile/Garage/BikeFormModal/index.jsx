@@ -17,6 +17,8 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     zero_to_100: "",
     displacement: "",
   });
+  console.log("input")
+  console.log(input.description)
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [pictures, setPictures] = useState([]);
@@ -60,8 +62,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     }
     const formData = new FormData();
 
-    formData.append("description", input);
-
     Object.keys(input).forEach((key) => {
       formData.append(`${key}`, input[key]);
     });
@@ -70,7 +70,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       formData.append("pictures[]", picture);
     });
 
-    console.log(formData);
+    console.log(input);
     fetch("/api/bikes", {
       method: "post",
       headers: {
