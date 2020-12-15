@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap";
 import { Button, Form, Alert } from "react-bootstrap";
-import ModelAutocompleteInput from "./ModelAutocompleteInput";
 import Cookies from "js-cookie";
 import PictureInput from "./PicturesInput";
 
-const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
-  const [input, setInput] = useState({
-    description: "",
-    kilometrage: "",
-    model: "",
-    company_name: "",
-    body_type: "",
-    maximum_power: "",
-    maximum_torque: "",
-    zero_to_100: "",
-    displacement: "",
-  });
-  console.log("input")
-  console.log(input.description)
+const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
+  const [input, setInput] = useState({});
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
-  const [pictures, setPictures] = useState([]);
+  const [newPictures, setNewPictures] = useState([]);
+  const [currentPictures, setCurrentPictures] = useState([]);
 
   const handleInputChange = (event) => {
     setInput({
@@ -30,15 +18,29 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     });
   };
 
-  const handleChildrenInputChange = (content) => {
+  useEffect(() => {
     setInput({
-      ...input,
-      model: content,
+      description: bike.description,
+      kilometrage: bike.kilometrage,
+      model: bike.model,
+      company_name: bike.company_name,
+      body_type: bike.body_type,
+      maximum_power: bike.maximum_power,
+      maximum_torque: bike.maximum_torque,
+      zero_to_100: bike.zero_to_100,
+      displacement: bike.displacement,
     });
-  };
+    setCurrentPictures(
+      bike.pictures?.map((picture) => {
+        picture.kill = false
+        return picture
+      })
+    );
+  }, [bike]);
 
   useEffect(() => {
     console.log(input);
+    console.log(bike);
   }, [input]);
 
   useEffect(() => {
@@ -50,9 +52,8 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
 
   useEffect(() => {
     if (modal) {
-      setInput({});
       setAlerts([]);
-      setPictures([]);
+      setNewPictures([]);
     }
   }, [modal]);
 
@@ -60,31 +61,40 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     if (Object.keys(input).length === 0) {
       return;
     }
+    console.log(input)
     const formData = new FormData();
+
+    formData.append("description", input);
 
     Object.keys(input).forEach((key) => {
       formData.append(`${key}`, input[key]);
     });
 
-    pictures.forEach((picture) => {
-      formData.append("pictures[]", picture);
+    console.log(newPictures);
+
+    newPictures.forEach((newPicture) => {
+      formData.append("new_pictures[]", newPicture);
     });
 
-    console.log(input);
-    fetch("/api/bikes", {
-      method: "post",
+    currentPictures.forEach((currentPicture) => {
+      formData.append("current_pictures[]", [currentPicture.id, currentPicture.kill]);
+    });
+
+    console.log(formData);
+    
+    fetch(`/api/bikes/${bike.id}`, {
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
       },
       body: formData,
     })
-      .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
         if (!response.errors) {
-          setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
-          fetchMyBikes();
+          setAlerts([{ variant: "success", message: "Moto Modifiée" }]);
+          fetchMyBike();
           setTimeout(() => {
             setModal(false);
             setAlerts([]);
@@ -102,12 +112,17 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Ajouter ma moto</ModalHeader>
+        <ModalHeader toggle={toggle}>Éditer ma moto</ModalHeader>
 
         <ModalBody>
           <Form>
-            <PictureInput pictures={pictures} setPictures={setPictures} />
-
+            <PictureInput
+              currentPictures={currentPictures}
+              setCurrentPictures={setCurrentPictures}
+              newPictures={newPictures}
+              setNewPictures={setNewPictures}
+              bike={bike}
+            />
             <Form.Group>
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -122,11 +137,12 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
               <Col sm="6">
                 <Form.Group>
                   <Form.Label>Modèle</Form.Label>
-                  <ModelAutocompleteInput
-                    masterInput={input}
-                    setSpec={setSpec}
-                    handleChildrenInputChange={handleChildrenInputChange}
-                    modal={modal}
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="model"
+                    type="text"
+                    placeholder="Honda"
+                    value={input.model}
                   />
                 </Form.Group>
               </Col>
@@ -242,4 +258,4 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     </div>
   );
 };
-export default BikeFormModal;
+export default BikeEditFormModal;
