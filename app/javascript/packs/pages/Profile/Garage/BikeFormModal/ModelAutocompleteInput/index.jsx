@@ -35,6 +35,7 @@ const ModelAutocompleteInput = ({ modal, setSpec, handleChildrenInputChange }) =
 
   useEffect(() => {
     setSuggestions(getSuggestions(input, specs));
+    handleChildrenInputChange(input)
   }, [input]);
 
   const autocomplete = (suggestion) => {
@@ -45,7 +46,6 @@ const ModelAutocompleteInput = ({ modal, setSpec, handleChildrenInputChange }) =
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
-    handleChildrenInputChange(input)
   };
 
   return (

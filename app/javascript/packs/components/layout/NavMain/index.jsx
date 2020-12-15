@@ -41,7 +41,7 @@ const NavMain = () => {
                   </Dropdown.Item>
                   <NavDropdown.Divider />
 
-                  <Dropdown.Item as={Link} to="/mon-compte/mes-réservations" id="item-link">
+                  <Dropdown.Item as={Link} to="/mon-compte/mes-reservations" id="item-link">
                     Mes Réservations
                   </Dropdown.Item>
                   <NavDropdown.Divider />

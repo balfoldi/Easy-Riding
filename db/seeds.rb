@@ -1,9 +1,8 @@
 require 'faker'
-
 if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
-    datas = CSV.read(Rails.root.join('db', 'assets', "Bike_data.csv"))[1..-1]
+    datas = CSV.read(Rails.root.join('db', 'assets', "csv", "Bike_data.csv"))[1..-1]
     datas.each do |data|
 
         Spec.create(
@@ -49,7 +48,7 @@ puts "Users done"
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
-    10.times do
+    3.times do
         spec = Spec.all.sample
         Bike.create( 
             kilometrage: rand(20000),
@@ -62,7 +61,12 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
             maximum_power: spec.maximum_power,
             maximum_torque: spec.maximum_torque,
             zero_to_100: spec.zero_to_100
-            )
+        )
+        image = "default_bike_picture.jpg"
+        3.times do
+            Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', image)), filename: image, content_type: 'image/jpg')
+        end 
+        tp Bike.last
     end
 end
 
