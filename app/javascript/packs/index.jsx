@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
 import Login from "./pages/Login";
+import Signup from './pages/Signup';
+import TermsOfService from './pages/TermsOfService';
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/mon-compte" component={Profile} />
           <Route path="/annonces" component={Offers} />
           <Route path="/connexion" component={Login} />
+          <Route path="/inscription" component={Signup} />
+          <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
           <Route component={NotFound} />
         </Switch>
       <FooterMain />

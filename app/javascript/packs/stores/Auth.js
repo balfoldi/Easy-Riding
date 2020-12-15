@@ -10,12 +10,57 @@ class AuthStore {
       user: observable,
       error: observable,
       isLogged: computed,
+      signup: action,
       login: action,
+      logout: action
     });
   }
 
   get isLogged() {
     return !!this.user?.id;
+  }
+
+  signup = async (email, password, passwordConfirmation, termsAccepted) => {
+    this.error = null;
+
+    const body = {
+      user: {
+        email,
+        password,
+        passwordConfirmation,
+        termsAccepted
+      }
+    }
+
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      const data = await response.json();
+
+      for (let pair of response.headers.entries()) {
+        if (pair[0] === "authorization") {
+          Cookies.set("EasyRiderUserToken", pair[1].split(' ')[1]);
+        }
+      }
+
+      if (data.error) {
+        throw new Error(`Erreur: ${data.error}`);
+      }
+
+      runInAction(() => {
+        this.user = data;
+      });
+
+    } catch (error) {
+      runInAction(() => {
+        this.error = error.message;
+      });
+    }
   }
 
   login = async (email, password) => {
@@ -59,6 +104,30 @@ class AuthStore {
     }
   }
 
+  logout = async () => {
+    this.error = null;
+
+    const token = Cookies.get("EasyRiderUserToken");
+
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'delete',
+        'Authorization': `Bearer ${token}`
+      });
+
+      Cookies.remove("EasyRiderUserToken");
+
+      runInAction(() => {
+        this.user = null;
+      });
+
+    } catch (error) {
+      runInAction(() => {
+        this.error = error.message;
+      });
+    }
+  }
+
 }
 
-export default new(AuthStore);
+export default new (AuthStore);

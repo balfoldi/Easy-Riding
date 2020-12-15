@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
     validates :last_name, length: { maximum: 20 }
     validates :first_name, length: { maximum: 20 }
-    validates :username, length: { maximum: 20 }, presence: true, uniqueness: true
+    validates :username, length: { maximum: 20 }
     validates :description, length: { in: 20..3000}, allow_blank: true
 
     def api

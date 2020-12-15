@@ -10,10 +10,10 @@ const LoginForm = () => {
   const { login, error, isLogged } = authStore;
   const history = useHistory();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
     login(email, password);
   };
 
@@ -50,7 +50,8 @@ const LoginForm = () => {
         </Form.Group>
 
         <Button
-          id="button" type="submit">
+          id="button"
+          type="submit">
           Se connecter
         </Button>
       </Form>
