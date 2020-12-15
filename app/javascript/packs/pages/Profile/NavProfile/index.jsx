@@ -8,7 +8,7 @@ const NavProfile = () => {
         <li><Link to="/mon-compte">Mon Profil</Link></li>
         <li><Link to="/mon-compte/mon-garage">Mon Garage</Link></li>
         <li><Link to="/mon-compte/mes-annonces">Mes Annonces</Link></li>
-        <li><Link to="/mon-compte/mes-réservations">Mes Réservations</Link></li>
+        <li><Link to="/mon-compte/mes-reservations">Mes Réservations</Link></li>
         <li><Link to="/mon-compte/mes-favoris">Mes Favoris</Link></li>
       </ul>
     </div>

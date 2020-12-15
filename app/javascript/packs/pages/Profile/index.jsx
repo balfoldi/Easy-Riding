@@ -10,24 +10,38 @@ import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
 import NavProfile from "./NavProfile";
-import ProfileInfo from "./ProfileInfo"
+import ProfileInfo from "./ProfileInfo";
 import NotFound from "../NotFound";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Container } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
   return (
     <div id="body">
-      <Router>
-      <h2>Page Profile en cours de construction...</h2>
-      <NavProfile />
-        <Switch>
-          <Route exact path="/mon-compte" component={ProfileInfo} />
-          <Route path="/mon-compte/mon-garage" component={Garage} />
-          <Route path="/mon-compte/mes-annonces" component={MyOffers} />
-          <Route path="/mon-compte/mes-favoris" component={Favorites} />
-          <Route path="/mon-compte/mes-réservations" component={MyBookings} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
+    <React.Fragment>
+        <Container >
+        <FontAwesomeIcon icon={faArrowRight} />
+          <Breadcrumb className="breadcrumb">
+            <div id="Introductionphrase">Vous etes ici :</div>
+            <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil</Breadcrumb.Item>
+            <Breadcrumb.Item active className="color breadcrumb_link">Mon compte</Breadcrumb.Item>
+          </Breadcrumb>
+          <Router>
+          <h2>Page Profile en cours de construction...</h2>
+          <NavProfile />
+            <Switch>
+              <Route exact path="/mon-compte" component={ProfileInfo} />
+              <Route path="/mon-compte/mon-garage" component={Garage} />
+              <Route path="/mon-compte/mes-annonces" component={MyOffers} />
+              <Route path="/mon-compte/mes-favoris" component={Favorites} />
+              <Route path="/mon-compte/mes-reservations" component={MyBookings} />
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+        </Container>
+      </React.Fragment>
     </div>
   )
 }
