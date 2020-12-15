@@ -1,6 +1,7 @@
 import "./index.scss";
 import React from "react";
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import { Breadcrumb } from "react-bootstrap";
+import { Container } from "reactstrap";
 
 const BreadCrumb = () => {
   return (
