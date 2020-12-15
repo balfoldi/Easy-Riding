@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import AsideBar from "./AsideBar";
 import BikeList from "./BikeList";
 
+
 const Offers = () => {
   return (
     <React.Fragment>

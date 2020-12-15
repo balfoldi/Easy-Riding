@@ -11,8 +11,8 @@ const NavMain = () => {
   return (
     <div id="nav-main-container">
       <Navbar id="nav-main" collapseOnSelect expand="lg">
-        <Navbar.Brand id="title-main">
-          <Link to="/">Easy Riding</Link>
+        <Navbar.Brand id="title-main" href="#">
+          <Link className="logo" to="/">Easy Riding</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
