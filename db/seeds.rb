@@ -48,7 +48,7 @@ puts "Users done"
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
-    3.times do
+    10.times do
         spec = Spec.all.sample
         Bike.create( 
             kilometrage: rand(20000),
@@ -66,7 +66,6 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
         3.times do
             Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', image)), filename: image, content_type: 'image/jpg')
         end 
-        tp Bike.last
     end
 end
 

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import BikeFormModal from "./BikeFormModal";
 import { Button, Card } from "react-bootstrap";
 import { Container, Row, Col } from "reactstrap";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import BikeShow from "./BikeShow";
+import Cookies from "js-cookie";
 
 const Garage = () => {
   const [modal, setModal] = useState(false);
@@ -12,7 +13,9 @@ const Garage = () => {
   const [bike, setBike] = useState(null);
 
   const fetchMyBikes = () => {
-    fetch("/api/bikes")
+    fetch("/api/bikes.0", {
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+    })
       .then((response) => response.json())
       .then((response) => {
         setBikes(response);
@@ -24,16 +27,18 @@ const Garage = () => {
     fetchMyBikes();
   }, []);
 
-
   return (
     <Container>
       <Breadcrumb className="breadcrumb">
         <div id="Introductionphrase">Vous etes ici :</div>
-        <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil
+        <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">
+          Accueil
         </Breadcrumb.Item>
-        <Breadcrumb.Item href="/mon-compte" className="ml-2 breadcrumb_link">mon compte
+        <Breadcrumb.Item href="/mon-compte" className="ml-2 breadcrumb_link">
+          mon compte
         </Breadcrumb.Item>
-        <Breadcrumb.Item active className="color breadcrumb_link">Mon garage
+        <Breadcrumb.Item active className="color breadcrumb_link">
+          Mon garage
         </Breadcrumb.Item>
       </Breadcrumb>
       {bike ? (

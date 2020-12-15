@@ -4,8 +4,13 @@ class BikesController < ApplicationController
 
   # GET /bikes
   def index
-    bikes = Bike.all
-
+    puts current_user
+    puts params
+    if params[:format] === "0"
+      bikes = Bike.where(owner: current_user)
+    else
+      bikes = Bike.all
+    end
     render json: bikes
   end
 

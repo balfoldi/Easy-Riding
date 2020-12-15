@@ -3,7 +3,7 @@ class OffersController < ApplicationController
 
   # GET /offers
   def index
-    @offers = Offer.all
+    @offers = Offer.all.map{|offer|offer.api}
 
     render json: @offers
   end

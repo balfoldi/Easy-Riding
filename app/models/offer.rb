@@ -21,9 +21,16 @@ class Offer < ApplicationRecord
     validates :zip_code, length: { is: 5 }, presence:true
 
 
-
-
     def api
-        self.build("users", "bookings")
+        with_relations = self.build("bike","bookings")
+        pictures_urls = []
+        self.bike.pictures.each do |picture|
+            pictures_urls.push(Rails.application.routes.url_helpers.rails_blob_path(picture), id: picture.id)
+        end
+
+        
+        with_relations[:pictures] = pictures_urls
+
+        return with_relations
     end
 end
