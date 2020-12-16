@@ -1,5 +1,5 @@
 import './index.scss';
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
@@ -15,8 +15,25 @@ import Offers from "./pages/Offers";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import TermsOfService from './pages/TermsOfService';
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
+import authStore from './stores/Auth';
 
 const App = () => {
+  const { autoLogin } = authStore;
+
+  const reconnectUser = () => {
+    const userToken = Cookies.get("EasyRiderUserToken");
+    if (userToken) {
+      var userId = jwt_decode(userToken).sub;
+      autoLogin(userId, userToken);
+    }
+  };
+
+  useEffect(() => {
+    reconnectUser();
+  }, []);
+
   return (
     <Router>
       <NavMain />

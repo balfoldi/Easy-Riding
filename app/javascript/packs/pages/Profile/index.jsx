@@ -8,15 +8,12 @@ import ProfileInfo from "./ProfileInfo"
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
   const [key, setKey] = useState('ProfileInfo');
 
   return (
     <div id="body">
-      <FontAwesomeIcon icon={faArrowRight} />
         <Breadcrumb className="breadcrumb">
           <div id="Introductionphrase">Vous etes ici :</div>
           <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil</Breadcrumb.Item>
