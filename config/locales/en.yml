@@ -39,6 +39,6 @@ fr:
       user: Utilisateur
     attributes:
       user:
-        email: "L'email"
-        password: "le mot de passe"
-        password_confirmation: "le mot de pass de confirmation"                
+        email: "L' email"
+        password: "Le mot de passe"
+        password_confirmation: "Le mot de passe de confirmation"

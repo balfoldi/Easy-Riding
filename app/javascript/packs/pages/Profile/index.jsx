@@ -7,15 +7,12 @@ import MyOffers from "./MyOffers";
 import ProfileInfo from "./ProfileInfo"
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
   const [key, setKey] = useState('ProfileInfo');
 
   return (
     <div id="body">
-      <FontAwesomeIcon icon={faArrowRight} />
         <Tabs
           id="controlled-tab-example"
           activeKey={key}

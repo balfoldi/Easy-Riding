@@ -3,6 +3,7 @@ import BikeFormModal from "./BikeFormModal";
 import { Button, Card } from "react-bootstrap";
 import { Container, Row, Col } from "reactstrap";
 import BikeShow from "./BikeShow";
+import Cookies from "js-cookie";
 
 const Garage = () => {
   const [modal, setModal] = useState(false);
@@ -11,9 +12,12 @@ const Garage = () => {
   const [bike, setBike] = useState(null);
 
   const fetchMyBikes = () => {
-    fetch("/api/bikes")
+    fetch("/api/bikes.0", {
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+    })
       .then((response) => response.json())
       .then((response) => {
+        console.log(response)
         setBikes(response);
         setBike(response[0]);
       });
@@ -22,7 +26,6 @@ const Garage = () => {
   useEffect(() => {
     fetchMyBikes();
   }, []);
-
 
   return (
     <Container>

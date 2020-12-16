@@ -2,10 +2,14 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :update, :destroy]
 
   # GET /offers
-  def index
-    @offers = Offer.all
-
-    render json: @offers
+  def index    
+    if params[:format] === "0"
+      offers = Offer.joins(:bike).where(bikes: {owner: User.last})
+    else
+      offers = Offer.all
+    end
+    puts offers
+    render json: offers.map{|offer|offer.api}
   end
 
   # GET /offers/1
@@ -16,21 +20,15 @@ class OffersController < ApplicationController
   # POST /offers
   def create
     @offer = Offer.new(offer_params)
-
-    if @offer.save
-      render json: @offer, status: :created, location: @offer
-    else
-      render json: @offer.errors, status: :unprocessable_entity
-    end
+    @offer.save
+    render_jsonapi_response(@offer)
   end
 
   # PATCH/PUT /offers/1
   def update
-    if @offer.update(offer_params)
-      render json: @offer
-    else
-      render json: @offer.errors, status: :unprocessable_entity
-    end
+    @offer.update(offer_params)
+    render_jsonapi_response(@offer)
+
   end
 
   # DELETE /offers/1
@@ -46,6 +44,6 @@ class OffersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def offer_params
-      params.require(:offer).permit(:bike_id, :title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street)
+      params.require(:offer).permit(:bike_id, :title, :description, :daily_price, :start_date, :end_date, :city, :zip_code, :street, :region)
     end
 end

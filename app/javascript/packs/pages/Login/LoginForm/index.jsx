@@ -26,7 +26,7 @@ const LoginForm = () => {
   return (
     <Container id="form-container">
 
-      <p id="intro">Ravis de vous retrouver !</p>
+      <p id="intro">Ravis de vous retrouver{'\u00a0'}!</p>
 
       {error && <Alert variant="warning">{error}</Alert>}
 
