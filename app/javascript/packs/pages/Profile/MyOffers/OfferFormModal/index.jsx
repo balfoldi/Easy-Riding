@@ -7,10 +7,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
-  console.log("kkk");
-  console.log(offer);
-  console.log("kkk");
-
   const [input, setInput] = useState({});
   const [alerts, setAlerts] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -26,10 +22,9 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
   useEffect(() => {
     if (offer) {
       setInput(offer);
-      setStartDate(new Date(offer.start_date))
-      setEndDate(new Date(offer.end_date))
+      setStartDate(new Date(offer.start_date));
+      setEndDate(new Date(offer.end_date));
     }
-
   }, [offer]);
 
   useEffect(() => {
@@ -56,8 +51,10 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
       .then((response) => {
         console.log(response);
         if (!response.errors) {
-          setAlerts([{ variant: "success", message: offer ? "Annonce mise à jour" : "Annonce Ajoutée" }]);
-          fetchMyOffers()
+          setAlerts([
+            { variant: "success", message: offer ? "Annonce mise à jour" : "Annonce Ajoutée" },
+          ]);
+          fetchMyOffers();
           setTimeout(() => {
             toggle();
             setAlerts([]);
@@ -71,6 +68,21 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
         }
       });
   };
+  const regions = [
+    "Auvergne-Rhône-Alpes",
+    "Bourgogne-Franche-Comté",
+    "Bretagne",
+    "Centre-Val de Loire",
+    "Corse",
+    "Grand Est",
+    "Hauts-de-France",
+    "Île-de-France",
+    "Normandie",
+    "Nouvelle-Aquitaine",
+    "Occitanie",
+    "Pays de la Loire",
+    "Provence-Alpes-Côte d'Azur",
+  ];
 
   return (
     <div>
@@ -123,16 +135,16 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
               />
             </Form.Group>
             <Row>
-              <Col sm="4">
-                <Form.Group>
-                  <Form.Label>Région</Form.Label>
-                  <Form.Control
-                    onChange={handleInputChange}
-                    name="region"
-                    type="text-field"
-                    placeholder="île-de-France"
-                    value={input.region}
-                  />
+              <Col sm="8">
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label>Choisir une Région</Form.Label>
+                  <Form.Control as="select" onChange={handleInputChange} value={input.region}>
+                    {regions.map((region, idx) => (
+                      <option value={region} key={idx}>
+                        {region}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
               <Col sm="4">
@@ -147,30 +159,32 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
                   />
                 </Form.Group>
               </Col>
-              <Col sm="4">
-                <Form.Group>
-                  <Form.Label>Ville</Form.Label>
-                  <Form.Control
-                    onChange={handleInputChange}
-                    name="city"
-                    type="text"
-                    placeholder="Yvries"
-                    value={input.city}
-                  />
-                </Form.Group>
-              </Col>
             </Row>
-            <Form.Group>
-              <Form.Label>Rue</Form.Label>
-              <Form.Control
-                onChange={handleInputChange}
-                name="street"
-                type="text"
-                placeholder="33 rue des alpageurs"
-                value={input.street}
-              />
-            </Form.Group>
-            <Row>
+                <Row>
+            <Col sm="4">
+              <Form.Group>
+                <Form.Label>Ville</Form.Label>
+                <Form.Control
+                  onChange={handleInputChange}
+                  name="city"
+                  type="text"
+                  placeholder="Yvries"
+                  value={input.city}
+                />
+              </Form.Group>
+            </Col>
+            <Col sm="8">
+              <Form.Group>
+                <Form.Label>Rue</Form.Label>
+                <Form.Control
+                  onChange={handleInputChange}
+                  name="street"
+                  type="text"
+                  placeholder="33 rue des alpageurs"
+                  value={input.street}
+                />
+              </Form.Group>
+              </Col>
               <Col>
                 <Form.Group>
                   <label>Début de disponibilités</label>

@@ -29,7 +29,7 @@ const OfferShow = ({ offer, fetchMyOffers }) => {
           {offer.pictures &&
             offer.pictures.map((picture) => (
               <div key={picture.id}>
-                <Card.Img variant="top" src={picture} />)
+                <Card.Img variant="top" src={picture} />
               </div>
             ))}
         </Carousel>

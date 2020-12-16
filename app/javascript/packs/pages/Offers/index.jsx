@@ -8,6 +8,18 @@ import BikeList from "./BikeList";
 
 
 const Offers = () => {
+
+  const fetchOffers = () => {
+    fetch("/api/offers.0", {
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setOffers(response);
+      });
+  };
+
   return (
     <React.Fragment>
       <Breadcrumb />
