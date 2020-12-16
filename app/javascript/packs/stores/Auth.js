@@ -14,7 +14,8 @@ class AuthStore {
       isLogged: computed,
       signup: action,
       login: action,
-      logout: action
+      logout: action,
+      autoLogin: action
     });
   }
 
@@ -114,12 +115,14 @@ class AuthStore {
   logout = async () => {
     this.error = null;
 
-    const token = Cookies.get("EasyRiderUserToken");
+    const userToken = Cookies.get("EasyRiderUserToken");
 
     try {
-      const response = await fetch('/api/logout', {
+      await fetch('/api/logout', {
         method: 'delete',
-        'Authorization': `Bearer ${token}`
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
       });
 
       Cookies.remove("EasyRiderUserToken");
@@ -132,6 +135,31 @@ class AuthStore {
       runInAction(() => {
         this.error = error.message;
       });
+    }
+  }
+
+  autoLogin = async (userId, userToken) => {
+    this.error = null;
+
+    try {
+      const response = await fetch(`/api/users/${userId}`, {
+        method: 'get',
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
+      });
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      runInAction(() => {
+        this.user = data;
+      });
+
+    } catch (error) {
+      console.warn("The token is revoked, please login again");
     }
   }
 
