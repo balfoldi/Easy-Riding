@@ -3,10 +3,18 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import Cookies from "js-cookie";
 import MyBikeList from "./MyBikeList";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-const OfferFormModal = ({ toggle, modal, fetchMyBikes }) => {
+const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
+  console.log("kkk");
+  console.log(offer);
+  console.log("kkk");
+
   const [input, setInput] = useState({});
   const [alerts, setAlerts] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleInputChange = (event) => {
     setInput({
@@ -16,34 +24,42 @@ const OfferFormModal = ({ toggle, modal, fetchMyBikes }) => {
   };
 
   useEffect(() => {
+    if (offer) {
+      setInput(offer);
+      setStartDate(new Date(offer.start_date))
+      setEndDate(new Date(offer.end_date))
+    }
+
+  }, [offer]);
+
+  useEffect(() => {
     console.log(input);
   }, [input]);
 
-  useEffect(() => {
-    if (modal) {
-      setInput({});
-      setAlerts([]);
-    }
-  }, [modal]);
-
   const postOffer = () => {
-    console.log(input);
-    fetch("/api/offers", {
-      method: "post",
+    setInput({
+      ...input,
+      start_date: startDate.toJSON(),
+      end_date: endDate.toJSON(),
+    });
+
+    fetch(`/api/offers/${offer?.id}`, {
+      method: offer ? `PATCH` : "post",
       headers: {
         Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({offer: input}),
+      body: JSON.stringify({ offer: input }),
     })
       .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
         if (!response.errors) {
-          setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
+          setAlerts([{ variant: "success", message: offer ? "Annonce mise à jour" : "Annonce Ajoutée" }]);
+          fetchMyOffers()
           setTimeout(() => {
-            toggle()
+            toggle();
             setAlerts([]);
           }, 1000);
         } else {
@@ -58,11 +74,15 @@ const OfferFormModal = ({ toggle, modal, fetchMyBikes }) => {
 
   return (
     <div>
-      <Modal isOpen={true} toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Créer une offre</ModalHeader>
         <ModalBody>
           <Form>
-            <MyBikeList input={input} setInput={setInput} />
+            {offer ? (
+              <Form.Control type="text" placeholder={offer.bike.model} readOnly />
+            ) : (
+              <MyBikeList input={input} setInput={setInput} />
+            )}
             <Row>
               <Col sm="9">
                 <Form.Group>
@@ -150,14 +170,35 @@ const OfferFormModal = ({ toggle, modal, fetchMyBikes }) => {
                 value={input.street}
               />
             </Form.Group>
-
+            <Row>
+              <Col>
+                <Form.Group>
+                  <label>Début de disponibilités</label>
+                  <Calendar
+                    minDate={new Date()}
+                    className="mr-auto ml-auto"
+                    onChange={setStartDate}
+                    value={startDate}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <label>Fin de disponibilités</label>
+                  <Calendar
+                    minDate={startDate}
+                    className="mr-auto ml-auto"
+                    onChange={setEndDate}
+                    value={endDate}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
           </Form>
         </ModalBody>
 
         <ModalFooter>
           <Row>
-            {alerts.map((alert) => (
-              <Alert key={alerts.indexOf(alert)} variant={alert.variant}>
+            {alerts.map((alert, idx) => (
+              <Alert key={idx} variant={alert.variant}>
                 {alert.message}
               </Alert>
             ))}

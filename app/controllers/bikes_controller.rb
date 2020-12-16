@@ -2,7 +2,7 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :update, :destroy]
   before_action :authenticate_user!, only: [:update, :create, :destroy]
 
-  # GET /bikes
+  # GET /bikes.0
   def index
     puts current_user
     puts params

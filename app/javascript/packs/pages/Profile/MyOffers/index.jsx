@@ -3,6 +3,8 @@ import OfferFormModal from "./OfferFormModal";
 import { Button, Card } from "react-bootstrap";
 import { Container, Row, Col } from "reactstrap";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import Cookies from "js-cookie";
+import OfferShow from './OfferShow'
 
 const MyOffers = () => {
   const [modal, setModal] = useState(false);
@@ -10,9 +12,12 @@ const MyOffers = () => {
   const [offers, setOffers] = useState([]);
 
   const fetchMyOffers = () => {
-    fetch("/api/offers")
+    fetch("/api/offers.0", {
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+    })
       .then((response) => response.json())
       .then((response) => {
+        console.log(response);
         setOffers(response);
       });
   };
@@ -21,6 +26,9 @@ const MyOffers = () => {
     fetchMyOffers();
   }, []);
 
+  useEffect(() => {
+    console.log(offers);
+  }, [offers]);
   return (
     <Container>
       <React.Fragment>
@@ -41,7 +49,6 @@ const MyOffers = () => {
       {offers ? (
         <Row>
           <Col sm="3" className="pt-5">
-            <h4>Mes Annones</h4>
             <hr></hr>
             <Button color="danger" onClick={toggle}>
               Ajouter une annonce
@@ -49,7 +56,9 @@ const MyOffers = () => {
             <hr></hr>
           </Col>
           <Col sm="9">
-            <p>mes anonces ici</p>
+            {offers.map((offer, idx) => (
+              <OfferShow fetchMyOffers={fetchMyOffers} key={idx} offer={offer} />
+            ))}
           </Col>
         </Row>
       ) : (
@@ -61,11 +70,7 @@ const MyOffers = () => {
           </Card.Body>
         </Card>
       )}
-      <OfferFormModal
-        modal={modal}
-        toggle={toggle}
-        fetchMyBikes={fetchMyOffers}
-      />
+      <OfferFormModal modal={modal} toggle={toggle} fetchMyOffers={fetchMyOffers}/>
     </Container>
   );
 };

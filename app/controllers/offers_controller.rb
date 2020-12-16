@@ -2,10 +2,14 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :update, :destroy]
 
   # GET /offers
-  def index
-    @offers = Offer.all.map{|offer|offer.api}
-
-    render json: @offers
+  def index    
+    if params[:format] === "0"
+      offers = Offer.joins(:bike).where(bikes: {owner: User.last})
+    else
+      offers = Offer.all
+    end
+    puts offers
+    render json: offers.map{|offer|offer.api}
   end
 
   # GET /offers/1
@@ -22,11 +26,9 @@ class OffersController < ApplicationController
 
   # PATCH/PUT /offers/1
   def update
-    if @offer.update(offer_params)
-      render json: @offer
-    else
-      render json: @offer.errors, status: :unprocessable_entity
-    end
+    @offer.update(offer_params)
+    render_jsonapi_response(@offer)
+
   end
 
   # DELETE /offers/1

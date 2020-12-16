@@ -71,7 +71,7 @@ fr:
         offer:
           attributes:
             title:
-              blank: "%{attribute} doit être présent"
+              blank: " doit être présent"
               too_short: "Un minimum de %{count} caractères est requis pour %{attribute}"
               too_long: "%{attribute} ne doit pas excéder %{count} caractères"       
             description:
@@ -84,19 +84,19 @@ fr:
               less_than_or_equal_to: "%{attribute} doit être au plus de %{count} euros"
               greater_than_or_equal_to: "%{attribute} doit être au moins %{count} euros"
             start_date:
-              blank: "%{attribute} doit être présente"
-              past: "%{attribute} est passée"
+              blank: "doit être présente"
+              past: "est passée"
             end_date:
-              blank: "%{attribute} doit être présente"
-              too_soon: "%{attribute} ne peut pas préceder la date de début"
+              blank: "doit être présente"
+              too_soon: "ne peut pas préceder la date de début"
             city:
               blank: "%{attribute} doit être présente"
               less_than_or_equal_to: "%{attribute} doit être au plus de %{count} caractères"
               greater_than_or_equal_to: "%{attribute} doit être au moins %{count} caractères"            
             street:
               blank: "%{attribute} doit être présente"
-              less_than_or_equal_to: "%{attribute} doit être au plus de %{count} caractères"
-              greater_than_or_equal_to: "%{attribute} doit être au moins de %{count} caractères"            
+              too_long: "%{attribute} doit être au plus de %{count} caractères"
+              too_short: "%{attribute} doit être au moins de %{count} caractères"            
             region:
               blank: "%{attribute} doit être présente"
             zip_code:
