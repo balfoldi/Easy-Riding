@@ -13,6 +13,7 @@ const Jumbo = () => {
             <Button className="ButtonHomepage" variant="contained" id="home-button"><span>C'est parti</span></Button>
           </Link>
         </div>
+        <RegionsDeFrance />
         <div id="map">
           <Image src={France} />
         </div>
