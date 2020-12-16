@@ -1,23 +1,55 @@
 import "./index.scss";
-import React from "react";
-import { Container, Button, Form, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Button, Form, Col, Alert } from "react-bootstrap";
 import authStore from "../../../stores/Auth";
 import { observer } from "mobx-react";
+import Cookies from "js-cookie";
 
 const ProfileInfo = () => {
+  const [fetchErrors, setFetchErrors] = useState([]);
   const { user } = authStore;
+  const userToken = Cookies.get("EasyRiderUserToken");
 
-  //const handleSubmit = () => {
-  //  fetch(`/api/users/${user.id}`)
-  //}
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+      user: {
+        username: e.target.username.value,
+        first_name: e.target.first_name.value,
+        last_name: e.target.last_name.value,
+        description: e.target.description.value,
+        email: e.target.email.value,
+        phone_number: e.target.phone_number.value
+      }
+    }
+
+    fetch(`/api/users/10`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
+      },
+      body: JSON.stringify(body)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.errors) {
+        setFetchErrors(data.errors);
+      }
+    })
+    .catch((error) => console.error(error));
+  }
 
   return (
     <Container id="form-container">
-      {console.log(user.id)}
-
       <p id="intro">Mon profil</p>
 
-      <Form onSubmit="handleSubmit" >
+      {fetchErrors.length > 0 && fetchErrors.map((error) => {
+        <Alert variant="warning">{error.detail}</Alert>
+      })}
+
+      <Form onSubmit={handleSubmit}>
 
         <Form.Group>
           <Form.Label>Pseudonyme</Form.Label>
