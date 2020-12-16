@@ -4,11 +4,13 @@ import Cookies from "js-cookie";
 class AuthStore {
   user = null;
   error = null;
+  validatesErrors = [];
 
   constructor() {
     makeObservable(this, {
       user: observable,
       error: observable,
+      validatesErrors: observable,
       isLogged: computed,
       signup: action,
       login: action,
@@ -21,7 +23,7 @@ class AuthStore {
   }
 
   signup = async (email, password, passwordConfirmation, termsAccepted) => {
-    this.error = null;
+    this.validatesErrors = [];
 
     const body = {
       user: {
@@ -48,8 +50,13 @@ class AuthStore {
         }
       }
 
-      if (data.error) {
-        throw new Error(`Erreur: ${data.error}`);
+      if (data.errors) {
+        runInAction(() => {
+          data.errors.map((error) => {
+            this.validatesErrors.push(error.detail)
+          });
+        });
+        throw new Error(`Erreur: ${data.errors}`);
       }
 
       runInAction(() => {
@@ -130,4 +137,4 @@ class AuthStore {
 
 }
 
-export default new (AuthStore);
+export default new AuthStore();

@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Container, Button, Form, Alert, Col } from "react-bootstrap";
 
 const SignupForm = () => {
-  const { signup, error, isLogged } = authStore;
+  const { signup, validatesErrors, isLogged } = authStore;
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -30,10 +30,9 @@ const SignupForm = () => {
       <p id="intro">Bienvenue à bord !</p>
       <p id="second">Remplissez ces champs pour vous inscrire :</p>
 
-      {/* {error && error.map((e) => {
-        console.log(e)})
-      } */}
-      {/* {error && <Alert variant="warning">{error}</Alert>} */}
+      {validatesErrors.map((message) =>
+        <Alert key={message} variant="warning">{message}</Alert>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <Form.Group>
