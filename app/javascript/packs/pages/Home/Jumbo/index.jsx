@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Jumbotron, Button, Image } from "react-bootstrap";
 import France from "./france.png";
+import SearchMap from "./SearchMap";
 
 const Jumbo = () => {
   return (
@@ -14,6 +15,7 @@ const Jumbo = () => {
           </Link>
         </div>
         <div id="map">
+        <SearchMap />
           <Image src={France} />
         </div>
       </Jumbotron>
