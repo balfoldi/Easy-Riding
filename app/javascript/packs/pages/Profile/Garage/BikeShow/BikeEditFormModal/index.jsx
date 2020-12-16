@@ -169,6 +169,7 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
                     name="kilometrage"
                     type="text-field"
                     placeholder="20500km"
+                    value={input.kilometrage}
                   />
                 </Form.Group>
               </Col>
