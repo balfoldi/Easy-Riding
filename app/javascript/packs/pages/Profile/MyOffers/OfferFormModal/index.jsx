@@ -19,6 +19,13 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     });
   };
 
+  const handleRegionChange = (event) => {
+    setInput({
+      ...input,
+      region: event.target.value,
+    });
+  };
+
   useEffect(() => {
     if (offer) {
       setInput(offer);
@@ -38,7 +45,7 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
       end_date: endDate.toJSON(),
     });
 
-    fetch(`/api/offers/${offer?.id}`, {
+    fetch(`/api/offers${offer ? `/${offer.id}` : ""}`, {
       method: offer ? `PATCH` : "post",
       headers: {
         Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
@@ -138,7 +145,7 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
               <Col sm="8">
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Choisir une Région</Form.Label>
-                  <Form.Control as="select" onChange={handleInputChange} value={input.region}>
+                  <Form.Control as="select" onChange={handleRegionChange} value={input.region}>
                     {regions.map((region, idx) => (
                       <option value={region} key={idx}>
                         {region}
