@@ -22,6 +22,11 @@ body {
     #text {
       font-size:1em;
       font-weight:300;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
   #main-btn {
@@ -45,8 +50,6 @@ body {
   #image {
     height:250px;
     border-radius: 0 0 12px 12px;
-    background-image:url("../../moto.jpg");
-
     background-size: cover;
     #to-offer {
       background-color: #ebe8e0;

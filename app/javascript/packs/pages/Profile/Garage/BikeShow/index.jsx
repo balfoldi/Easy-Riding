@@ -40,7 +40,7 @@ const BikeShow = (props) => {
           {bike.pictures &&
             bike.pictures.map((picture) => (
               <div key={picture.id}>
-                <Card.Img variant="top" src={picture.url} />)
+                <Card.Img variant="top" src={picture.url} />
               </div>
             ))}
         </Carousel>

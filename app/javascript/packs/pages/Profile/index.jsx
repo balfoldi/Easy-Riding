@@ -9,7 +9,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 const Profile = () => {
-  const [key, setKey] = useState('ProfileInfo');
+  const [key, setKey] = useState('MyOffers');
 
   return (
     <div id="body">
