@@ -7,18 +7,12 @@ import MyOffers from "./MyOffers";
 import ProfileInfo from "./ProfileInfo"
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 const Profile = () => {
   const [key, setKey] = useState('ProfileInfo');
 
   return (
     <div id="body">
-        <Breadcrumb className="breadcrumb">
-          <div id="Introductionphrase">Vous etes ici :</div>
-          <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">Accueil</Breadcrumb.Item>
-          <Breadcrumb.Item active className="color breadcrumb_link">Mon compte</Breadcrumb.Item>
-        </Breadcrumb>
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
