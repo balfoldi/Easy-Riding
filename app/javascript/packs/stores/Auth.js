@@ -4,15 +4,18 @@ import Cookies from "js-cookie";
 class AuthStore {
   user = null;
   error = null;
+  validatesErrors = [];
 
   constructor() {
     makeObservable(this, {
       user: observable,
       error: observable,
+      validatesErrors: observable,
       isLogged: computed,
       signup: action,
       login: action,
-      logout: action
+      logout: action,
+      autoLogin: action
     });
   }
 
@@ -21,7 +24,7 @@ class AuthStore {
   }
 
   signup = async (email, password, passwordConfirmation, termsAccepted) => {
-    this.error = null;
+    this.validatesErrors = [];
 
     const body = {
       user: {
@@ -48,8 +51,13 @@ class AuthStore {
         }
       }
 
-      if (data.error) {
-        throw new Error(`Erreur: ${data.error}`);
+      if (data.errors) {
+        runInAction(() => {
+          data.errors.map((error) => {
+            this.validatesErrors.push(error.detail)
+          });
+        });
+        throw new Error(`Erreur: ${data.errors}`);
       }
 
       runInAction(() => {
@@ -90,7 +98,7 @@ class AuthStore {
       }
 
       if (data.error) {
-        throw new Error(`Erreur: ${data.error}`);
+        throw new Error(data.error);
       }
 
       runInAction(() => {
@@ -107,12 +115,14 @@ class AuthStore {
   logout = async () => {
     this.error = null;
 
-    const token = Cookies.get("EasyRiderUserToken");
+    const userToken = Cookies.get("EasyRiderUserToken");
 
     try {
-      const response = await fetch('/api/logout', {
+      await fetch('/api/logout', {
         method: 'delete',
-        'Authorization': `Bearer ${token}`
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
       });
 
       Cookies.remove("EasyRiderUserToken");
@@ -128,6 +138,31 @@ class AuthStore {
     }
   }
 
+  autoLogin = async (userId, userToken) => {
+    this.error = null;
+
+    try {
+      const response = await fetch(`/api/users/${userId}`, {
+        method: 'get',
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
+      });
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      runInAction(() => {
+        this.user = data;
+      });
+
+    } catch (error) {
+      console.warn("The token is revoked, please login again");
+    }
+  }
+
 }
 
-export default new (AuthStore);
+export default new AuthStore();

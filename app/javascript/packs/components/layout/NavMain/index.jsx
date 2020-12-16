@@ -3,15 +3,15 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { observer } from 'mobx-react';
 import authStore from '../../../stores/Auth';
-import { Nav, Navbar, NavDropdown, Dropdown, Alert } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, Dropdown, Container } from "react-bootstrap";
 
 const NavMain = () => {
-  const { logout, error, isLogged } = authStore;
+  const { logout, isLogged } = authStore;
 
   return (
-    <div id="nav-main-container">
+    <Container >
       <Navbar id="nav-main" collapseOnSelect expand="lg">
-        <Navbar.Brand id="title-main" href="#">
+        <Navbar.Brand id="title-main">
           <Link className="logo" to="/">Easy Riding</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -66,7 +66,7 @@ const NavMain = () => {
 
         </Navbar.Collapse>
       </Navbar>
-    </div>
+    </Container>
   );
 };
 
