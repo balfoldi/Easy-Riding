@@ -27,10 +27,10 @@ const SignupForm = () => {
   return (
     <Container id="form-container">
 
-      <p id="intro">Bienvenue à bord !</p>
-      <p id="second">Remplissez ces champs pour vous inscrire :</p>
+      <p id="intro">Bienvenue à bord{'\u00a0'}!</p>
+      <p id="second">Remplissez ces champs pour vous inscrire{'\u00a0'}:</p>
 
-      {validatesErrors.map((message) =>
+      {(validatesErrors.length > 0) && validatesErrors.map((message) =>
         <Alert key={message} variant="warning">{message}</Alert>
       )}
 

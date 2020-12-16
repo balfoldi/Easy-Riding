@@ -97,7 +97,7 @@ class AuthStore {
       }
 
       if (data.error) {
-        throw new Error(`Erreur: ${data.error}`);
+        throw new Error(data.error);
       }
 
       runInAction(() => {
