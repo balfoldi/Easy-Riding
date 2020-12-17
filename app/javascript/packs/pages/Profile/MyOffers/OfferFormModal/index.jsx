@@ -44,7 +44,7 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     fetch(`/api/offers${offer ? `/${offer.id}` : ""}`, {
       method: offer ? `PATCH` : "post",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ offer: {

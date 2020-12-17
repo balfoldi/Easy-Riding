@@ -1,7 +1,9 @@
+import "./index.scss";
 import React, { useState, useEffect } from "react";
 import BikeFormModal from "./BikeFormModal";
 import { Button, Card } from "react-bootstrap";
 import { Container, Row, Col } from "reactstrap";
+import ProfileInfo from "../ProfileInfo";
 import BikeShow from "./BikeShow";
 import Cookies from "js-cookie";
 
@@ -13,7 +15,7 @@ const Garage = () => {
 
   const fetchMyBikes = () => {
     fetch("/api/bikes.0", {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {
@@ -28,10 +30,11 @@ const Garage = () => {
   }, []);
 
   return (
-    <Container>
+    <div>
       {bike ? (
         <Row>
-          <Col sm="3" className="pt-5">
+          <Col className="col-sm-4">
+            <ProfileInfo />
             <h4>Mes Motos</h4>
             <hr></hr>
             <Button color="danger" onClick={toggle}>
@@ -44,7 +47,7 @@ const Garage = () => {
               </Button>
             ))}
           </Col>
-          <Col sm="9">
+          <Col sm="7">
             <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
           </Col>
         </Row>
@@ -63,7 +66,7 @@ const Garage = () => {
         fetchMyBikes={fetchMyBikes}
         setModal={setModal}
       />
-    </Container>
+    </div>
   );
 };
 export default Garage;

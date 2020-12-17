@@ -165,8 +165,7 @@ const ProfileModal = (props) => {
 
         <Button
           onClick={updateProfile}
-          id="button"
-          variant="primary"
+          variant="outline-dark"
           type="submit">
           Enregistrer
         </Button>

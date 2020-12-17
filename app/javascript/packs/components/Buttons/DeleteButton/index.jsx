@@ -10,7 +10,7 @@ const DeleteButton = ({ target, id, callback, message }) => {
     fetch(`/api/${target}/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
       }
     }).then(() => callback());
   };

@@ -1,6 +1,5 @@
 import "./index.scss";
 import React, { useState, useEffect } from "react";
-import Favorites from "./Favorites";
 import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
@@ -10,10 +9,9 @@ import Tab from "react-bootstrap/Tab";
 import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
-  console.log(window.location.href.split("/"))
   let history = useHistory();
-  
-  const [key, setKey] = useState(null)
+
+  const [key, setKey] = useState("mon-garage")
 
   useEffect(()=>{
     console.log("key",key)
@@ -33,11 +31,6 @@ const Profile = () => {
         <Tab eventKey="mon-garage" title="Garage">
           <div id="tab-body">
             {key === "mon-garage" && <Garage />}
-          </div>
-        </Tab>
-        <Tab eventKey="mon-profile" title="Mon profile">
-          <div id="tab-body">
-            {key === "mon-profile" && <ProfileInfo />}
           </div>
         </Tab>
         <Tab eventKey="mes-annonces" title="Annonces">

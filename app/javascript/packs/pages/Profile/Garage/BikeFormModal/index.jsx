@@ -74,7 +74,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     fetch("/api/bikes", {
       method: "post",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
       },
       body: formData,
     })

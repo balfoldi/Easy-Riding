@@ -32,7 +32,7 @@ const Offers = () => {
   }, [allOffers])
 
   useEffect(() => {
-    console.log(input)
+    console.log("input",input)
     filterOffers()
   }, [input]);
 
