@@ -70,8 +70,6 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
                     <h3> Demandeur </h3>
                     <ul>
                       <li>Pseudonyme : {thisBooking.tenant.username}</li>
-                      <li>Téléphone : {thisBooking.tenant.phone_number}</li>
-                      <li>Email : {thisBooking.tenant.email}</li>
                     </ul>
                     <h4>Description</h4>
                     <i> {thisBooking.tenant.description}</i>
@@ -106,6 +104,7 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
               </Container>
             </Col>
           </Row>
+          <ConfirmeButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
           <DeleteButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
         </Card>
       )}

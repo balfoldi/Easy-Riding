@@ -42,6 +42,10 @@ class BookingsController < ApplicationController
 
   # DELETE /bookings/1
   def destroy
+    if params[:format] === "accept"
+      UserMailer.tenant_booking_email(@booking).deliver_now 
+      UserMailer.owner_booking_email(@booking).deliver_now 
+    end
     @booking.destroy
   end
 

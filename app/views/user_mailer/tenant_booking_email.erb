@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+<h1>Bonjour <%= "#{@tenant.username}"%>, Votre demande de réservation pour l'anonce <%= @offer.title %> a aboutie.</h1>
+  <p>Voici les coordonés du propriétaire de la <%= @bike.model %> de <%= @owner.username %></p>
+  <ul>
+    <%= "" + @owner.email %>
+    <%= "" + @owner.phone if @owner.phone%>
+  </ul>
+  </body>
+</html>

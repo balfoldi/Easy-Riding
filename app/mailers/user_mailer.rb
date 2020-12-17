@@ -7,12 +7,20 @@ class UserMailer < ApplicationMailer
       mail(to: @user.email, subject: 'Bienvenue') 
     end
   
-    def tenant_booking_email
+    def tenant_booking_email(booking)
+      @owner = booking.bike.owner
+      @tenant = booking.tenant
+      @bike = booking.offer.bike
+      @start_date = booking.start_date
+      mail(to: @owner.email, subject: 'Bienvenue')     
+    end
     
+    def owner_booking_email(booking)
+      @owner = booking.bike.owner
+      @tenant = booking.tenant
+      @bike = booking.offer.bike
+      @start_date = booking.start_date
+      mail(to: @owner.email, subject: 'Bienvenue') 
     end
 
-    def owner_booking_email
-    
-    end
-    
   end   
