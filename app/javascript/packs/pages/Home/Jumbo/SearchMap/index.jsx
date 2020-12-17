@@ -48,25 +48,6 @@ return (
         </g>
       </svg>
     </div>
-    <div className="map__list">
-      <ul>
-        <li>
-          <Link to="/annonces" id="list-A">Région A = Grand Est</Link>
-          <Link to="/annonces" id="list-B">Région B = Nouvelle-Aquitaine</Link>
-          <Link to="/annonces" id="list-C">Région C = Auvergne-Rhône-Alpes</Link>
-          <Link to="/annonces" id="list-D">Région D = Bourgogne-Franche-Comté</Link>
-          <Link to="/annonces" id="list-E">Région E = Bretagne</Link>
-          <Link to="/annonces" id="list-F">Région F = Centre-Val de Loire</Link>
-          <Link to="/annonces" id="list-G">Région G = Corse</Link>
-          <Link to="/annonces" id="list-H">Région H = Île-de-France</Link>
-          <Link to="/annonces" id="list-I">Région I = Occitanie</Link>
-          <Link to="/annonces" id="list-J">Région J = Hauts-de-France</Link>
-          <Link to="/annonces" id="list-K">Région K = Normandie</Link>
-          <Link to="/annonces" id="list-L">Région L = Pays de la Loire</Link>
-          <Link to="/annonces" id="list-M">Région M = Provence-Alpes-Côte d'Azur</Link>
-        </li>
-      </ul>
-    </div>
   </div>
   )
 };

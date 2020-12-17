@@ -18,7 +18,7 @@
     line-height: calc(65px + 2.2vh);
     @include lg-desktop {
       position: relative;
-      width: 50%;
+      width: 100%;
       display: flex;
       flex-direction: column;
     }
@@ -67,7 +67,6 @@
         &:hover {
           background-color:$hoverColor;
         }
-
       }
 
       @include lg-desktop {
@@ -77,16 +76,22 @@
   }
   #map {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    @include lg-desktop {
+      width: 90%;
     @include sm-desktop {
-      width: 50%;
-      margin-right: 10vh;
+      width: 80%;
     }
     @include tablet-phone {
       margin-left: auto;
       margin-right: auto;
       margin-top: 2vh;
+      width: 50%;
     }
-    img {
+    #searchmap {
       @include lg-desktop {
         height: 90vh;
         margin-left: 10%;
@@ -109,4 +114,5 @@
       }
     }
   }
+}
 }
