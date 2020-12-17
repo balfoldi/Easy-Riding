@@ -254,6 +254,9 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
           <Button variant="secondary" onClick={toggle}>
             Annuler
           </Button>
+          <Button variant="warning" onClick={toggle}>
+            Annuler
+          </Button>
         </ModalFooter>
       </Modal>
     </div>
