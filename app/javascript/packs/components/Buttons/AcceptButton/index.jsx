@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {Button} from "react-bootstrap"
 import Cookies from "js-cookie";
 
@@ -10,7 +10,7 @@ const AcceptButton = ({ target, id, callback, message }) => {
     fetch(`/api/${target}/${id}.accept`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
       }
     }).then(() => callback());
   };
@@ -18,11 +18,11 @@ const AcceptButton = ({ target, id, callback, message }) => {
   return (
     <>
       {warning ? (
-        <Button onClick={()=>setWarning(false)} variant="success">
+        <Button onClick={()=>setWarning(false)} variant="info">
           {message ? message : "Partager mes coordonés"}
         </Button>
       ) : (
-        <Button onClick={destroy} variant="danger">
+        <Button onClick={destroy} variant="success">
           Confirmez ?
         </Button>
       )}

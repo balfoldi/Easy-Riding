@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Cookies from "js-cookie";
 import DeleteButton from "../../../../components/Buttons/DeleteButton";
+import AcceptButton from "../../../../components/Buttons/AcceptButton";
 
 const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
   const [carouselCount, setCarouselCount] = useState(0);
@@ -49,10 +50,10 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
           <Row>
             <Col sm="6">
               <Container>
-                <h3>{thisBooking.offer.title}</h3>
+                <h3>{thisBooking.offer?.title}</h3>
                 <hr></hr>
                 <h6>Présentation</h6>
-                <p>{thisBooking.offer.description}</p>
+                <p>{thisBooking.offer?.description}</p>
                 <hr></hr>
                 <h6>Dates proposés</h6>
                 <Calendar
@@ -104,7 +105,7 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
               </Container>
             </Col>
           </Row>
-          <ConfirmeButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
+          <AcceptButton target={"bookings"} id={booking?.id} callback={afterDestroy} />
           <DeleteButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
         </Card>
       )}
