@@ -40,12 +40,12 @@ const Profile = () => {
             {key === "mes-annonces" && <MyOffers />}
           </div>
         </Tab>
-        <Tab eventKey="reservations-recues" title="Favoris">
+        <Tab eventKey="reservations-recues" title="Réservation reçues">
           <div id="tab-body">
             {key === "reservations-recues" && <MyBookings consumer={"received"} />}
           </div>
         </Tab>
-        <Tab eventKey="reservations-envoyees" title="Réservations">
+        <Tab eventKey="reservations-envoyees" title="Réservations envoyées">
           <div id="tab-body">
             {key === "reservations-envoyees" && <MyBookings consumer={"sent"} />}
           </div>
