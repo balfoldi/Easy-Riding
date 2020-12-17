@@ -21,11 +21,6 @@ const NavMain = () => {
             <Nav id="right-align">
               <Nav className="mr-auto">
                 <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <Dropdown.Item as={NavLink} exact to="/mon-compte" id="item-link">
-                    MON COMPTE
-                  </Dropdown.Item>
-                  <NavDropdown.Divider />
-
                   <Dropdown.Item as={NavLink} to="/mon-compte/mon-garage" id="item-link">
                     Mon Garage
                   </Dropdown.Item>
