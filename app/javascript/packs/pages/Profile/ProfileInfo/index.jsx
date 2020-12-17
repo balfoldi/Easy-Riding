@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode";
 import Logo from "./default_avatar.png";
 
 const ProfileInfo = () => {
-  const userToken = Cookies.get("EasyRiderUserToken");
+  const userToken = Cookies.get("EasyRidingUserToken");
   const [userData, setUserData] = useState({});
   const [show, setShow] = useState(false);
   //const { user } = authStore;
