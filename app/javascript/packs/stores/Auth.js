@@ -47,7 +47,7 @@ class AuthStore {
 
       for (let pair of response.headers.entries()) {
         if (pair[0] === "authorization") {
-          Cookies.set("EasyRiderUserToken", pair[1].split(' ')[1]);
+          Cookies.set("EasyRidingUserToken", pair[1].split(' ')[1]);
         }
       }
 
@@ -93,7 +93,7 @@ class AuthStore {
 
       for (let pair of response.headers.entries()) {
         if (pair[0] === "authorization") {
-          Cookies.set("EasyRiderUserToken", pair[1].split(' ')[1]);
+          Cookies.set("EasyRidingUserToken", pair[1].split(' ')[1]);
         }
       }
 
@@ -115,7 +115,7 @@ class AuthStore {
   logout = async () => {
     this.error = null;
 
-    const userToken = Cookies.get("EasyRiderUserToken");
+    const userToken = Cookies.get("EasyRidingUserToken");
 
     try {
       await fetch('/api/logout', {
@@ -125,7 +125,7 @@ class AuthStore {
         },
       });
 
-      Cookies.remove("EasyRiderUserToken");
+      Cookies.remove("EasyRidingUserToken");
 
       runInAction(() => {
         this.user = null;

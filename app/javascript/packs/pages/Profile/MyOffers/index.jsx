@@ -13,7 +13,7 @@ const MyOffers = () => {
 
   const fetchMyOffers = () => {
     fetch("/api/offers.0", {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {
@@ -31,20 +31,6 @@ const MyOffers = () => {
   }, [offers]);
   return (
     <Container>
-      <React.Fragment>
-        <Breadcrumb className="breadcrumb">
-          <div id="Introductionphrase">Vous etes ici :</div>
-          <Breadcrumb.Item href="/" className="ml-2 breadcrumb_link">
-            Accueil
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href="/mon-compte" className="ml-2 breadcrumb_link">
-            mon compte
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active className="color breadcrumb_link">
-            Mes annonces
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </React.Fragment>
 
       {offers ? (
         <Row>

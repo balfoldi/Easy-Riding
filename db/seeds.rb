@@ -68,7 +68,6 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
                 maximum_torque: spec.maximum_torque,
                 zero_to_100: spec.zero_to_100
             )
-            tp Bike.last
             images = all_images.sample(3)
             images.each do |image|
                 Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', 'motor_bike_pics', image)), filename: image, content_type: 'image/jpg')

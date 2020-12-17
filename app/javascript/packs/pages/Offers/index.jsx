@@ -32,11 +32,12 @@ const Offers = () => {
   }, [allOffers])
 
   useEffect(() => {
-    console.log(input)
+    console.log("input",input)
     filterOffers()
   }, [input]);
 
   const filterOffers = () =>{
+    console.log(allOffers)
     const checkModel= (offer) => offer.bike.model.toLowerCase().startsWith(input.model.toLowerCase()) || input.model === ""
     const checkcompanyName= (offer) => offer.bike.company_name === input.companyName || input.companyName === "all"
     const checkbodyType= (offer) => offer.bike.body_type === input.bodyType || input.bodyType === "all"

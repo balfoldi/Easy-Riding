@@ -12,6 +12,7 @@ import FooterMain from "./components/layout/FooterMain";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
+import Offer from "./pages/Offer";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import TermsOfService from './pages/TermsOfService';
@@ -25,9 +26,9 @@ const App = () => {
   const { autoLogin } = authStore;
 
   const reconnectUser = () => {
-    const userToken = Cookies.get("EasyRiderUserToken");
+    const userToken = Cookies.get("EasyRidingUserToken");
     if (userToken) {
-      var userId = jwt_decode(userToken).sub;
+      let userId = jwt_decode(userToken).sub;
       autoLogin(userId, userToken);
     }
   };

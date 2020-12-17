@@ -13,7 +13,7 @@ const Garage = () => {
 
   const fetchMyBikes = () => {
     fetch("/api/bikes.0", {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {
@@ -45,7 +45,7 @@ const Garage = () => {
             ))}
           </Col>
           <Col sm="9">
-            <BikeShow bike={bike} />
+            <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
           </Col>
         </Row>
       ) : (

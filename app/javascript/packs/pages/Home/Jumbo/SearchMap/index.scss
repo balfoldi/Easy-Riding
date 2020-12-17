@@ -1,0 +1,29 @@
+.map__image path
+
+.map__image{
+  float:left;
+  width: 90%;
+}
+
+.map__image path{
+  fill:  #e3e3e3;
+  stroke: hsl(0, 0%, 95%);
+  stroke-width: 2px;
+  transition: fill 0,3s;
+  shape-rendering: crispEdges;
+}
+
+.map__image path:hover{
+  fill: hsl(0, 0%, 100%);
+}
+
+.map__list {
+  float: right;
+  width: 50%;
+}
+
+.map__list a{
+  text-decoration: inherit;
+  text-decoration: none;
+  transition: color 0,3s;
+}

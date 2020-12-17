@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:update, :create, :destroy]
-
+  before_action :authenticate_user!, only: [:authenticate_user!, :create]
+  before_action :authenticate_owner!, only: [:update, :destroy]
   # GET /bikes.0
   def index
     puts current_user
@@ -66,6 +66,11 @@ class BikesController < ApplicationController
   end
 
   private
+
+    def authenticate_owner!
+      @bike = Bike.find(params[:id])
+      return @bike.owner === current_user
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_bike
       @bike = Bike.find(params[:id])
