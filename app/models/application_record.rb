@@ -29,11 +29,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def generate_url(picture)
-    if ENV["RAILS_ENV"] === "development"
       return Rails.application.routes.url_helpers.rails_blob_path(picture)
-    else
-      return Rails.application.routes.url_helpers.url_for(picture)            
-    end
   end
   
 end

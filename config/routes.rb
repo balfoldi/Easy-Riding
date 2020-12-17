@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/mon-compte/mes-annonces" => "front_app#react"
   get "/mon-compte/reservations-recues" => "front_app#react"
   get "/mon-compte/reservations-envoyees" => "front_app#react"
+  get "/mon-compte/mon-profile" => "front_app#react"
 
   scope '/api', defaults: { format: :json } do
     resources :bookings

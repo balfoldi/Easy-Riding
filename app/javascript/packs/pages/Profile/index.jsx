@@ -35,6 +35,11 @@ const Profile = () => {
             {key === "mon-garage" && <Garage />}
           </div>
         </Tab>
+        <Tab eventKey="mon-profile" title="Mon profile">
+          <div id="tab-body">
+            {key === "mon-profile" && <ProfileInfo />}
+          </div>
+        </Tab>
         <Tab eventKey="mes-annonces" title="Annonces">
           <div id="tab-body">
             {key === "mes-annonces" && <MyOffers />}
