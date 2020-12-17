@@ -13,7 +13,7 @@ const Garage = () => {
 
   const fetchMyBikes = () => {
     fetch("/api/bikes.0", {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {

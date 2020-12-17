@@ -44,7 +44,7 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     fetch(`/api/bookings`, {
       method: "post",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ booking: {

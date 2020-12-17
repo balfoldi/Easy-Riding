@@ -82,11 +82,11 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     });
 
     console.log(formData);
-    
+
     fetch(`/api/bikes/${bike.id}`, {
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
       },
       body: formData,
     })
