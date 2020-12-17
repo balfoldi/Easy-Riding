@@ -1,8 +1,8 @@
 import './index.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Jumbotron, Row, Col, Button, Image } from "react-bootstrap";
-import France from "./france.png";
+import { Jumbotron, Button, Container} from "react-bootstrap";
+import SearchMap from "./SearchMap";
 
 const Jumbo = () => {
   return (
@@ -14,10 +14,10 @@ const Jumbo = () => {
           </Link>
         </div>
         <div id="map">
-          <Image src={France} />
+          <SearchMap />
         </div>
       </Jumbotron>
-  )
-}
+  );
+};
 
 export default Jumbo;
