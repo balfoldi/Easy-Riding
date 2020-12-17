@@ -39,15 +39,20 @@ const ProfileInfo = () => {
   }, [])
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={Logo} />
-      <Card.Body>
-        <Card.Title>{userData.first_name} {userData.last_name} ({userData.username})</Card.Title>
-        <Card.Text>
-          {userData.description === "" ? <p>Pas de description</p> : userData.description}
+    <Card style={{ width: '18rem' }} id="card-profile">
+      <Card.Img id="img-circle" variant="top" src={Logo} />
+      <Card.Body id="card-body">
+        <Card.Title>
+        {userData.username && userData.first_name && userData.last_name ? <p>{userData.first_name} {userData.last_name}</p> : userData.email}
+        </Card.Title>
+        <Card.Text id="description">
+        {userData.username && userData.first_name && userData.last_name ?
+          <p>({userData.username})</p>
+          : <p>Complétez vos informations de profil !</p>}
+        <p>{userData.description ? userData.description : `Pas de description`}</p>
         </Card.Text>
       </Card.Body>
-      <Button id="cardButton" onClick={showModal}>
+      <Button id="card-button" variant="outline-dark" onClick={showModal}>
         Modifier le profil
       </Button>
       <ProfileModal
