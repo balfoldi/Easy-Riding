@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get "/mon-compte" => "front_app#react"
   get "/annonces" => "front_app#react"
+  get "/annonce/:id" => "front_app#react"
   get "/connexion" => "front_app#react"
   get "/inscription" => "front_app#react"
   get "/mon-compte" => "front_app#react"

@@ -1,13 +1,14 @@
 import Calendar from "react-calendar";
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import { Row, Col } from "reactstrap";
 import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import OfferFormModal from "../OfferFormModal";
+import BookingModal from '../../../Offer/BookingModal'
 
-const OfferShow = ({ offer, fetchMyOffers }) => {
+const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
   console.log(offer);
 
   const [carouselCount, setCarouselCount] = useState(0);
@@ -22,8 +23,6 @@ const OfferShow = ({ offer, fetchMyOffers }) => {
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;
   return (
     <>
-      <h1>{offer.title}</h1>
-      <hr></hr>
       <Card>
         <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
           {offer.pictures &&
@@ -52,6 +51,7 @@ const OfferShow = ({ offer, fetchMyOffers }) => {
           </Col>
           <Col sm="6">
             <Container>
+              {consumer && < Button onClick={toggle} > Demande de réservation </Button>}
               <ul>
                 <h4>Détails de l'annonce</h4>
                 <p>Prix journalier : {offer.daily_price} </p>
@@ -78,10 +78,25 @@ const OfferShow = ({ offer, fetchMyOffers }) => {
             </Container>
           </Col>
         </Row>
-        <Button variant="secondary" onClick={toggle}>
-          Éditer
-        </Button>
-        <OfferFormModal modal={modal} fetchMyOffers={fetchMyOffers} toggle={toggle} offer={offer} />
+        {!consumer ? (
+          <>
+            <Button variant="secondary" onClick={toggle}>
+              Éditer
+            </Button>
+            <OfferFormModal
+              modal={modal}
+              fetchMyOffers={fetchMyOffers}
+              toggle={toggle}
+              offer={offer}
+            />
+          </>
+        ):(
+          <BookingModal 
+          modal={modal}
+          toggle={toggle}
+          offer={offer}          
+          />
+        )}
       </Card>
     </>
   );

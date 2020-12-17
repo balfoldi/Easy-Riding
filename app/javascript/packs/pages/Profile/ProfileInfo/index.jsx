@@ -13,7 +13,7 @@ const ProfileInfo = () => {
 
   return (
     <Container id="form-container">
-      {console.log(user.id)}
+      {console.log(user?.id)}
 
       <p id="intro">Mon profil</p>
 

@@ -1,8 +1,9 @@
 import "./index.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 const BikeCard = (offer) => {
   return (
@@ -15,10 +16,11 @@ const BikeCard = (offer) => {
         <p>{offer.offer.daily_price}€/jour</p>
       </Button>
       <div id="image" style={{ "background-image": `url("${offer.offer.pictures}")` }}>
-        <Button id="to-offer">
-          {" "}
-          <FontAwesomeIcon icon={faArrowRight} />
-        </Button>
+        <Link to={`/annonce/${offer.offer.id}`} id="home-link">
+          <Button id="to-offer">
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Button>
+        </Link>
       </div>
     </Card>
   );

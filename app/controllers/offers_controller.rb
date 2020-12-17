@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   # GET /offers
   def index    
     if params[:format] === "0"
-      offers = Offer.joins(:bike).where(bikes: {owner: User.last})
+      offers = Offer.joins(:bike).where(bikes: {owner: current_user})
     else
       offers = Offer.all
     end
@@ -14,7 +14,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1
   def show
-    render json: @offer
+    render_jsonapi_response(@offer)
   end
 
   # POST /offers

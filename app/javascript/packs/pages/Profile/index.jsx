@@ -1,6 +1,5 @@
 import "./index.scss";
 import React, { useState } from "react";
-import Favorites from "./Favorites";
 import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
@@ -9,7 +8,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 const Profile = () => {
-  const [key, setKey] = useState('MyOffers');
+  const [key, setKey] = useState('MyBookings');
 
   return (
     <div id="body">
@@ -27,11 +26,11 @@ const Profile = () => {
           <Tab eventKey="MyOffers" title="Annonces">
             <div id="tab-body"><MyOffers /></div>
           </Tab>
-          <Tab eventKey="Favorites" title="Favoris">
-            <div id="tab-body"><Favorites /></div>
+          <Tab eventKey="MySentBooking" title="Reservations reçues">
+            <div id="tab-body"><MyBookings consumer={"received"}/></div>
           </Tab>
-          <Tab eventKey="MyBookings" title="Réservations">
-            <div id="tab-body"><MyBookings /></div>
+          <Tab eventKey="MyReceivedBookings" title="Réservations Envoyées">
+            <div id="tab-body"><MyBookings consumer={"sent"}/></div>
           </Tab>
         </Tabs>
     </div>

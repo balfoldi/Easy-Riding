@@ -39,11 +39,6 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
   }, [input]);
 
   const postOffer = () => {
-    setInput({
-      ...input,
-      start_date: startDate.toJSON(),
-      end_date: endDate.toJSON(),
-    });
 
     fetch(`/api/offers${offer ? `/${offer.id}` : ""}`, {
       method: offer ? `PATCH` : "post",
@@ -51,7 +46,11 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
         Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ offer: input }),
+      body: JSON.stringify({ offer: {
+        ...input,
+        start_date: startDate.toJSON(),
+        end_date: endDate.toJSON()
+      } }),
     })
       .catch((error) => console.log(error))
       .then((response) => response.json())

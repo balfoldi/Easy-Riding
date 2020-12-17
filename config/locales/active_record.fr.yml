@@ -29,6 +29,9 @@ fr:
         street: La voie
         zip_code: Le code postal
         region: La région
+      booking:
+        start_date: La date de début
+        end_date: La date de fin    
     errors:
       models:
         bike: 
@@ -105,8 +108,8 @@ fr:
         booking:
           attributes:
             start_date:
-              blank: "%{attribute} doit être présente"
-              past: "%{attribute} est passée"
+              blank: "doit être présente"
+              past: "est passée"
             end_date:
-              blank: "%{attribute} doit être présente"
-              too_soon: "%{attribute} ne peut pas préceder la date de début"            
+              blank: "doit être présente"
+              too_soon: "ne peut pas préceder la date de début"            
