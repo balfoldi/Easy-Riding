@@ -19,6 +19,8 @@ import TermsOfService from './pages/TermsOfService';
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import authStore from './stores/Auth';
+import ScrollToTop from "react-scroll-to-top";
+import HeaderImage from "./components/layout/HeaderImage";
 
 const App = () => {
   const { autoLogin } = authStore;
@@ -37,17 +39,20 @@ const App = () => {
 
   return (
     <Router>
-      <NavMain />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/mon-compte" component={Profile} />
-          <Route path="/annonces" component={Offers} />
-          <Route path="/annonce" component={Offer} />
-          <Route path="/connexion" component={Login} />
-          <Route path="/inscription" component={Signup} />
-          <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
-          <Route component={NotFound} />
+              <Route exact path="/" component={HeaderImage} />
         </Switch>
+      <NavMain />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/mon-compte" component={Profile} />
+            <Route path="/annonces" component={Offers} />
+            <Route path="/connexion" component={Login} />
+            <Route path="/inscription" component={Signup} />
+            <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
+            <Route component={NotFound} />
+          </Switch>
+        <ScrollToTop smooth color="#c9c9c9" />
       <FooterMain />
     </Router>
   );

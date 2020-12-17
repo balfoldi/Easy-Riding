@@ -1,1 +1,28 @@
 @import "../../../index.scss";
+
+$borderGrey:rgb(131, 126, 126);
+
+#card-profile {
+  max-width:300px;
+  max-height:400px;
+  font-family: 'Roboto', sans-serif;
+  border:1px solid $borderGrey;
+  #img-circle {
+    width:50%;
+    margin:auto;
+    margin-top:1em;
+    border-radius:50%;
+    border:1px solid $borderGrey;
+  }
+  #card-body {
+    margin:auto;
+    text-align: center;
+    #description {
+      font-weight:300;
+    }
+  }
+  #card-button {
+    margin:auto;
+    margin-bottom:1em;
+  }
+}
