@@ -1,26 +1,17 @@
-@import "../../../index.scss";
+@import "../../../../index.scss";
 
-$borderGrey:rgb(131, 126, 126);
-
-#card-profile {
-  font-family: 'Roboto', sans-serif;
-  border:1px solid $borderGrey;
-  #img-circle {
-    width:50%;
+#form-container {
     margin:auto;
-    margin-top:1em;
-    border-radius:50%;
-    border:1px solid $borderGrey;
-  }
-  #card-body {
-    margin:auto;
-    text-align: center;
-    #description {
-      font-weight:300;
+    min-height:auto;
+    #modal-content {
+    padding-top:2vh;
+    padding-bottom:2vh;
     }
-  }
-  #card-button {
-    margin:auto;
-    margin-bottom:1em;
-  }
+    #form-title {
+        font-size:2rem;
+        margin:auto;
+    }
 }
+
+
+
