@@ -1,4 +1,7 @@
 class Bike < ApplicationRecord
+  before_destroy :destroy_childrens
+
+
   belongs_to :owner, class_name: "User"
   has_one :offer
   has_many :join_table_bikes_tags
@@ -19,11 +22,15 @@ class Bike < ApplicationRecord
     with_relations = self.build("owner","offer")
     pictures_urls = []
     self.pictures.each do |picture|
-      pictures_urls.push({url: Rails.application.routes.url_helpers.rails_blob_path(picture), id: picture.id})
+      pictures_urls.push({url: generate_url(picture), id: picture.id})
     end
     
     with_relations[:pictures] = pictures_urls
 
     return with_relations
+  end
+
+  def destroy_childrens
+    Offer.where(bike: self).delete_all
   end
 end

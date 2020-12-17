@@ -45,7 +45,7 @@ const Garage = () => {
             ))}
           </Col>
           <Col sm="9">
-            <BikeShow bike={bike} />
+            <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
           </Col>
         </Row>
       ) : (
