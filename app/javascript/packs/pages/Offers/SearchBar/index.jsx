@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Col, Row, Container, Form } from "react-bootstrap";
 
 const SearchBar = ({ offers, input, setInput }) => {
+  console.log("url", window.location.href.split("/"))
+
   const [SearchAttributes, setSearchAttributes] = useState({
     regions: [
       "Auvergne-Rhône-Alpes",
@@ -21,6 +23,51 @@ const SearchBar = ({ offers, input, setInput }) => {
     ],
   });
 
+
+  useEffect(()=>{
+    console.log("ploufe")
+  switch(window.location.href.split("/")[4]){
+    case "grand-est":
+      setInput({...input, region: "Grand Est"})
+    break
+    case "nouvelle-aquitaine":
+      setInput({...input, region: "Nouvelle-Aquitaine"})
+    break
+    case "auvergne-rhone-alpes":
+      setInput({...input, region: "Auvergne-Rhône-Alpes"})
+    break
+    case "bourgogne-franche-comte":
+      setInput({...input, region: "Bourgogne-Franche-Comté"})
+    break
+    case "bretagne":
+      setInput({...input, region: "Bretagne"})
+    break
+    case "centre-val-de-loire":
+      setInput({...input, region: "Centre-Val de Loire"})
+    break
+    case "corse":
+      setInput({...input, region: "Corse"})
+    break
+    case "ile-de-france":
+      setInput({...input, region: "Île-de-France"})
+    break
+    case "occitanie":
+      setInput({...input, region: "Occitanie"})
+    break
+    case "hauts-de-france":
+      setInput({...input, region: "Hauts-de-France"})
+    break
+    case "normandie":
+      setInput({...input, region: "Normandie"})
+    break
+    case "pays-de-la-loire":
+      setInput({...input, region: "Pays de la Loire"})
+    break
+    case "provence-alpes-cote-dazur":
+      setInput({...input, region: "Provence-Alpes-Côte d'Azur"})
+    break
+  }
+}, [])
   const handleInputChange = (event) => {
     setInput({
       ...input,

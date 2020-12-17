@@ -1,6 +1,5 @@
 import "./index.scss";
 import React, { useState, useEffect } from "react";
-import Favorites from "./Favorites";
 import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
@@ -10,7 +9,6 @@ import Tab from "react-bootstrap/Tab";
 import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
-  console.log(window.location.href.split("/"))
   let history = useHistory();
   
   const [key, setKey] = useState(null)
