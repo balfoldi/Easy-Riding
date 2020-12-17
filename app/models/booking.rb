@@ -14,7 +14,7 @@ class Booking < ApplicationRecord
 
     pictures_urls = []
     self.offer.bike.pictures.each do |picture|
-      pictures_urls.push(Rails.application.routes.url_helpers.rails_blob_path(picture))
+      pictures_urls.push(generate_url(picture))
     end
     booking[:pictures] = pictures_urls
 

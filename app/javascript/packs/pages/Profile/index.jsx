@@ -1,58 +1,58 @@
 import "./index.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Favorites from "./Favorites";
 import Garage from "./Garage";
 import MyBookings from "./MyBookings";
 import MyOffers from "./MyOffers";
-import ProfileInfo from "./ProfileInfo"
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import ProfileInfo from "./ProfileInfo";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
-  const [key, setKey] = useState('Garage');
+  console.log(window.location.href.split("/"))
+  let history = useHistory();
+  
+  const [key, setKey] = useState(null)
+
+  useEffect(()=>{
+    console.log("key",key)
+    console.log("history", history)
+    setKey(window.location.href.split("/")[4])
+  })
 
   return (
     <div id="body">
-
-    <Router>
-        <Switch>
-          <Route path="/mon_compte/profil" component={Profile} />
-          <Route path="/mon_compte/garage" component={Offers} />
-          <Route path="/mon_compte/mes-annonces" component={Offer} />
-          <Route path="/mon_compte/reservations-recues" component={Login} />
-          <Route path="/mon_compte/reservations-envoyées" component={Signup} />
-          <Route path="/mon_compte/" component={TermsOfService} />
-        </Switch>
-    </Router>
-
-        <Tabs
-          id="controlled-tab-example"
-          activeKey={key}
-          onSelect={(k) => setKey(k)}
-        >
-          <Tab eventKey="ProfileInfo" title="Profil">
-            <div id="tab-body"><ProfileInfo /></div>
-          </Tab>
-          <Tab eventKey="Garage" title="Garage">
-            <div id="tab-body"><Garage /></div>
-          </Tab>
-          <Tab eventKey="MyOffers" title="Annonces">
-            <div id="tab-body"><MyOffers /></div>
-          </Tab>
-          <Tab eventKey="MySentBooking" title="Reservations reçues">
-            <div id="tab-body"><MyBookings consumer={"received"}/></div>
-          </Tab>
-          <Tab eventKey="MyReceivedBookings" title="Réservations Envoyées">
-            <div id="tab-body"><MyBookings consumer={"sent"}/></div>
-          </Tab>
-        </Tabs>
+      <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => {
+          history.push(`${k}`)
+        }}
+      >
+        <Tab eventKey="mon-garage" title="Garage">
+          <div id="tab-body">
+            {key === "mon-garage" && <Garage />}
+          </div>
+        </Tab>
+        <Tab eventKey="mes-annonces" title="Annonces">
+          <div id="tab-body">
+            {key === "mes-annonces" && <MyOffers />}
+          </div>
+        </Tab>
+        <Tab eventKey="reservations-recues" title="Favoris">
+          <div id="tab-body">
+            {key === "reservations-recues" && <MyBookings consumer={"received"} />}
+          </div>
+        </Tab>
+        <Tab eventKey="reservations-envoyees" title="Réservations">
+          <div id="tab-body">
+            {key === "reservations-envoyees" && <MyBookings consumer={"sent"} />}
+          </div>
+        </Tab>
+      </Tabs>
     </div>
   );
-}
+};
 
-export default Profile;
+export default Profile

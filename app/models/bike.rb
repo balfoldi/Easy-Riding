@@ -22,7 +22,7 @@ class Bike < ApplicationRecord
     with_relations = self.build("owner","offer")
     pictures_urls = []
     self.pictures.each do |picture|
-      pictures_urls.push({url: Rails.application.routes.url_helpers.rails_blob_path(picture), id: picture.id})
+      pictures_urls.push({url: generate_url(picture), id: picture.id})
     end
     
     with_relations[:pictures] = pictures_urls

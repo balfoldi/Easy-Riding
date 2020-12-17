@@ -4,7 +4,6 @@ class BookingsController < ApplicationController
   before_action :authenticate_user_included!, only:  [:patch, :destroy]
   # GET /bookings
   def index
-    b = Booking.create( offer: Bike.find_by(owner: User.last).offer, start_date: Date.today, end_date: Date.today+1, tenant: User.first)
     if params[:format] === "received"
       bookings = Booking.all.select do | booking|
         booking.offer.bike.owner_id === current_user.id

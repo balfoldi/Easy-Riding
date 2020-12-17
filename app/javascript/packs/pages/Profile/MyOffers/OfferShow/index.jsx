@@ -26,8 +26,8 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
       <Card>
         <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
           {offer.pictures &&
-            offer.pictures.map((picture) => (
-              <div key={picture.id}>
+            offer.pictures.map((picture, idx) => (
+              <div key={idx}>
                 <Card.Img variant="top" src={picture} />
               </div>
             ))}
