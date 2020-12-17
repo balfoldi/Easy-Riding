@@ -3,7 +3,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { observer } from 'mobx-react';
 import authStore from '../../../stores/Auth';
-import { Nav, Navbar, NavDropdown, Dropdown, Container } from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 
 const NavMain = () => {
   const { logout, isLogged } = authStore;
@@ -20,26 +20,9 @@ const NavMain = () => {
           {isLogged &&
             <Nav id="right-align">
               <Nav className="mr-auto">
-                <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                  <Dropdown.Item as={NavLink} to="/mon-compte/mon-garage" id="item-link">
-                    Mon Garage
-                  </Dropdown.Item>
-                  <NavDropdown.Divider />
-
-                  <Dropdown.Item as={NavLink} to="/mon-compte/mes-annonces" id="item-link">
-                    Mes Annonces
-                  </Dropdown.Item>
-                  <NavDropdown.Divider />
-
-                  <Dropdown.Item as={Link} to="/mon-compte/mes-reservations" id="item-link">
-                    Mes Réservations
-                  </Dropdown.Item>
-                  <NavDropdown.Divider />
-
-                  <Dropdown.Item as={NavLink} to="/mon-compte/mes-favoris" id="item-link">
-                    Mes Favoris
-                  </Dropdown.Item>
-                </NavDropdown>
+                <Nav.Link as={NavLink} to="/mon-compte/mon-garage" id="item-link">
+                  Mon Compte
+                </Nav.Link>
                 <Nav.Link onClick={logout} className="auth-links">
                   Déconnexion
                 </Nav.Link>
