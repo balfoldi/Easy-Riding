@@ -1,6 +1,6 @@
 import './index.scss';
 import React from "react";
-import { Container, Button, Form, Alert } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const NotFound = () => {
   return (
@@ -10,7 +10,7 @@ const NotFound = () => {
       <Col></Col>
         <Col xs={6}>
           <Link to="/">
-          <button> Retour à la page d'accueil</button>
+          <Button> Retour à la page d'accueil</Button>
           </Link>
         </Col>
         <Col></Col>
