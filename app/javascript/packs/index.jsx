@@ -25,7 +25,7 @@ const App = () => {
   const reconnectUser = () => {
     const userToken = Cookies.get("EasyRiderUserToken");
     if (userToken) {
-      var userId = jwt_decode(userToken).sub;
+      let userId = jwt_decode(userToken).sub;
       autoLogin(userId, userToken);
     }
   };
