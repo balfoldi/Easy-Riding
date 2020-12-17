@@ -4,11 +4,15 @@ import { Link, NavLink } from "react-router-dom";
 import { observer } from 'mobx-react';
 import authStore from '../../../stores/Auth';
 import { Nav, Navbar, NavDropdown, Dropdown, Container } from "react-bootstrap";
+import HeaderImage from '../../../pages/home/HeaderImage';
 
 const NavMain = () => {
   const { logout, isLogged } = authStore;
 
   return (
+    <>
+    <HeaderImage />
+    </>
     <Container >
       <Navbar id="nav-main" collapseOnSelect expand="lg">
         <Navbar.Brand id="title-main">
