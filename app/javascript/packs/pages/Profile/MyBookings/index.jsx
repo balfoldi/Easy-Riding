@@ -9,7 +9,7 @@ const MyBookings = ({consumer}) => {
 
   const fetchMyBookings = () => {
     fetch(`/api/bookings.${consumer}`, {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {

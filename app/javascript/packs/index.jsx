@@ -24,7 +24,7 @@ const App = () => {
   const { autoLogin } = authStore;
 
   const reconnectUser = () => {
-    const userToken = Cookies.get("EasyRiderUserToken");
+    const userToken = Cookies.get("EasyRidingUserToken");
     if (userToken) {
       let userId = jwt_decode(userToken).sub;
       autoLogin(userId, userToken);
