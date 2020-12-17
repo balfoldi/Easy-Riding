@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_destroy :destroy_childrens
+
   devise :database_authenticatable, :registerable, :validatable,
     :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
     has_many :bookings, foreign_key: :tenant
@@ -14,5 +16,9 @@ class User < ApplicationRecord
 
     def api
       self.build("bikes", "offers")
+  end
+
+  def destroy_childrens
+    Bike.where(owner: self).delete_all
   end
 end

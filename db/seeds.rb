@@ -1,4 +1,8 @@
 require 'faker'
+
+regions = ["Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté","Bretagne","Centre-Val de Loire","Corse","Grand Est","Hauts-de-France","Île-de-France","Normandie","Nouvelle-Aquitaine","Occitanie","Pays de la Loire","Provence-Alpes-Côte d'Azur"]
+
+
 if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
     Spec.delete_all
     require "csv"
@@ -15,9 +19,9 @@ if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
             displacement: data[10] === "NaN" ? "" : data[10]
         )
     end
+    puts "Specs done"
 end
 
-puts "Specs done"
 
 if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
     Tag.destroy_all
@@ -25,9 +29,9 @@ if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
     tag_names.each do |tag_name|
         Tag.create( name: tag_name, color: Faker::Color.hex_color )
     end
+    puts "Tags done"
 end
 
-puts "Tags done"
 
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
@@ -42,39 +46,41 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
             description: Faker::Hipster.paragraph(sentence_count: 10)
         )
     end
+    puts "Users done"
 end
 
-puts "Users done"
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
-    10.times do
-        spec = Spec.all.sample
-        Bike.create( 
-            kilometrage: rand(20000),
-            owner: User.all.sample,
-            description: Faker::Movies::StarWars.quote,
-            tags: Tag.all.sample(rand(1..3)),
-            model: spec.model,
-            company_name: spec.company_name,
-            body_type: spec.body_type,
-            maximum_power: spec.maximum_power,
-            maximum_torque: spec.maximum_torque,
-            zero_to_100: spec.zero_to_100
-        )
-        image = "default_bike_picture.jpg"
-        3.times do
-            Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', image)), filename: image, content_type: 'image/jpg')
-        end 
+    all_images = Dir.entries("db/assets/images/motor_bike_pics").select { |f| File.file? File.join("db/assets/images/motor_bike_pics", f) }
+    regions.each do
+        10.times do
+            spec = Spec.all.sample
+            Bike.create( 
+                kilometrage: rand(20000),
+                owner: User.all.sample,
+                description: Faker::Movies::StarWars.quote,
+                tags: Tag.all.sample(rand(1..3)),
+                model: spec.model,
+                company_name: spec.company_name,
+                body_type: spec.body_type,
+                maximum_power: spec.maximum_power,
+                maximum_torque: spec.maximum_torque,
+                zero_to_100: spec.zero_to_100
+            )
+            images = all_images.sample(3)
+            images.each do |image|
+                Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', 'motor_bike_pics', image)), filename: image, content_type: 'image/jpg')
+            end 
+        end
     end
+    puts "Bikes done"
 end
 
-puts "Bikes done"
 
 if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
     Offer.delete_all
-    regions = ["Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté","Bretagne","Centre-Val de Loire","Corse","Grand Est","Hauts-de-France","Île-de-France","Normandie","Nouvelle-Aquitaine","Occitanie","Pays de la Loire","Provence-Alpes-Côte d'Azur"]
-    Bike.all.first(5).each do |bike|
+    Bike.all.each do |bike|
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
@@ -92,11 +98,13 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         )
         if !offer.save
             puts offer.errors.messages
+        else
+            tp Offer.last
         end
     end
+    puts "Offers done"
 end
 
-puts "Offers done"
 
 if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Booking.delete_all
@@ -111,6 +119,6 @@ if !Booking.last || ENV["bikes"] === "true" || ENV["all"] === "true"
             puts booking.errors.messages
         end
     end
+    puts "Bookings done"
 end
 
-puts "Bookings done"

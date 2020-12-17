@@ -4,7 +4,11 @@ class SpecsController < ApplicationController
   # GET /specs
   def index
     specs = Spec.all
-    render json: specs
+    if params[:format] === "1"
+      render json: Spec.search_attributes
+    else
+      render json: specs
+    end
   end
 
   # GET /specs/1

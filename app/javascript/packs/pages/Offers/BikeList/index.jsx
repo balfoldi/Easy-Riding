@@ -1,13 +1,16 @@
 import "./index.scss";
 import React from "react";
 import BikeCard from "./BikeCard";
+import { Row } from "react-bootstrap";
 
-const BikeList = () => {
+const BikeList = ({ offers }) => {
   return (
-    <div className="blue_background">
-      <BikeCard />
-    </div>
-  )
+    <Row className="justify-content-md-center" >
+      {offers?.map((offer, idx) => (
+          <BikeCard offer={offer} key={idx} />
+        ))}
+    </Row>
+  );
 };
 
 export default BikeList;

@@ -14,6 +14,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "dotenv"
 gem "activerecord"
 gem "aws-sdk-s3", require: false
+gem "faker"
+gem 'table_print'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

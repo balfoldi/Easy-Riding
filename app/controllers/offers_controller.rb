@@ -1,10 +1,12 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:authenticate_user!, :create]
+  before_action :authenticate_owner!, only: [:update, :destroy]
 
   # GET /offers
   def index    
     if params[:format] === "0"
-      offers = Offer.joins(:bike).where(bikes: {owner: User.last})
+      offers = Offer.joins(:bike).where(bikes: {owner: current_user})
     else
       offers = Offer.all
     end
@@ -14,7 +16,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1
   def show
-    render json: @offer
+    render_jsonapi_response(@offer)
   end
 
   # POST /offers
@@ -37,6 +39,11 @@ class OffersController < ApplicationController
   end
 
   private
+    def authenticate_owner!
+      @offer = Offer.find(params[:id])
+      return @offer.bike.owner === current_user
+    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
       @offer = Offer.find(params[:id])
