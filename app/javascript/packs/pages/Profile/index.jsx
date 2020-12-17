@@ -7,11 +7,29 @@ import ProfileInfo from "./ProfileInfo"
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
 const Profile = () => {
   const [key, setKey] = useState('Garage');
 
   return (
     <div id="body">
+
+    <Router>
+        <Switch>
+          <Route path="/mon_compte/profil" component={Profile} />
+          <Route path="/mon_compte/garage" component={Offers} />
+          <Route path="/mon_compte/mes-annonces" component={Offer} />
+          <Route path="/mon_compte/reservations-recues" component={Login} />
+          <Route path="/mon_compte/reservations-envoyées" component={Signup} />
+          <Route path="/mon_compte/" component={TermsOfService} />
+        </Switch>
+    </Router>
+
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
