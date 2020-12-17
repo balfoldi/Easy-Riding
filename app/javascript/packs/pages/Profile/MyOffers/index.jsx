@@ -13,7 +13,7 @@ const MyOffers = () => {
 
   const fetchMyOffers = () => {
     fetch("/api/offers.0", {
-      headers: { Authorization: `Bearer ${Cookies.get("EasyRiderUserToken")}` },
+      headers: { Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}` },
     })
       .then((response) => response.json())
       .then((response) => {
