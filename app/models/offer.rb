@@ -1,5 +1,7 @@
 require "date"
 class Offer < ApplicationRecord
+    before_destroy :destroy_childrens
+
     belongs_to :bike
     has_many :bookings
 
@@ -33,4 +35,8 @@ class Offer < ApplicationRecord
 
         return with_relations
     end
+
+    def destroy_childrens
+        Booking.where(offer: self).delete_all
+      end
 end

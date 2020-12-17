@@ -36,7 +36,7 @@ const MyBookings = ({consumer}) => {
           ))}
         </Col>
         <Col sm={9}>
-          <BookingShow booking={booking}  consumer={consumer}/>
+          <BookingShow booking={booking}  fetchMyBookings={fetchMyBookings} consumer={consumer}/>
         </Col>
       </Row>
     </Container>

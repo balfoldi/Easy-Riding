@@ -6,8 +6,9 @@ import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Cookies from "js-cookie";
+import DeleteButton from "../../../../components/Buttons/DeleteButton";
 
-const BookingShow = ({ booking, consumer }) => {
+const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
   const [carouselCount, setCarouselCount] = useState(0);
   const [thisBooking, setThisBooking] = useState(null);
 
@@ -27,6 +28,10 @@ const BookingShow = ({ booking, consumer }) => {
       fetchMyBooking();
     }
   }, [booking]);
+
+  const afterDestroy = () => {
+    fetchMyBookings()
+  }
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;
   return (
@@ -101,6 +106,7 @@ const BookingShow = ({ booking, consumer }) => {
               </Container>
             </Col>
           </Row>
+          <DeleteButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
         </Card>
       )}
     </>

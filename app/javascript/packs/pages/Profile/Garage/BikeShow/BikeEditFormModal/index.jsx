@@ -3,8 +3,9 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap
 import { Button, Form, Alert } from "react-bootstrap";
 import Cookies from "js-cookie";
 import PictureInput from "./PicturesInput";
+import DeleteButton from "../../../../../components/Buttons/DeleteButton"
 
-const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
+const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMyBikes }) => {
   const [input, setInput] = useState({});
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
@@ -93,7 +94,7 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
       .then((response) => {
         console.log(response);
         if (!response.errors) {
-          setAlerts([{ variant: "success", message: "Moto Modifiée" }]);
+          setAlerts([{ variant: "success", message: "Moto mise à joure" }]);
           fetchMyBike();
           setTimeout(() => {
             setModal(false);
@@ -108,6 +109,15 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
         }
       });
   };
+
+  const afterDelete = () => {
+    setAlerts([{ variant: "danger", message: "Moto effacée" }]);
+    setTimeout(() => {
+      setModal(false);
+      setAlerts([]);
+      fetchMyBikes()
+    }, 1000);
+  }
 
   return (
     <div>
@@ -251,9 +261,7 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike }) => {
           <Button variant="primary" onClick={postBike}>
             Envoyer
           </Button>
-          <Button variant="secondary" onClick={toggle}>
-            Annuler
-          </Button>
+          <DeleteButton target={"bikes"} id={bike?.id} callback={afterDelete}/>
           <Button variant="warning" onClick={toggle}>
             Annuler
           </Button>

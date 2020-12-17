@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :update, :destroy]
+  before_action :set_booking, only: [:show, :update, :destroy, :authenticate_user_included!]
   before_action :authenticate_user!
-
+  before_action :authenticate_user_included!, only:  [:patch, :destroy]
   # GET /bookings
   def index
     b = Booking.create( offer: Bike.find_by(owner: User.last).offer, start_date: Date.today, end_date: Date.today+1, tenant: User.first)
@@ -50,6 +50,10 @@ class BookingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
+    end
+
+    def authenticate_user_included!
+      return current_user === @booking.tenant || current_user === @booking.offer.bike.owner
     end
 
     # Only allow a trusted parameter "white list" through.

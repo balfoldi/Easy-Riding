@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import MyBikeList from "./MyBikeList";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import DeleteButton from "../../../../components/Buttons/DeleteButton"
 
 const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
   const [input, setInput] = useState({});
@@ -89,6 +90,17 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     "Pays de la Loire",
     "Provence-Alpes-Côte d'Azur",
   ];
+
+  const afterDelete = () => {
+    setAlerts([
+      { variant: "danger", message: "Annonce effacée" },
+    ]);
+    fetchMyOffers();
+    setTimeout(() => {
+      toggle();
+      setAlerts([]);
+    }, 1000);
+  }
 
   return (
     <div>
@@ -226,6 +238,7 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
           <Button variant="primary" onClick={postOffer}>
             Envoyer
           </Button>
+          {offer && <DeleteButton target={"offers"} id={offer.id} callback={afterDelete} />}
           <Button variant="secondary" onClick={toggle}>
             Annuler
           </Button>

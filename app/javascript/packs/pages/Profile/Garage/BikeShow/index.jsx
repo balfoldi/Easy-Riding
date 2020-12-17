@@ -1,7 +1,6 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import { Row, Col } from "reactstrap";
-import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import BikeEditFormModal from "./BikeEditFormModal"
@@ -77,6 +76,7 @@ const BikeShow = (props) => {
         bike={bike}
         edit={true}
         fetchMyBike={fetchMyBike}
+        fetchMyBikes={props.fetchMyBikes}
       />
       </Card>
     </>

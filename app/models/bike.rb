@@ -1,4 +1,7 @@
 class Bike < ApplicationRecord
+  before_destroy :destroy_childrens
+
+
   belongs_to :owner, class_name: "User"
   has_one :offer
   has_many :join_table_bikes_tags
@@ -25,5 +28,9 @@ class Bike < ApplicationRecord
     with_relations[:pictures] = pictures_urls
 
     return with_relations
+  end
+
+  def destroy_childrens
+    Offer.where(bike: self).delete_all
   end
 end

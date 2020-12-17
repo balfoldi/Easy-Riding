@@ -8,7 +8,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 const Profile = () => {
-  const [key, setKey] = useState('MyBookings');
+  const [key, setKey] = useState('Garage');
 
   return (
     <div id="body">
