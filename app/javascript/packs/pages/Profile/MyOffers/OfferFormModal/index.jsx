@@ -7,7 +7,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import DeleteButton from "../../../../components/Buttons/DeleteButton"
 
-const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
+const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers, bike }) => {
   const [input, setInput] = useState({});
   const [alerts, setAlerts] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -26,6 +26,13 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
       region: event.target.value,
     });
   };
+
+  useEffect(()=>{
+    setInput({
+      ...input,
+      bike_id: bike?.id
+    })
+  },[bike])
 
   useEffect(() => {
     if (offer) {
@@ -108,11 +115,16 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers }) => {
         <ModalHeader toggle={toggle}>Créer une offre</ModalHeader>
         <ModalBody>
           <Form>
-            {offer ? (
-              <Form.Control type="text" placeholder={offer.bike.model} readOnly />
-            ) : (
-              <MyBikeList input={input} setInput={setInput} />
+            {bike ? (
+              <Form.Control type="text" placeholder={bike.model} readOnly />
+            ):(
+              offer ? (
+                <Form.Control type="text" placeholder={offer.bike.model} readOnly />
+              ) : (
+                <MyBikeList input={input} setInput={setInput} />
+              )
             )}
+
             <Row>
               <Col sm="9">
                 <Form.Group>
