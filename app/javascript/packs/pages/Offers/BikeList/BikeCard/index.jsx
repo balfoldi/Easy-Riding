@@ -6,9 +6,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const BikeCard = ({offer, offers}) => {
+const BikeCard = ({ offer, offers }) => {
   return (
-    <motion.div key={offers} whileHover={{ scale: 1.01, y: -5 }}  animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.5 }}>
+    <motion.div key={offers} whileHover={{ scale: 1.01, y: -5 }} animate={{ x: 10, opacity: [0, 1] }} transition={{ duration: 0.5 }}>
       <Link to={`/annonce/${offer.id}`} id="card-link">
         <Card id="bike-card">
           <Card.Body
@@ -21,11 +21,9 @@ const BikeCard = ({offer, offers}) => {
             <p>{offer.daily_price}€/jour</p>
           </Button>
           <div id="image" style={{ "backgroundImage": `url("${offer.pictures}")` }}>
-            <Link to={`/annonce/${offer.id}`} id="home-link">
-              <Button id="to-offer">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </Link>
+            <Button id="to-offer">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
           </div>
         </Card>
       </Link>
