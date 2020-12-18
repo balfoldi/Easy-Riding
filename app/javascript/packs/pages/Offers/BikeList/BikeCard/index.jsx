@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const BikeCard = ({offer, offers}) => {
   return (
-    <motion.div key={offers} whileHover={{ scale: 1.01, y: -5 }}  animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.5 }}>
+    <motion.div key={offers} whileHover={{ scale: 1.01, y: -5 }}  animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.2 }} >
       <Card id="bike-card">
         <Card.Body
           id="body"
