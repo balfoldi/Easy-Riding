@@ -33,7 +33,7 @@ const Garage = () => {
     <div>
       {bike ? (
         <div id="row">
-          <Col className="col-sm-5">
+          <Col className="col-sm-5 pt-3">
             <ProfileInfo />
             <Card id="bike-control" className="my-3">
               <Card.Body id="card-body">
@@ -43,16 +43,18 @@ const Garage = () => {
                 </Button>
               </Card.Body>
             </Card>
-            <Card>
-              {bikes.map((bike) => (
-              <Card.Body id="card-body">
-              <Card.Title><h4>{bike.model}</h4></Card.Title>
-                <Button key={bikes.indexOf(bike)} variant="light" onClick={() => setBike(bike)}>
-                  {bike.model}
-                </Button>
+            {bikes.map((bike) => (
+            <Card key={bike.id} id="bike-thumbnail" onClick={() => setBike(bike)}>
+              <Card.Body id="bike-img"
+                style={{backgroundImage: `url(${bike.picture})`}}>
               </Card.Body>
-              ))}
+              <Card.Body id="bike-name">
+                <p key={bikes.indexOf(bike)}>
+                  {bike.model}
+                </p>
+              </Card.Body>
             </Card>
+            ))}
           </Col>
           <Col className="col-sm-7">
             <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
