@@ -53,7 +53,7 @@ const Offers = () => {
   return (
     <>
       <SearchBar input={input} setInput={setInput} offers={allOffers} />
-      <Container>
+      <Container id="offers-container">
         <Row>
           <Col>
             <BikeList offers={filteredOffers} />

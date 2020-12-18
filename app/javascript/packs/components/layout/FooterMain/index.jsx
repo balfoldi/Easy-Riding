@@ -8,7 +8,7 @@ const FooterMain = () => {
         <div className="container">
           <div id="col-1">
             <p className="footer-title">Easy Riding</p>
-            <p><a href="#">GitHub</a></p>
+            <p><a className="light_text" href="#">Repository GitHub</a></p>
           </div>
           <div id="col-2">
             <p className="contributors">Contributeurs</p>
@@ -18,7 +18,7 @@ const FooterMain = () => {
             <p><a href="#">Stéphane Ravoninjatovo</a></p>
           </div>
           <div id="col-3">
-            <p><a href="#">Conditions générales d'utilisation</a></p>
+            <p className="contributors"><a href="#">Conditions générales d'utilisation</a></p>
             <p className="credits-title">© 2020 Tous droits réservés</p>
           </div>
         </div>

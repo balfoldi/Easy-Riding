@@ -52,9 +52,15 @@
           }
         }
       }
-      .footer-title, .contributors {
+      .footer-title {
+        font-family: 'Stint Ultra Expanded', cursive;
+        font-size: 2rem;
+      }
+      .light_text {
+        font-weight: 100 !important;
+      }
+      .contributors {
         margin-right: auto;
-        font-weight: bold;
         font-size: 2rem;
       }
     }
