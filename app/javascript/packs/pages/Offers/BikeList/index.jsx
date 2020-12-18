@@ -6,8 +6,8 @@ import { Row } from "react-bootstrap";
 const BikeList = ({ offers }) => {
   return (
     <Row className="justify-content-md-center" >
-      {offers?.map((offer, idx) => (
-          <BikeCard offer={offer} key={idx} />
+      {offers?.slice(0,20).map((offer, idx) => (
+          <BikeCard offer={offer} offers={offers} key={idx} />
         ))}
     </Row>
   );
