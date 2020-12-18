@@ -6,11 +6,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import BikeEditFormModal from "./BikeEditFormModal"
 import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
+import OfferFormModal from "../../MyOffers/OfferFormModal";
 
 const BikeShow = (props) => {
+  const history = useHistory();
   const [bike, setBike] = useState([]);
   const [carouselCount, setCarouselCount] = useState(0);
   const [modal, setModal] = useState(false);
+  const [offerModal, setOfferModal] = useState(false);
+  const toggleOfferModal = () => setOfferModal(!offerModal)
   const toggle = () => setModal(!modal);
 
   const fetchMyBike = () => {
@@ -30,6 +35,10 @@ const BikeShow = (props) => {
     setCarouselCount(carouselCount - 1);
     console.log(carouselCount);
   }, [bike]);
+
+  const redirectToMyOffers = () => {
+    history.push('/mon-compte/mes-annonces');
+  }
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`
   return (
@@ -69,6 +78,7 @@ const BikeShow = (props) => {
           </Col>
           <Col sm="6" id="presentation-right">
             <Container>
+
               <ul>
                 <p>Kilométrage : <span>{bike.kilometrage}</span></p>
                 <p>Marque : <span>{bike.company_name}</span></p>
@@ -84,6 +94,7 @@ const BikeShow = (props) => {
 
       </Card>
     </motion.div>
+
   );
 };
 

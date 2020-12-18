@@ -10,13 +10,13 @@
   @include tablet-phone {
     display:flex;
     flex-direction:column;
-    margin:0 auto;
+    margin:auto;
 
   }
   #left-part {
     @include sm-desktop {
       margin-top:6.5vh;
-      margin-right:-10vw;
+
     }
     #bike-control{
       border-radius: 25px;
