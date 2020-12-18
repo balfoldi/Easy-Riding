@@ -19,7 +19,7 @@ const BikeCard = ({offer, offers}) => {
         <Button id="main-btn">
           <p>{offer.daily_price}€/jour</p>
         </Button>
-        <div id="image" style={{ "background-image": `url("${offer.pictures}")` }}>
+        <div id="image" style={{ "backgroundImage": `url("${offer.pictures}")` }}>
           <Link to={`/annonce/${offer.id}`} id="home-link">
             <Button id="to-offer">
               <FontAwesomeIcon icon={faArrowRight} />
