@@ -37,7 +37,7 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
         first_name = Faker::Name.first_name
-        last_name = Faker::Name.last_name   
+        last_name = Faker::Name.last_name
         User.create(
             first_name: first_name,
             last_name: last_name,
@@ -58,7 +58,7 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     regions.each do
         10.times do
             spec = Spec.all.sample
-            Bike.create( 
+            bike = Bike.new(
                 kilometrage: rand(20000),
                 owner: User.all.sample,
                 description: Faker::Movies::StarWars.quote,
@@ -72,8 +72,12 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
             )
             images = all_images.sample(3)
             images.each do |image|
-                Bike.last.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', 'motor_bike_pics', image)), filename: image, content_type: 'image/jpg')
-            end 
+                bike.pictures.attach(io: File.open(Rails.root.join('db', 'assets', 'images', 'motor_bike_pics', image)), filename: image, content_type: 'image/jpg')
+            end
+
+            unless bike.save
+                puts bike.errors.messages
+            end
         end
     end
     puts "Bikes done"
@@ -100,8 +104,6 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         )
         if !offer.save
             puts offer.errors.messages
-        else
-            tp Offer.last
         end
     end
     puts "Offers done"
