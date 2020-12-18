@@ -11,19 +11,13 @@ const MyBikeList = ({ input, setInput }) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBikes(response);
         setInput({
             ...input,
             bike_id: response[0].id,
           });
-        console.log(bikes);
       });
   };
-
-  useEffect(() => {
-    console.log(bikes);
-  }, [bikes]);
 
   useEffect(() => {
     fetchMyBikes()

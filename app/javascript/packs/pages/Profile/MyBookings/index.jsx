@@ -13,7 +13,6 @@ const MyBookings = ({consumer}) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBookings(response);
         setBooking(response[0]);
       });
@@ -22,10 +21,6 @@ const MyBookings = ({consumer}) => {
   useEffect(() => {
     fetchMyBookings();
   }, []);
-
-  useEffect(() => {
-    console.log(booking?.id)
-  }, [booking]);
 
   return (
     <Container>

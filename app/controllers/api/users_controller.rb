@@ -8,6 +8,7 @@ class Api::UsersController < Api::BaseController
 
   def update
     @user.update(user_params)
+    @user.avatar.attach(params[:avatar]) if params[:avatar]
     render_jsonapi_response(@user)
   end
 
@@ -26,7 +27,6 @@ class Api::UsersController < Api::BaseController
       :phone_number,
       :password,
       :description,
-      :avatar
       )
   end
 

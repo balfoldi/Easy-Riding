@@ -7,22 +7,17 @@ const PictureInput = ({ newPictures, setNewPictures, currentPictures, setCurrent
   const [alert, setAlert] = useState(false);
 
   const onImageChange = (event) => {
-    console.log("checking image count");
     if (errorCheck()) {
       console.log("aborting");
       return;
     }
-    console.log("adding");
     setNewPictures(newPictures.concat(event.target.files[0]));
   };
 
   const errorCheck = () => {
-    console.log("checking error");
     const aliveCurrentPicture = currentPictures.filter(
       (currentPicture) => currentPicture.kill === false
     );
-    console.log("alive currents pictures");
-    console.log(aliveCurrentPicture);
     if (newPictures.length + aliveCurrentPicture.length > 2) {
       setAlert(true);
       return true;
@@ -33,7 +28,6 @@ const PictureInput = ({ newPictures, setNewPictures, currentPictures, setCurrent
   };
 
   useEffect(() => {
-    console.log(newPictures);
     setPreviews(newPictures?.map((picture) => URL.createObjectURL(picture)));
   }, [newPictures]);
 
@@ -50,7 +44,6 @@ const PictureInput = ({ newPictures, setNewPictures, currentPictures, setCurrent
         return currentPicture;
       })
     );
-    console.log(currentPictures);
   };
 
   return (
