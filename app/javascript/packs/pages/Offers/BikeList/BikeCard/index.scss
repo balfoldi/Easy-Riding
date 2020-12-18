@@ -1,7 +1,17 @@
-
+@import "../../../../index.scss";
 
 body {
   font-family: "Roboto", sans-serif;
+}
+
+#card-link {
+  text-decoration:none;
+  color:$myBlack;
+  &:hover {
+    color:#4c4c4d;
+    text-decoration:none;
+    transition:0.3s;
+  }
 }
 
 #bike-card {
