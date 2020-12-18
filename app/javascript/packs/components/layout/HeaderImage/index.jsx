@@ -14,7 +14,6 @@ const HeaderImage = () => {
         </Col>
         <Col div="Box_en_bas" md="auto">
         <p> BAS</p>
-
           <ScrollTo>
             {({ scroll }) => (
               <div className="arrow"
