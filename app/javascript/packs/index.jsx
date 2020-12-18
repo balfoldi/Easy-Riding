@@ -1,11 +1,7 @@
 import './index.scss';
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavMain from "./components/layout/NavMain";
 import NotFound from "./pages/NotFound";
 import FooterMain from "./components/layout/FooterMain";
@@ -22,20 +18,20 @@ import PrivateRoute from './components/PrivateRoute';
 const App = () => {
   return (
     <Router>
-        <Switch>
-              <Route exact path="/" component={HeaderImage} />
-        </Switch>
+      <Switch>
+        <Route exact path="/" component={HeaderImage} />
+      </Switch>
       <NavMain />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <PrivateRoute path="/mon-compte" component={Profile} />
-            <Route path="/annonces" component={Offers} />
-            <Route path="/connexion" component={Login} />
-            <Route path="/inscription" component={Signup} />
-            <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
-            <Route component={NotFound} />
-          </Switch>
-        <ScrollToTop smooth color="#c9c9c9" />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <PrivateRoute path="/mon-compte" component={Profile} />
+        <Route path="/annonces" component={Offers} />
+        <Route path="/connexion" component={Login} />
+        <Route path="/inscription" component={Signup} />
+        <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
+        <Route component={NotFound} />
+      </Switch>
+      <ScrollToTop smooth color="#c9c9c9" />
       <FooterMain />
     </Router>
   );

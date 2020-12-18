@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Cookies from "js-cookie";
 import DeleteButton from "../../../../components/Buttons/DeleteButton";
+import { motion } from "framer-motion";
 
 const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
   const [carouselCount, setCarouselCount] = useState(0);
@@ -30,12 +31,12 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
   }, [booking]);
 
   const afterDestroy = () => {
-    fetchMyBookings()
-  }
+    fetchMyBookings();
+  };
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;
   return (
-    <>
+    <motion.div key={booking} animate={{ x: 10, opacity: [0, 1] }} transition={{ duration: 0.5 }}>
       {thisBooking && (
         <Card>
           <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
@@ -106,10 +107,15 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
               </Container>
             </Col>
           </Row>
-          <DeleteButton target={"bookings"} id={booking?.id} callback={afterDestroy} message={"Ajourner"} />
+          <DeleteButton
+            target={"bookings"}
+            id={booking?.id}
+            callback={afterDestroy}
+            message={"Ajourner"}
+          />
         </Card>
       )}
-    </>
+    </motion.div>
   );
 };
 

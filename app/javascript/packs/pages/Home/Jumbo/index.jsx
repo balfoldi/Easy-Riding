@@ -9,11 +9,13 @@ const Jumbo = () => {
 
   return (
     <Jumbotron fluid id="jumbotron">
-      {location?.state?.message && <Alert variant="warning">{location.state.message}</Alert>}
-      <div id="info">
+        {location?.state?.message && <Alert variant="warning">{location.state.message}</Alert>}
+        <div id="info">
         <p id="presentation">Visiter la France sur la moto de mes rêves{'\u00a0'}?</p>
         <Link to="/annonces" id="home-link">
-          <Button className="ButtonHomepage" variant="contained" id="home-button"><span>C'est parti</span></Button>
+          <Button className="ButtonHomepage" variant="contained" id="home-button">
+            <span>C'est parti</span>
+          </Button>
         </Link>
       </div>
       <div id="map">
