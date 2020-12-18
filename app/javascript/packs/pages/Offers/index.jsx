@@ -23,8 +23,8 @@ const Offers = () => {
   }, [offersData]);
 
   useEffect(() => {
-    filterOffers()
-  }, [allOffers])
+    filterOffers();
+  }, [input, allOffers]);
 
   const filterOffers = () => {
     const checkModel = (offer) => offer.bike.model.toLowerCase().startsWith(input.model.toLowerCase()) || input.model === ""
