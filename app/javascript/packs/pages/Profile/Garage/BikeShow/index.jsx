@@ -86,8 +86,8 @@ const BikeShow = (props) => {
                 <p>Marque : <span>{bike.company_name}</span></p>
                 <p>Catégorie : <span>{bike.body_type}</span></p>
                 <p>Cylindrée : <span>{bike.displacement}</span></p>
-                <p>Puissance : <span></span></p>
-                <p>Torque : <span>{bike.maximum_power}</span>{bike.maximum_torque}</p>
+                <p>Puissance : <span>{bike.maximum_power}</span></p>
+                <p>Torque : <span>{bike.maximum_torque}</span></p>
                 <p>0 à 100 : <span>{bike.zero_to_100}</span></p>
               </ul>
             </Container>
