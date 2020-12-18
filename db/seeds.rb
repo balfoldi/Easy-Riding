@@ -45,7 +45,7 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
             username: Faker::Books::Dune.character,
             phone_number: Faker::PhoneNumber.phone_number,
             password: 123123,
-            description: Faker::Hipster.paragraph(sentence_count: 10)
+            description: Faker::Lorem.paragraph(sentence_count: 10)
         )
     end
     puts "Users done"
@@ -85,13 +85,14 @@ end
 
 
 if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
+    descriptions = File.open("db/assets/texts/location_motos.txt", mode: "r").read.split("/")
     Offer.delete_all
     Bike.all.each do |bike|
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
-            title: "#{Faker::Hipster.word} #{Spec.all.sample.model}",
-            description: Faker::Hipster.paragraph(sentence_count: 10),
+            title: "#{Faker::Lorem.word} #{Spec.all.sample.model}",
+            description: descriptions.sample,
             daily_price: rand(20..300),
             start_date: Date.today,
             end_date: Date.today + rand(5),
