@@ -6,12 +6,15 @@ import { Carousel } from "react-responsive-carousel";
 import BikeEditFormModal from "./BikeEditFormModal"
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
+import OfferFormModal from "../../MyOffers/OfferFormModal";
 
 const BikeShow = (props) => {
   const history = useHistory();
   const [bike, setBike] = useState([]);
   const [carouselCount, setCarouselCount] = useState(0);
   const [modal, setModal] = useState(false);
+  const [offerModal, setOfferModal] = useState(false);
+  const toggleOfferModal = () => setOfferModal(!offerModal)
   const toggle = () => setModal(!modal);
 
   const fetchMyBike = () => {
@@ -60,9 +63,9 @@ const BikeShow = (props) => {
           </Col>
           <Col sm="6">
             <Container>
-              <Button onClick={redirectToMyOffers} className="w-100 my-3" variant="primary">
+              { !bike.offer && <Button onClick={toggleOfferModal} className="w-100 my-3" variant="primary">
                 Créer une annonce
-              </Button>
+              </Button>}
               <ul>
                 <p>Kilométrage : {bike.kilometrage} </p>
                 <p>Marque : {bike.company_name}</p>
@@ -86,6 +89,7 @@ const BikeShow = (props) => {
         fetchMyBikes={props.fetchMyBikes}
       />
       </Card>
+      <OfferFormModal modal={offerModal} toggle={toggleOfferModal} bike={bike} fetchMyOffers={redirectToMyOffers}/>
       </motion.div>
   );
 };

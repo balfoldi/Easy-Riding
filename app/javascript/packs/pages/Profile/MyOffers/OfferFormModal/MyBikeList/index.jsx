@@ -26,7 +26,7 @@ const MyBikeList = ({ input, setInput }) => {
   }, [bikes]);
 
   useEffect(() => {
-    fetchMyBikes();
+    fetchMyBikes()
   }, []);
 
   const handleInputChange = (e) => {
@@ -39,7 +39,7 @@ const MyBikeList = ({ input, setInput }) => {
   return (
     <Form.Group controlId="exampleForm.ControlSelect1">
       <Form.Label>Choisir une moto de mon garage</Form.Label>
-      <Form.Control as="select" onChange={handleInputChange}>
+      <Form.Control as="select" onChange={handleInputChange} value={input.bike_id}>
         {bikes.map((bike, idx) => (
           <option value={bike.id} key={idx}>{bike.model}</option>
         ))}
