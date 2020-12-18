@@ -10,15 +10,12 @@ import BookingModal from '../../../Offer/BookingModal'
 import { motion } from "framer-motion";
 
 const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
-  console.log(offer);
-
   const [carouselCount, setCarouselCount] = useState(0);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   useEffect(() => {
     setCarouselCount(carouselCount - 1);
-    console.log(carouselCount);
   }, [offer]);
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;

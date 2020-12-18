@@ -19,7 +19,6 @@ const Garage = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response)
         setBikes(response);
         setBike(response[0]);
       });

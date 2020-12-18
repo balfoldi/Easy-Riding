@@ -19,7 +19,6 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setThisBooking(response);
       });
   };

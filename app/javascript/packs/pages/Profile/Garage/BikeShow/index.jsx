@@ -21,7 +21,6 @@ const BikeShow = (props) => {
     fetch(`/api/bikes/${props.bike.id}`)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBike(response);
       });
   };
@@ -32,7 +31,6 @@ const BikeShow = (props) => {
 
   useEffect(() => {
     setCarouselCount(carouselCount - 1);
-    console.log(carouselCount);
   }, [bike]);
 
   const redirectToMyOffers = () => {

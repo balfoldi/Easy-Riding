@@ -16,7 +16,6 @@ const ProfileInfo = () => {
     setIsShown(true);
   };
 
-  console.log("USER :" ,user)
   return (
     <>
       {isLoading || !userData ? (

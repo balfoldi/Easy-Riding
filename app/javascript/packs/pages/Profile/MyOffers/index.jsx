@@ -17,7 +17,6 @@ const MyOffers = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setOffers(response);
       });
   };
@@ -26,9 +25,6 @@ const MyOffers = () => {
     fetchMyOffers();
   }, []);
 
-  useEffect(() => {
-    console.log(offers);
-  }, [offers]);
   return (
     <Container>
 
