@@ -2,11 +2,12 @@ import './index.scss';
 import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
 import authStore from '../../../stores/Auth';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Container, Button, Form, Alert } from "react-bootstrap";
 
 
 const LoginForm = () => {
+  const location = useLocation();
   const { login, error, isLogged } = authStore;
   const history = useHistory();
 
@@ -28,6 +29,7 @@ const LoginForm = () => {
 
       <p id="intro">Ravis de vous retrouver{'\u00a0'}!</p>
 
+      {location?.state?.message && <Alert variant="warning">{location.state.message}</Alert>}
       {error && <Alert variant="warning">{error}</Alert>}
 
       <Form onSubmit={handleSubmit} >
