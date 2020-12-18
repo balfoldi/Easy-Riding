@@ -22,32 +22,44 @@
   height: 85%;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   justify-content: center;
-  align-items: flex-end;
-  }
-
-  .arrow {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: -74px;
-    transform: translate(-50%,-50%);
-    span {
+  .Titre_Homepage {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: white;
+    }
+  .Headline_Homepage {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: white;
+    }
+    .arrow {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      width: 20px;
-      height: 20px;
-      border-bottom: 2px solid #ffffff;
-      border-right: 2px solid #ffffff;
-      transform: rotate(45deg);
-      margin: -10px;
-      animation: animate 2s infinite;
-      &:nth-child(2) {
-        animation-delay: -0.2s;
+      margin-top: -74px;
+      transform: translate(-50%,-50%);
+      &:hover {
+        cursor: pointer;
       }
-      &:nth-child(3) {
-        animation-delay: -0.4s;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 20px;
+        height: 20px;
+        border-bottom: 2px solid #ffffff;
+        border-right: 2px solid #ffffff;
+        transform: rotate(45deg);
+        margin: -10px;
+        animation: animate 2s infinite;
+        &:nth-child(2) {
+          animation-delay: -0.2s;
+        }
+        &:nth-child(3) {
+          animation-delay: -0.4s;
+        }
       }
     }
   }
