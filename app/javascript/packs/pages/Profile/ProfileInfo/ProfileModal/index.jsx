@@ -84,7 +84,7 @@ const ProfileModal = ({ userID, userData, isShown, setIsShown, onSaved }) => {
       ))}
 
       <Container id="modal-content">
-      <Card.Img variant="top"   src={preview ? preview :userData.avatar} />
+      <Card.Img id="img-circle" variant="top"   src={preview ? preview :userData.avatar} />
 
         <Form>
           <Form.Group>
