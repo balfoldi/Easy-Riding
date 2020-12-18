@@ -26,7 +26,7 @@ const NavMain = () => {
                 </Button>
                 </Nav.Link>
                 <Nav.Link as={NavLink} to="/mon-compte/mon-garage" id="item-link">
-                <Button variant="warning" className="btn-circle"> B
+                <Button variant="warning" className="btn-circle"> Mon Profil
                 </Button>
                 </Nav.Link>
               </Nav>
