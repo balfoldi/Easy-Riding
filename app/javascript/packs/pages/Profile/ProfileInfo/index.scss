@@ -1,12 +1,14 @@
 @import "../../../index.scss";
 
-$borderGrey:rgb(131, 126, 126);
-
 #card-profile {
+  background-color:rgb(202, 196, 196);
   max-width:300px;
   max-height:400px;
   font-family: 'Roboto', sans-serif;
   border:1px solid $borderGrey;
+  @include tablet-phone {
+    margin:0 auto;
+  }
   #img-circle {
     width:50%;
     margin:auto;

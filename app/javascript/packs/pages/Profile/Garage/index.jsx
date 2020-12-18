@@ -2,7 +2,7 @@ import "./index.scss";
 import React, { useState, useEffect } from "react";
 import BikeFormModal from "./BikeFormModal";
 import { Button, Card } from "react-bootstrap";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import ProfileInfo from "../ProfileInfo";
 import BikeShow from "./BikeShow";
 import Cookies from "js-cookie";
@@ -32,26 +32,34 @@ const Garage = () => {
   return (
     <div>
       {bike ? (
-        <Row>
-          <Col className="col-sm-4">
+        <div id="row">
+          <Col className="col-sm-5">
             <ProfileInfo />
-            <h4>Mes Motos</h4>
-            <hr></hr>
-            <Button color="danger" onClick={toggle}>
-              Ajouter une moto
-            </Button>
-            <hr></hr>
-            {bikes.map((bike) => (
-              <Button key={bikes.indexOf(bike)} variant="light" onClick={() => setBike(bike)}>
-                {bike.model}
-              </Button>
-            ))}
+            <Card id="bike-control" className="my-3">
+              <Card.Body id="card-body">
+                <Card.Title><h4>Mes Motos</h4></Card.Title>
+                <Button id="new-bike" onClick={toggle}>
+                Ajouter une moto
+                </Button>
+              </Card.Body>
+            </Card>
+            <Card>
+              {bikes.map((bike) => (
+              <Card.Body id="card-body">
+              <Card.Title><h4>{bike.model}</h4></Card.Title>
+                <Button key={bikes.indexOf(bike)} variant="light" onClick={() => setBike(bike)}>
+                  {bike.model}
+                </Button>
+              </Card.Body>
+              ))}
+            </Card>
           </Col>
-          <Col sm="7">
+          <Col className="col-sm-7">
             <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
           </Col>
-        </Row>
+        </div>
       ) : (
+        <div>
         <Card className="my-5">
           <Card.Body>
             <Button onClick={toggle} className="w-100">
@@ -59,6 +67,7 @@ const Garage = () => {
             </Button>
           </Card.Body>
         </Card>
+        </div>
       )}
       <BikeFormModal
         modal={modal}

@@ -1,2 +1,33 @@
 @import "../../../index.scss";
 
+#row {
+  @include sm-desktop {
+  max-width:75vw;
+  margin: 0 auto;
+  display:flex;
+  flex-direction:row;
+  }
+  @include tablet-phone {
+    display:flex;
+    flex-direction:column;
+    margin:0 auto;
+  }
+  #bike-control {
+    color:white;
+    background-color:rgb(165, 96, 96);
+    border:none;
+    max-width:300px;
+    max-height:400px;
+    font-family: 'Roboto', sans-serif;
+    @include tablet-phone {
+      margin:0 auto;
+    }
+    #card-body {
+      margin:auto;
+      text-align: center;
+      #description {
+        font-weight:300;
+      }
+    }
+  }
+}

@@ -39,7 +39,7 @@ const ProfileInfo = () => {
   }, [])
 
   return (
-    <Card style={{ width: '18rem' }} id="card-profile">
+    <Card id="card-profile">
       <Card.Img id="img-circle" variant="top" src={Logo} />
       <Card.Body id="card-body">
         <Card.Title>
