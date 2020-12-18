@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import OfferFormModal from "../OfferFormModal";
 import BookingModal from '../../../Offer/BookingModal'
+import { motion } from "framer-motion";
 
 const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
   console.log(offer);
@@ -22,7 +23,7 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;
   return (
-    <>
+    <motion.div key={offer}  animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.5 }}>
       <Card>
         <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
           {offer.pictures &&
@@ -98,7 +99,7 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
           />
         )}
       </Card>
-    </>
+    </motion.div>
   );
 };
 

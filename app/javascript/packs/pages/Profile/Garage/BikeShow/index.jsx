@@ -4,6 +4,7 @@ import { Row, Col } from "reactstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import BikeEditFormModal from "./BikeEditFormModal"
+import { motion } from "framer-motion";
 
 const BikeShow = (props) => {
   const [bike, setBike] = useState([]);
@@ -31,7 +32,7 @@ const BikeShow = (props) => {
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`
   return (
-    <>
+    <motion.div key={bike} animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.5 }}>
       <h1>{bike.model}</h1>
       <hr></hr>
       <Card>
@@ -79,7 +80,7 @@ const BikeShow = (props) => {
         fetchMyBikes={props.fetchMyBikes}
       />
       </Card>
-    </>
+      </motion.div>
   );
 };
 
