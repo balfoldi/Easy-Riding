@@ -3,7 +3,7 @@
 #row {
   @include sm-desktop {
   max-width:75vw;
-  margin: 0 auto;
+  margin: 5rem auto;
   display:flex;
   flex-direction:row;
   }
@@ -11,69 +11,76 @@
     display:flex;
     flex-direction:column;
     margin:0 auto;
+
   }
-  #bike-control{
-    border-radius: 25px;
-    color:black;
-    background: rgb(255,201,40);
-    background: linear-gradient(45deg, rgba(255,201,40,1) 0%, rgba(255,212,85,1) 50%, rgb(255, 217, 104) 100%);
-    box-shadow: 2px 2px 15px rgb(201, 201, 201);
-    border:none;
-    max-width:300px;
-    max-height:400px;
-    font-family: 'Roboto', sans-serif;
-    @include tablet-phone {
-      margin: 0 auto;
+  #left-part {
+    @include sm-desktop {
+      margin-top:6.5vh;
+      margin-right:-10vw;
     }
-    #card-body {
-      margin:auto;
-      text-align: center;
-      #description {
-        font-weight:300;
+    #bike-control{
+      border-radius: 25px;
+      color:black;
+      background: rgb(255,201,40);
+      background: linear-gradient(45deg, rgba(255,201,40,1) 0%, rgba(255,212,85,1) 50%, rgb(255, 217, 104) 100%);
+      box-shadow: 2px 2px 15px rgb(201, 201, 201);
+      border:none;
+      max-width:300px;
+      max-height:400px;
+      font-family: 'Roboto', sans-serif;
+      @include tablet-phone {
+        margin: 0 auto;
       }
-      #new-bike {
-        background-color:transparent;
-        color:black;
-        border:1px solid black;
-        &:hover {
-          background-color: black;
-          color:rgb(255,201,40);
-          transition:0.3s;
+      #card-body {
+        margin:auto;
+        text-align: center;
+        #description {
+          font-weight:300;
+        }
+        #new-bike {
+          background-color:transparent;
+          color:black;
+          border:1px solid black;
+          &:hover {
+            background-color: black;
+            color:rgb(255,201,40);
+            transition:0.3s;
+          }
         }
       }
     }
-  }
-  #bike-thumbnail {
-    max-width:300px;
-    max-height:400px;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 25px;
-    margin-bottom:1em;
-    opacity:0.6;
-    box-shadow: 2px 2px 15px rgb(201, 201, 201);
-    font-weight:300;
-    cursor:pointer;
-    &:hover {
-      font-weight:400;
-      opacity:1;
-      transition:0.2s;
+    #bike-thumbnail {
+      max-width:300px;
+      max-height:400px;
+      font-family: 'Roboto', sans-serif;
+      border-radius: 25px;
+      margin-bottom:1em;
+      opacity:0.6;
+      box-shadow: 2px 2px 15px rgb(201, 201, 201);
+      font-weight:300;
+      cursor:pointer;
+      &:hover {
+        font-weight:400;
+        opacity:1;
+        transition:0.2s;
+      }
+      @include tablet-phone {
+        margin:0 auto;
+      }
     }
-    @include tablet-phone {
-      margin:0 auto;
+    #bike-img {
+      border-radius:25px 25px 0 0;
+      background-size: cover;
+      background-position:50% 30%;
+      height:100px;
     }
-  }
-  #bike-img {
-    border-radius:25px 25px 0 0;
-    background-size: cover;
-    background-position:50% 30%;
-    height:100px;
-  }
-  #bike-name {
-    height:100px;
-    p {
-    font-size:1.5rem;
-    text-align:center;
-    text-transform: uppercase;
+    #bike-name {
+      height:100px;
+      p {
+      font-size:1.5rem;
+      text-align:center;
+      text-transform: uppercase;
+      }
     }
   }
 }

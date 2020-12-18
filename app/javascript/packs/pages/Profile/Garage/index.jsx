@@ -33,7 +33,7 @@ const Garage = () => {
     <div>
       {bike ? (
         <div id="row">
-          <Col className="col-sm-5 pt-3">
+          <Col id="left-part" className="col-sm-5">
             <ProfileInfo />
             <Card id="bike-control" className="my-3">
               <Card.Body id="card-body">
@@ -65,7 +65,7 @@ const Garage = () => {
         <Card className="my-5">
           <Card.Body>
             <Button onClick={toggle} className="w-100">
-              Ajoute ta première moto!
+              Pour afficher votre garage, ajoutez votre première moto !
             </Button>
           </Card.Body>
         </Card>
