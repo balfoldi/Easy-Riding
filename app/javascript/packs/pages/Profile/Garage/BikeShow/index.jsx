@@ -61,7 +61,7 @@ const BikeShow = (props) => {
               <p id="description">{bike.description}</p>
               <hr></hr>
               <Button id="offer-button" onClick={toggle}>
-                Créer/Éditer <br/> une annonce
+                Éditer la moto
               </Button>
               <BikeEditFormModal
                 modal={modal}
@@ -76,10 +76,10 @@ const BikeShow = (props) => {
           </Col>
           <Col sm="6" id="presentation-right">
             <Container>
+              <ul>
               { !bike.offer && <Button onClick={toggleOfferModal} className="w-100 my-3" variant="primary">
                 Créer une annonce
               </Button>}
-              <ul>
                 <p>Kilométrage : <span>{bike.kilometrage}</span></p>
                 <p>Marque : <span>{bike.company_name}</span></p>
                 <p>Catégorie : <span>{bike.body_type}</span></p>

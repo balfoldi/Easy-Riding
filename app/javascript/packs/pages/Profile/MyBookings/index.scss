@@ -1,0 +1,20 @@
+@import "../../../index.scss";
+
+#booking {
+  @include sm-desktop {
+    display:flex;
+    flex-direction: row;
+  }
+  @include tablet-phone {
+    display:flex;
+    flex-direction: column;
+  }
+  #booking-list, #booking-detail {
+    @include sm-desktop {
+      margin:5vh auto;
+    }
+    @include tablet-phone {
+      margin:5vh auto;
+    }
+  }
+}

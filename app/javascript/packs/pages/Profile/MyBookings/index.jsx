@@ -1,5 +1,6 @@
+import "./index.scss";
 import React, { useEffect, useState } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import Cookies from "js-cookie";
 import BookingShow from "./BookingShow"
 
@@ -24,16 +25,30 @@ const MyBookings = ({consumer}) => {
 
   return (
     <Container>
-      <Row>
-        <Col sm={3}>
-          {bookings?.map((booking, idx)=>(
-            <Button onClick={()=>setBooking(booking)} key={idx} variant="light">{booking.offer.title}</Button>
-          ))}
-        </Col>
-        <Col sm={9}>
+      <div id="booking">
+        <div className="col-sm-3" id="booking-list">
+          <Card>
+            <Card.Title>
+              <h2>Mes réservations</h2>
+            </Card.Title>
+            <Card.Body>
+            {bookings?.map((booking, idx)=>(
+              <Card key={booking.id} id="booking-thumbnail" onClick={()=>setBooking(booking)}>
+                <Card.Body id="booking-date">
+                  <p>{booking.start_date}</p>
+                </Card.Body>
+                <Card.Body id="booking-name">
+                  {booking.offer.title}
+                </Card.Body>
+              </Card>
+            ))}
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="col-sm-9" id="booking-detail">
           <BookingShow booking={booking}  fetchMyBookings={fetchMyBookings} consumer={consumer}/>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 };
