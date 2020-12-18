@@ -8,6 +8,7 @@ import FooterMain from "./components/layout/FooterMain";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
+import Offer from "./pages/Offer";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import TermsOfService from './pages/TermsOfService';

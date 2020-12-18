@@ -1,7 +1,7 @@
 import './index.scss';
 import { Link } from "react-router-dom";
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button, Col, Row } from "react-bootstrap";
 
 const NotFound = () => {
   return (

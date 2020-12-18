@@ -92,10 +92,10 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
             />
           </>
         ):(
-          <BookingModal 
+          <BookingModal
           modal={modal}
           toggle={toggle}
-          offer={offer}          
+          offer={offer}
           />
         )}
       </Card>
