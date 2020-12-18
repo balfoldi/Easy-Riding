@@ -6,6 +6,7 @@ import { Row, Col } from "reactstrap";
 import ProfileInfo from "../ProfileInfo";
 import BikeShow from "./BikeShow";
 import Cookies from "js-cookie";
+import Repair from "./repair-bike.png";
 
 const Garage = () => {
   const [modal, setModal] = useState(false);
@@ -61,13 +62,15 @@ const Garage = () => {
         </div>
       ) : (
         <div>
-        <Card className="my-5">
-          <Card.Body>
-            <Button onClick={toggle} className="w-100">
-              Pour afficher votre garage, ajoutez votre première moto !
-            </Button>
-          </Card.Body>
-        </Card>
+          <Card id="empty-card">
+            <Card.Body id="empty-body">
+              <h1>Mon Garage</h1>
+              <Card.Img id="logo" src={Repair} alt="repair" />
+              <Button id="empty-button" onClick={toggle}>
+                Pour afficher votre garage, ajoutez votre première moto !
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       )}
       <BikeFormModal
