@@ -36,11 +36,13 @@ end
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
+        first_name = Faker::Name.first_name
+        last_name = Faker::Name.last_name   
         User.create(
-            first_name: Faker::Name.first_name,
-            last_name: Faker::Name.last_name,
-            email: Faker::Internet.email,
-            username: Faker::Books::Dune.character[0],
+            first_name: first_name,
+            last_name: last_name,
+            email: "#{first_name}#{last_name}@yopmail.com",
+            username: Faker::Books::Dune.character,
             phone_number: Faker::PhoneNumber.phone_number,
             password: 123123,
             description: Faker::Hipster.paragraph(sentence_count: 10)
