@@ -1,11 +1,11 @@
 import "./index.scss";
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Container, Form, Col, Alert } from "react-bootstrap";
+import Cookies from "js-cookie";
 
-const ProfileModal = (props) => {
+const ProfileModal = ({ userID, userData, isShown, setIsShown, onSaved }) => {
   const [updateAlerts, setUpdateAlerts] = useState([]);
   const [input, setInput] = useState({});
-  const user = props.user;
 
   const handleInputChange = (event) => {
     setInput({
@@ -15,48 +15,49 @@ const ProfileModal = (props) => {
   }
 
   useEffect(() => {
-    setInput(props.userData);
-  }, [props.userData])
+    setInput(userData);
+  }, [userData])
 
   const handleClose = () => {
-    props.loadProfile()
-    props.setShow(false);
+    onSaved();
+    setIsShown(false);
     setUpdateAlerts([]);
   }
 
   const updateProfile = () => {
-    fetch(`/api/users/${user.id}`, {
-      method: 'PATCH',
+    const userToken = Cookies.get("EasyRidingUserToken");
+    fetch(`/api/users/${userID}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${props.userToken}`
+        'Authorization': `Bearer ${userToken}`
       },
       body: JSON.stringify({ user: input })
     })
-      .catch((error) => console.error(error))
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.errors) {
-          setUpdateAlerts(data.errors.map((error) => (
-            {
-              variant: "warning",
-              message: error.detail
-            }
-          )));
-        } else {
-          setUpdateAlerts([{
-            variant: "success",
-            message: "Enregistrement..."
-          }]);
-          setTimeout(() => {
-            handleClose();
-          }, 1000);
-        }
-      })
+    .catch((error) => console.error(error))
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.errors) {
+        setUpdateAlerts(data.errors.map((error) => (
+          {
+            variant: "warning",
+            message: error.detail
+          }
+        )));
+      } else {
+        setUpdateAlerts([{
+          variant: "success",
+          message: "Enregistrement..."
+        }]);
+        setTimeout(() => {
+          handleClose();
+        }, 1000);
+      }
+    })
   }
 
   return (
-    <Modal id="form-container" size="lg" show={props.show} onHide={handleClose}>
+    <Modal id="form-container" size="lg" show={isShown} onHide={handleClose}>
       <p id="form-title">Modifier mon profil</p>
 
       {updateAlerts.map((alert, idx) => (
