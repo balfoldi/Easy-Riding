@@ -15,11 +15,11 @@
 }
 
 .HeaderImage {
-  background: linear-gradient(rgba(0, 3, 33, 0.392), rgba(0, 0, 0, 0)), url(./firethenavbar.jpg) no-repeat center center;
+  background: linear-gradient(rgba(0, 3, 33, 0.185), rgba(0, 0, 0, 0)), url(./firethenavbar_texte.png) no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  height: 85%;
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -32,6 +32,9 @@
     align-items: flex-end;
     margin-top: -74px;
     transform: translate(-50%,-50%);
+    &:hover{
+      cursor: pointer;
+    }
     span {
       display: flex;
       justify-content: center;
@@ -51,4 +54,3 @@
       }
     }
   }
-
