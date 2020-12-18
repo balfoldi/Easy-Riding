@@ -35,10 +35,6 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     }
   }, [offer]);
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
   const postOffer = () => {
 
     fetch(`/api/bookings`, {
@@ -56,7 +52,6 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
       .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([
             { variant: "success", message: "Demande Envoyée"},

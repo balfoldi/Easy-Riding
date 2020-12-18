@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Col, Row, Container, Form } from "react-bootstrap";
 
 const SearchBar = ({ offers, input, setInput }) => {
-  console.log("url", window.location.href.split("/"))
-
   const [SearchAttributes, setSearchAttributes] = useState({
     regions: [
       "Auvergne-Rhône-Alpes",
@@ -25,7 +23,6 @@ const SearchBar = ({ offers, input, setInput }) => {
 
 
   useEffect(()=>{
-    console.log("ploufe")
   switch(window.location.href.split("/")[4]){
     case "grand-est":
       setInput({...input, region: "Grand Est"})
@@ -79,7 +76,6 @@ const SearchBar = ({ offers, input, setInput }) => {
     fetch("/api/specs.1")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setSearchAttributes({
           ...SearchAttributes,
           bodyTypes: response.body_types,
@@ -91,14 +87,6 @@ const SearchBar = ({ offers, input, setInput }) => {
   useEffect(() => {
     fetchSearchAttributes();
   }, []);
-
-  useEffect(() => {
-    console.log(SearchAttributes);
-  }, [SearchAttributes]);
-
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
 
   return (
     <Container>

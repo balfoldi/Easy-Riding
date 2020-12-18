@@ -42,10 +42,6 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers, bike }) => {
     }
   }, [offer]);
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
   const postOffer = () => {
 
     fetch(`/api/offers${offer ? `/${offer.id}` : ""}`, {
@@ -63,7 +59,6 @@ const OfferFormModal = ({ toggle, modal, offer, fetchMyOffers, bike }) => {
       .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([
             { variant: "success", message: offer ? "Annonce mise à jour" : "Annonce Ajoutée" },

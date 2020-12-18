@@ -17,8 +17,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
     zero_to_100: "",
     displacement: "",
   });
-  console.log("input")
-  console.log(input.description)
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [pictures, setPictures] = useState([]);
@@ -36,10 +34,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       model: content,
     });
   };
-
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
 
   useEffect(() => {
     setInput({
@@ -70,7 +64,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       formData.append("pictures[]", picture);
     });
 
-    console.log(input);
     fetch("/api/bikes", {
       method: "post",
       headers: {
@@ -81,7 +74,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto Ajoutée" }]);
           fetchMyBikes();

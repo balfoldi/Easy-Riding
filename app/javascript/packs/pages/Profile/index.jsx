@@ -14,8 +14,6 @@ const Profile = () => {
   const [key, setKey] = useState("mon-garage")
 
   useEffect(()=>{
-    console.log("key",key)
-    console.log("history", history)
     setKey(window.location.href.split("/")[4])
   })
 

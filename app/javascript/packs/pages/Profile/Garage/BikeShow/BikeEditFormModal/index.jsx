@@ -40,11 +40,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
   }, [bike]);
 
   useEffect(() => {
-    console.log(input);
-    console.log(bike);
-  }, [input]);
-
-  useEffect(() => {
     setInput({
       ...input,
       ...spec,
@@ -62,7 +57,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     if (Object.keys(input).length === 0) {
       return;
     }
-    console.log(input)
     const formData = new FormData();
 
     formData.append("description", input);
@@ -71,8 +65,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
       formData.append(`${key}`, input[key]);
     });
 
-    console.log(newPictures);
-
     newPictures.forEach((newPicture) => {
       formData.append("new_pictures[]", newPicture);
     });
@@ -80,8 +72,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     currentPictures.forEach((currentPicture) => {
       formData.append("current_pictures[]", [currentPicture.id, currentPicture.kill]);
     });
-
-    console.log(formData);
 
     fetch(`/api/bikes/${bike.id}`, {
       method: "PATCH",
@@ -92,7 +82,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto mise à joure" }]);
           fetchMyBike();

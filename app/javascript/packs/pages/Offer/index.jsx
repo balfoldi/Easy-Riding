@@ -7,13 +7,11 @@ const Offer = () => {
   const [offer, setOffer] = useState(false);
 
   window.location.href.split("/").pop();
-  console.log();
 
   const fetchMyOffers = () => {
     fetch(`/api/offers/${window.location.href.split("/").pop()}`)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setOffer(response);
       });
   };

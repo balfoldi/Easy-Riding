@@ -7,12 +7,10 @@ const PictureInput = ({ pictures, setPictures }) => {
   const [alert, setAlert] = useState(false);
 
   const onImageChange = (event) => {
-    console.log("checking image count");
     if (errorCheck()) {
       console.log("aborting");
       return;
     }
-    console.log("adding");
     if(event.target.files[0]){
       setPictures(pictures.concat(event.target.files[0]));
     }
@@ -29,7 +27,6 @@ const PictureInput = ({ pictures, setPictures }) => {
   };
 
   useEffect(() => {
-    console.log(pictures);
     setPreviews(pictures.map((picture) => URL.createObjectURL(picture)));
   }, [pictures]);
 
