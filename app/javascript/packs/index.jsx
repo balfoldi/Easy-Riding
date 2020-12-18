@@ -8,6 +8,7 @@ import FooterMain from "./components/layout/FooterMain";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
+import Offer from "./pages/Offer";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import TermsOfService from './pages/TermsOfService';
@@ -25,6 +26,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <PrivateRoute path="/mon-compte" component={Profile} />
+        <Route path="/annonce" component={Offer} />
         <Route path="/annonces" component={Offers} />
         <Route path="/connexion" component={Login} />
         <Route path="/inscription" component={Signup} />
