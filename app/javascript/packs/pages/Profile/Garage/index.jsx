@@ -35,12 +35,12 @@ const Garage = () => {
         <Row>
           <Col className="col-sm-4">
             <ProfileInfo />
-            <h4>Mes Motos</h4>
             <hr></hr>
             <Button color="danger" onClick={toggle}>
               Ajouter une moto
             </Button>
             <hr></hr>
+            <h4>Mes Motos</h4>
             {bikes.map((bike) => (
               <Button key={bikes.indexOf(bike)} variant="light" onClick={() => setBike(bike)}>
                 {bike.model}

@@ -19,6 +19,7 @@ fr:
         maximum_torque: Le couple
         zero_to_100: Le 0 à 100
         displacement: La cylindrée
+        pictures: Une photo
       offer:
         start_date: La date de début
         end_date: La date de fin
@@ -36,6 +37,8 @@ fr:
       models:
         bike: 
           attributes:
+            pictures:
+              is_missing: "minimum"
             description: 
               blank: "doit être présente"
               too_short: "doit avoire un minimum de %{count} caractères"

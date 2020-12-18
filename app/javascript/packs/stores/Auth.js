@@ -127,7 +127,7 @@ class AuthStore {
 
     try {
       await fetch('/api/logout', {
-        method: 'delete',
+        method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${userToken}`
         },
