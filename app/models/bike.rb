@@ -18,6 +18,8 @@ class Bike < ApplicationRecord
   validates :zero_to_100, length: {maximum: 20 }
   validates :displacement, length: {maximum: 20 }
 
+  validate :one_picture
+
   def api
     with_relations = self.build("owner","offer")
     pictures_urls = []
@@ -32,5 +34,11 @@ class Bike < ApplicationRecord
 
   def destroy_childrens
     Offer.where(bike: self).delete_all
+  end
+
+  def one_picture
+    unless self.pictures.attached?
+      errors.add(:pictures, :is_missing)
+    end
   end
 end
