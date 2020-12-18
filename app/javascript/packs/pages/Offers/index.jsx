@@ -1,8 +1,11 @@
+import "./index.scss";
 import { Container, Col, Row } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import BikeList from "./BikeList";
 import useGetData from "../../hooks/useGetData";
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
 
 const Offers = () => {
   const [input, setInput] = useState({
@@ -34,19 +37,23 @@ const Offers = () => {
 
   return (
     <>
+      <SearchBar input={input} setInput={setInput} offers={allOffers} />
       {isLoading ? (
-        <p>Chargement des annonces...</p>
+        <div>
+          <UseAnimations
+            className="loading"
+            animation={loading}
+            size={100}
+          />
+        </div>
       ) : (
-          <>
-            <SearchBar input={input} setInput={setInput} offers={allOffers} />
-            <Container>
-              <Row>
-                <Col>
-                  <BikeList offers={filteredOffers} />
-                </Col>
-              </Row>
-            </Container>
-          </>
+          <Container>
+            <Row>
+              <Col>
+                <BikeList offers={filteredOffers} />
+              </Col>
+            </Row>
+          </Container>
         )}
     </>
   );
