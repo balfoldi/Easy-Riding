@@ -32,10 +32,9 @@ Thank you mate ! Easy Riding is all about an easy User Experience.<br>
 _« What a rollercoaster of emotions.»_
 
 ## Last Stable release
-```git clone balfoldi/Easy-Riding
-```
-## How to run the app on local  ?
+`` git clone balfoldi/Easy-Riding ``
 
+## How to run the app on local  ?
 Easy Riding is a Full Stack application so you will have to launch two servers :
 
 ### Back-end : start the rails App
