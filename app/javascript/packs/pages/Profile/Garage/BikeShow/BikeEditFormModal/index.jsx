@@ -6,7 +6,7 @@ import PictureInput from "./PicturesInput";
 import DeleteButton from "../../../../../components/Buttons/DeleteButton"
 
 const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMyBikes }) => {
-  const [input, setInput] = useState({test:2});
+  const [input, setInput] = useState({});
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [newPictures, setNewPictures] = useState([]);
