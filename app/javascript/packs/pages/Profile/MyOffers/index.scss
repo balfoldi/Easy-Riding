@@ -1,0 +1,22 @@
+@import "../../../index.scss";
+
+#add-card {
+  box-shadow: 2px 2px 15px rgb(201, 201, 201);
+  border-radius:25px;
+  font-family: 'Roboto', sans-serif;
+  background: rgb(122,122,122);
+  background: linear-gradient(45deg, rgb(170, 170, 170) 0%, rgba(196,196,204,1) 50%, rgba(235,235,235,1) 100%);
+  border:none;
+  max-width:300px;
+  @include sm-desktop {
+    margin-top:3vh;
+  }
+  h2 {
+    text-align:center;
+    margin:2vh auto;
+  }
+  #add-button {
+    display:flex;
+    margin:0 auto;
+  }
+}

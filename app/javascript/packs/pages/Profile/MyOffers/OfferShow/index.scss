@@ -1,0 +1,25 @@
+@import "../../../../index.scss";
+
+#offer-title {
+  font-family: 'Roboto', sans-serif;
+}
+#offer-detail {
+  @include tablet-phone {
+    min-width:60vw;
+    display:flex;
+    margin:0 auto;
+  }
+  @include sm-desktop {
+    margin-top:3vh;
+  }
+  box-shadow: 2px 2px 15px rgb(201, 201, 201);
+  border-radius:25px;
+  font-family: 'Roboto', sans-serif;
+  border:none;
+  span {
+    font-weight:300;
+  }
+  #offer-info {
+    margin-top:2vh;
+  }
+}

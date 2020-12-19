@@ -2,7 +2,7 @@ import "./index.scss";
 import React, { useState, useEffect } from "react";
 import BikeFormModal from "./BikeFormModal";
 import { Button, Card } from "react-bootstrap";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Container } from "reactstrap";
 import ProfileInfo from "../ProfileInfo";
 import BikeShow from "./BikeShow";
 import Cookies from "js-cookie";
@@ -32,34 +32,38 @@ const Garage = () => {
   return (
     <div>
       {bike ? (
-        <div id="row">
-          <Col id="left-part" className="col-sm-5">
-            <ProfileInfo />
-            <Card id="bike-control" className="my-3">
-              <Card.Body id="card-body">
-                <Card.Title><h4>Mes Motos</h4></Card.Title>
-                <Button id="new-bike" onClick={toggle}>
-                Ajouter une moto
-                </Button>
-              </Card.Body>
-            </Card>
-            {bikes.map((bike) => (
-            <Card key={bike.id} id="bike-thumbnail" onClick={() => setBike(bike)}>
-              <Card.Body id="bike-img"
-                style={{backgroundImage: `url(${bike.picture})`}}>
-              </Card.Body>
-              <Card.Body id="bike-name">
-                <p key={bikes.indexOf(bike)}>
-                  {bike.model}
-                </p>
-              </Card.Body>
-            </Card>
-            ))}
+        <Row id="row">
+          <Col id="left-part" sm="4">
+            <Container>
+              <ProfileInfo />
+              <Card id="bike-control" className="my-3">
+                <Card.Body id="card-body">
+                  <Card.Title><h4>Mes Motos</h4></Card.Title>
+                  <Button id="new-bike" onClick={toggle}>
+                  Ajouter une moto
+                  </Button>
+                </Card.Body>
+              </Card>
+              {bikes.map((bike) => (
+              <Card key={bike.id} id="bike-thumbnail" onClick={() => setBike(bike)}>
+                <Card.Body id="bike-img"
+                  style={{backgroundImage: `url(${bike.picture})`}}>
+                </Card.Body>
+                <Card.Body id="bike-name">
+                  <p key={bikes.indexOf(bike)}>
+                    {bike.model}
+                  </p>
+                </Card.Body>
+              </Card>
+              ))}
+            </Container>
           </Col>
-          <Col className="col-sm-7">
-            <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
+          <Col sm="8">
+              <Container>
+                <BikeShow bike={bike} fetchMyBikes={fetchMyBikes}/>
+              </Container>
           </Col>
-        </div>
+        </Row>
       ) : (
         <div>
           <Card id="empty-card">

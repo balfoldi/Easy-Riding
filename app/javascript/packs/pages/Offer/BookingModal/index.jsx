@@ -101,7 +101,7 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
               </Col>
             </Row>
           </Form>
-          <p>Prix de la location :{offer.daily_price + offer.daily_price * ((endDate - startDate)/86400000)}</p>
+          <p>Prix de la location :{offer.daily_price + offer.daily_price * ((endDate - startDate)/86400000)} €</p>
         </ModalBody>
 
         <ModalFooter>

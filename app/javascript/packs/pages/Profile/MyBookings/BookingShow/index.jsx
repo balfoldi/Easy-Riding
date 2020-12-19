@@ -1,3 +1,4 @@
+import "./index.scss";
 import Calendar from "react-calendar";
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
@@ -37,8 +38,10 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
   return (
     <motion.div key={booking} animate={{ x: 10, opacity: [0, 1] }} transition={{ duration: 0.5 }}>
       {thisBooking && (
-        <Card>
-          <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
+      <Container>
+        <Card id="booking-global">
+          <Carousel showThumbs={false}
+          selectedItem={carouselCount} statusFormatter={formatter}>
             {thisBooking.pictures &&
               thisBooking.pictures.map((picture, idx) => (
                 <div key={idx}>
@@ -51,10 +54,10 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
               <Container>
                 <h3>{thisBooking.offer.title}</h3>
                 <hr></hr>
-                <h6>Présentation</h6>
-                <p>{thisBooking.offer.description}</p>
+                <h4>Présentation</h4>
+                <p><span>{thisBooking.offer.description}</span></p>
                 <hr></hr>
-                <h6>Dates proposés</h6>
+                <h6>Dates disponibles</h6>
                 <Calendar
                   value={null}
                   minDate={new Date(thisBooking.start_date)}
@@ -69,22 +72,28 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
                   <>
                     <h3> Demandeur </h3>
                     <ul>
-                      <li>Pseudonyme : {thisBooking.tenant.username}</li>
-                      <li>Téléphone : {thisBooking.tenant.phone_number}</li>
-                      <li>Email : {thisBooking.tenant.email}</li>
+                      <li>Pseudonyme : <span>{thisBooking.tenant.username}</span></li>
+                      <li>Téléphone : <span>{thisBooking.tenant.phone_number}</span></li>
+                      <li>Email : <span>{thisBooking.tenant.email}</span></li>
                     </ul>
                     <h4>Description</h4>
-                    <i> {thisBooking.tenant.description}</i>
+                    <hr></hr>
+                    <i> <span>{thisBooking.tenant.description}</span></i>
+                    <DeleteButton
+                      target={"bookings"}
+                      id={booking?.id}
+                      callback={afterDestroy}
+                      message={"Annuler la réservation"}
+                    />
                   </>
                 ) : (
                   <>
                     <ul>
                       <h4>Détails de l'annonce</h4>
-                      <p>Prix journalier : {thisBooking.offer.daily_price} </p>
-                      <p>Ville : {thisBooking.offer.city}</p>
-                      <p>Zip code : {thisBooking.offer.zip_code}</p>
-                      <p>Rue : {thisBooking.offer.street}</p>
-                      <p>Région : {thisBooking.offer.region}</p>
+                      <p>Prix journalier : <span>{thisBooking.offer.daily_price} €/j.</span></p>
+                      <p>Ville : <span>{thisBooking.offer.city}</span></p>
+                      <p>Zip code : <span>{thisBooking.offer.zip_code}</span></p>
+                      <p>Région : <span>{thisBooking.offer.region}</span></p>
                     </ul>
                     <ul>
                       <hr></hr>
@@ -93,26 +102,27 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
                         <strong>{thisBooking.bike.model}</strong>
                       </h5>
                       <hr></hr>
-                      <p>Kilométrage : {thisBooking.bike.kilometrage} </p>
-                      <p>Marque : {thisBooking.bike.company_name}</p>
-                      <p>Catégorie : {thisBooking.bike.body_type}</p>
-                      <p>Cylindrée : {thisBooking.bike.displacement}</p>
-                      <p>Puissance : {thisBooking.bike.maximum_power}</p>
-                      <p>Torque : {thisBooking.bike.maximum_torque}</p>
-                      <p>0 à 100 : {thisBooking.bike.zero_to_100}</p>
+                      <p>Kilométrage : <span>{thisBooking.bike.kilometrage} km</span></p>
+                      <p>Marque : <span>{thisBooking.bike.company_name}</span></p>
+                      <p>Catégorie : <span>{thisBooking.bike.body_type}</span></p>
+                      <p>Cylindrée : <span>{thisBooking.bike.displacement}</span></p>
+                      <p>Puissance : <span>{thisBooking.bike.maximum_power}</span></p>
+                      <p>Torque : <span>{thisBooking.bike.maximum_torque}</span></p>
+                      <p>0 à 100 : <span>{thisBooking.bike.zero_to_100}</span></p>
+                      <DeleteButton
+                        target={"bookings"}
+                        id={booking?.id}
+                        callback={afterDestroy}
+                        message={"Demander l'annulation"}
+                      />
                     </ul>
                   </>
                 )}
               </Container>
             </Col>
           </Row>
-          <DeleteButton
-            target={"bookings"}
-            id={booking?.id}
-            callback={afterDestroy}
-            message={"Ajourner"}
-          />
         </Card>
+      </Container>
       )}
     </motion.div>
   );
