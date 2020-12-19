@@ -15,7 +15,7 @@ const MyBookings = ({consumer}) => {
       .then((response) => response.json())
       .then((response) => {
         setBookings(response);
-        setBooking(response[0]);
+        setBooking(response.length > 0 ? response[0] : null);
       });
   };
 
@@ -30,7 +30,6 @@ const MyBookings = ({consumer}) => {
           <h2>Réservations</h2>
           {bookings?.map((booking, idx)=>(
             <Card key={booking.id} id="booking-thumbnail" onClick={()=>setBooking(booking)}>
-            {console.log(booking)}
               <Card.Body id="booking-info">
                 <p>{new Date(booking.start_date).toLocaleDateString()} - {new Date(booking.offer.end_date).toLocaleDateString()}</p>
               <hr></hr>
@@ -40,7 +39,7 @@ const MyBookings = ({consumer}) => {
           ))}
         </div>
         <div className="col-sm-9" id="booking-detail">
-          <BookingShow booking={booking}  fetchMyBookings={fetchMyBookings} consumer={consumer}/>
+          <BookingShow booking={booking}  setBooking={setBooking} fetchMyBookings={fetchMyBookings} consumer={consumer}/>
         </div>
       </div>
     </Container>

@@ -33,6 +33,7 @@ const BookingShow = ({ booking, consumer, fetchMyBookings }) => {
 
   const afterDestroy = () => {
     fetchMyBookings();
+    setThisBooking(null)
   };
 
   const formatter = (current, total) => `Image: ${current} sur: ${total}`;
