@@ -6,8 +6,6 @@ Made in Ruby on Rails, Vanilla JS6 on React and Webpack.
 
 _Rent motorbikes and visit France ! Easy Riding is the bike sharing application for bike lovers, by bike lovers._
 
-<p align="center"><img width=95% src="https://github.com/anfederico/Waldo/blob/master/media/Schematic.png"></p>
-
 <br>
 
 ## EASY-RIDING.COM
