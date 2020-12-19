@@ -1,6 +1,7 @@
 $myColor: #0E6FFF;;
-$hoverColor: #013583;
+$hoverColor: #00265e;
 $myBlack: #23242A;
+$borderGrey:rgb(131, 126, 126);
 
 $phone: 512px;
 $tablet-phone: 768px;
@@ -29,4 +30,8 @@ $lg-desktop: 1440px;
   @media (min-width: $lg-desktop) {
     @content;
   }
+}
+
+a {
+    font-weight: 100 !important;
 }

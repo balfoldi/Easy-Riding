@@ -4,6 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-<h1>Bonjour <%= "#{@user.first_name} #{@user.last_name}" %>, bienvenue.</h1>
+  <h4>Bien le bonjour<%= "#{@user.first_name} #{@user.last_name}" %>, bienvenue sur Easy Riding, le portail de location de moto entre particuliers.</h4>
+  <p> Découvrez le modèle de vos rêves lors de vacances et testez les nouveautés à votre guise, sans investir.</p>
+  <p> Consultez la carte de France et accédez à la recherche en cliquant directement sur la région de votre choix.</p>
+  <br>
+  <h4> A très vite sur <a href='http://www.easy-riding.com/'>Easy Riding</a>: )</h4>
+  <p> Vous vous êtes inscrit sur easy-riding.com en utilisant l'e-mail suivant : <%= @user.email %>. </p>
   </body>
 </html>

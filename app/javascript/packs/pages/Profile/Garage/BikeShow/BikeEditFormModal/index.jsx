@@ -6,11 +6,12 @@ import PictureInput from "./PicturesInput";
 import DeleteButton from "../../../../../components/Buttons/DeleteButton"
 
 const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMyBikes }) => {
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({test:2});
   const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [newPictures, setNewPictures] = useState([]);
   const [currentPictures, setCurrentPictures] = useState([]);
+
 
   const handleInputChange = (event) => {
     setInput({
@@ -21,15 +22,16 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
 
   useEffect(() => {
     setInput({
-      description: bike.description,
-      kilometrage: bike.kilometrage,
-      model: bike.model,
-      company_name: bike.company_name,
-      body_type: bike.body_type,
-      maximum_power: bike.maximum_power,
-      maximum_torque: bike.maximum_torque,
-      zero_to_100: bike.zero_to_100,
-      displacement: bike.displacement,
+      ...input,
+      description: bike.description ? bike.description : "" ,
+      kilometrage: bike.kilometrage ? bike.kilometrage : "" ,
+      model: bike.model ? bike.model : "" ,
+      company_name: bike.company_name ? bike.company_name : "" ,
+      body_type: bike.body_type ? bike.body_type : "" ,
+      maximum_power: bike.maximum_power ? bike.maximum_power : "" ,
+      maximum_torque: bike.maximum_torque ? bike.maximum_torque : "" ,
+      zero_to_100: bike.zero_to_100 ? bike.zero_to_100 : "" ,
+      displacement: bike.displacement ? bike.displacement : "" ,
     });
     setCurrentPictures(
       bike.pictures?.map((picture) => {
@@ -37,12 +39,7 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
         return picture
       })
     );
-  }, [bike]);
-
-  useEffect(() => {
-    console.log(input);
-    console.log(bike);
-  }, [input]);
+  }, [modal]);
 
   useEffect(() => {
     setInput({
@@ -62,16 +59,11 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     if (Object.keys(input).length === 0) {
       return;
     }
-    console.log(input)
     const formData = new FormData();
-
-    formData.append("description", input);
 
     Object.keys(input).forEach((key) => {
       formData.append(`${key}`, input[key]);
     });
-
-    console.log(newPictures);
 
     newPictures.forEach((newPicture) => {
       formData.append("new_pictures[]", newPicture);
@@ -80,9 +72,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     currentPictures.forEach((currentPicture) => {
       formData.append("current_pictures[]", [currentPicture.id, currentPicture.kill]);
     });
-
-    console.log(formData);
-
     fetch(`/api/bikes/${bike.id}`, {
       method: "PATCH",
       headers: {
@@ -92,7 +81,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([{ variant: "success", message: "Moto mise à joure" }]);
           fetchMyBike();

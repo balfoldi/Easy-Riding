@@ -1,0 +1,47 @@
+@import "../../../index.scss";
+
+#booking {
+  @include sm-desktop {
+    display:flex;
+    flex-direction: row;
+  }
+  @include tablet-phone {
+    display:flex;
+    flex-direction: column;
+  }
+  #booking-list, #booking-detail {
+    @include sm-desktop {
+      margin:5vh auto;
+    }
+    @include tablet-phone {
+      margin:5vh auto;
+    }
+  }
+  #booking-list {
+    box-shadow: 2px 2px 15px rgb(201, 201, 201);
+    border-radius:25px;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(122,122,122);
+    background: linear-gradient(45deg, rgb(170, 170, 170) 0%, rgba(196,196,204,1) 50%, rgba(235,235,235,1) 100%);
+    border:none;
+    max-width:300px;
+    h2 {
+      text-align:center;
+      margin:2vh auto;
+    }
+    #booking-thumbnail {
+      background-color:rgb(255,201,40);
+      margin-bottom:2vh;
+      border-radius:15px;
+      #booking-info {
+        font-size: 1em;
+        opacity:0.6;
+        cursor:pointer;
+        &:hover {
+          opacity:1;
+          transition:0.3s;
+        }
+      }
+    }
+  }
+}

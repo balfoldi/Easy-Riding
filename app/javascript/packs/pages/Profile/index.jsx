@@ -14,8 +14,6 @@ const Profile = () => {
   const [key, setKey] = useState("mon-garage")
 
   useEffect(()=>{
-    console.log("key",key)
-    console.log("history", history)
     setKey(window.location.href.split("/")[4])
   })
 
@@ -38,7 +36,7 @@ const Profile = () => {
             {key === "mes-annonces" && <MyOffers />}
           </div>
         </Tab>
-        <Tab eventKey="reservations-recues" title="Réservation reçues">
+        <Tab eventKey="reservations-recues" title="Réservations reçues">
           <div id="tab-body">
             {key === "reservations-recues" && <MyBookings consumer={"received"} />}
           </div>

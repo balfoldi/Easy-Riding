@@ -10,7 +10,7 @@ const HeaderImage = () => {
         <Col md="auto">
           <ScrollTo>
             {({ scroll }) => (
-              <div className="HeaderImage__arrow HeaderImage arrow"
+              <div className="arrow"
               onClick={() => scroll({ x: 0, y: 800, smooth: true })}><span></span><span></span><span></span></div>
             )}
           </ScrollTo>

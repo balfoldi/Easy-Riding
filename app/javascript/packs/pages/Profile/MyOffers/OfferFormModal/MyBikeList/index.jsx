@@ -11,22 +11,16 @@ const MyBikeList = ({ input, setInput }) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBikes(response);
         setInput({
             ...input,
             bike_id: response[0].id,
           });
-        console.log(bikes);
       });
   };
 
   useEffect(() => {
-    console.log(bikes);
-  }, [bikes]);
-
-  useEffect(() => {
-    fetchMyBikes();
+    fetchMyBikes()
   }, []);
 
   const handleInputChange = (e) => {
@@ -39,7 +33,7 @@ const MyBikeList = ({ input, setInput }) => {
   return (
     <Form.Group controlId="exampleForm.ControlSelect1">
       <Form.Label>Choisir une moto de mon garage</Form.Label>
-      <Form.Control as="select" onChange={handleInputChange}>
+      <Form.Control as="select" onChange={handleInputChange} value={input.bike_id}>
         {bikes.map((bike, idx) => (
           <option value={bike.id} key={idx}>{bike.model}</option>
         ))}

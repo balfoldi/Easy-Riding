@@ -11,7 +11,13 @@ class BikesController < ApplicationController
     else
       bikes = Bike.all
     end
-    render json: bikes
+    array = []
+    bikes.each do |bike|
+      image = bike.attributes
+      image[:picture] = rails_blob_path(bike.pictures[0])
+      array.push(image)
+    end
+    render json: array
   end
 
   # GET /bikes/1

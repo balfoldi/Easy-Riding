@@ -35,10 +35,6 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
     }
   }, [offer]);
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
   const postOffer = () => {
 
     fetch(`/api/bookings`, {
@@ -47,19 +43,20 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
         Authorization: `Bearer ${Cookies.get("EasyRidingUserToken")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ booking: {
-        ...input,
-        start_date: startDate.toJSON(),
-        end_date: endDate.toJSON(),
-      }}),
+      body: JSON.stringify({
+        booking: {
+          ...input,
+          start_date: startDate.toJSON(),
+          end_date: endDate.toJSON(),
+        }
+      }),
     })
       .catch((error) => console.log(error))
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         if (!response.errors) {
           setAlerts([
-            { variant: "success", message: "Demande Envoyée"},
+            { variant: "success", message: "Demande Envoyée" },
           ]);
           setTimeout(() => {
             toggle();
@@ -75,6 +72,16 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
       });
   };
 
+  const minDate = () => {
+    const offerStartDate = new Date(offer.start_date)
+    const today = new Date()
+    if (today < offerStartDate) {
+      return offerStartDate
+    } else {
+      return today
+    }
+  }
+
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
@@ -86,7 +93,7 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
                 <Form.Group>
                   <label>Début de la location</label>
                   <Calendar
-                    minDate={new Date(offer.start_date)}
+                    minDate={minDate()}
                     maxDate={new Date(offer.end_date)}
                     className="mr-auto ml-auto"
                     onChange={setStartDate}
@@ -106,7 +113,10 @@ const BookingModal = ({ toggle, modal, offer, fetchMyOffers }) => {
               </Col>
             </Row>
           </Form>
-          <p>Prix de la location :{offer.daily_price + offer.daily_price * ((endDate - startDate)/86400000)}</p>
+          <p>
+            Prix de la location :
+            {Math.round(offer.daily_price + offer.daily_price * ((endDate - startDate) / 86400000))} €
+          </p>
         </ModalBody>
 
         <ModalFooter>

@@ -1,0 +1,50 @@
+@import "../../../../index.scss";
+
+#right-part {
+  font-family: 'Roboto', sans-serif;
+  border:none;
+  border-radius:25px;
+  box-shadow: 2px 2px 25px rgb(201, 201, 201);
+  margin:0 auto;
+  @include sm-desktop {
+
+  }
+  #bike-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight:700;
+    text-transform: uppercase;
+    display:flex;
+    margin:1em auto;
+  }
+  #carousel {
+    .slider-wrapper {
+    height:40vh;
+    }
+  }
+  #presentation-left {
+    #description {
+      font-weight:300;
+    }
+    #offer-button {
+      background-color:transparent;
+      color:$myColor;
+      border:1px solid $myColor;
+      text-align:center;
+      @include tablet-phone {
+        display:flex;
+        margin:1em auto;
+      }
+
+      &:hover {
+        background-color: $myColor;
+        color:white;
+        transition:0.3s;
+      }
+    }
+  }
+  #presentation-right {
+    span {
+      font-weight:300;
+    }
+  }
+}

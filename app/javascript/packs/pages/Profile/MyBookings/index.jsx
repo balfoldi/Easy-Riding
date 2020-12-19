@@ -1,5 +1,6 @@
+import "./index.scss";
 import React, { useEffect, useState } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import Cookies from "js-cookie";
 import BookingShow from "./BookingShow"
 
@@ -13,7 +14,6 @@ const MyBookings = ({consumer}) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setBookings(response);
         setBooking(response[0]);
       });
@@ -23,22 +23,26 @@ const MyBookings = ({consumer}) => {
     fetchMyBookings();
   }, []);
 
-  useEffect(() => {
-    console.log(booking?.id)
-  }, [booking]);
-
   return (
     <Container>
-      <Row>
-        <Col sm={3}>
+      <div id="booking">
+        <div className="col-sm-3" id="booking-list">
+          <h2>Réservations</h2>
           {bookings?.map((booking, idx)=>(
-            <Button onClick={()=>setBooking(booking)} key={idx} variant="light">{booking.offer.title}</Button>
+            <Card key={booking.id} id="booking-thumbnail" onClick={()=>setBooking(booking)}>
+            {console.log(booking)}
+              <Card.Body id="booking-info">
+                <p>{new Date(booking.start_date).toLocaleDateString()} - {new Date(booking.offer.end_date).toLocaleDateString()}</p>
+              <hr></hr>
+                {booking.offer.title}
+              </Card.Body>
+            </Card>
           ))}
-        </Col>
-        <Col sm={9}>
+        </div>
+        <div className="col-sm-9" id="booking-detail">
           <BookingShow booking={booking}  fetchMyBookings={fetchMyBookings} consumer={consumer}/>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 };

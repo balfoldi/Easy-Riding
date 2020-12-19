@@ -8,6 +8,7 @@ class Api::UsersController < Api::BaseController
 
   def update
     @user.update(user_params)
+    @user.avatar.attach(params[:avatar]) if params[:avatar]
     render_jsonapi_response(@user)
   end
 
@@ -18,14 +19,14 @@ class Api::UsersController < Api::BaseController
   end
 
   def user_params
-    params.require(:user).permit(
+    params.permit(
       :email,
       :first_name,
       :last_name,
       :username,
       :phone_number,
       :password,
-      :description
+      :description,
       )
   end
 

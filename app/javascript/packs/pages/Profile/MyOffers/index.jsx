@@ -1,3 +1,4 @@
+import "./index.scss";
 import React, { useEffect, useState } from "react";
 import OfferFormModal from "./OfferFormModal";
 import { Button, Card } from "react-bootstrap";
@@ -17,7 +18,6 @@ const MyOffers = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setOffers(response);
       });
   };
@@ -26,20 +26,20 @@ const MyOffers = () => {
     fetchMyOffers();
   }, []);
 
-  useEffect(() => {
-    console.log(offers);
-  }, [offers]);
   return (
     <Container>
 
       {offers ? (
         <Row>
           <Col sm="3" className="pt-5">
-            <hr></hr>
-            <Button color="danger" onClick={toggle}>
-              Ajouter une annonce
-            </Button>
-            <hr></hr>
+            <Card id="add-card">
+              <h2>Ajouter une annonce</h2>
+              <Card.Body>
+                <Button id="add-button" variant="danger" onClick={toggle}>
+                  Créer
+                </Button>
+              </Card.Body>
+            </Card>
           </Col>
           <Col sm="9">
             {offers.map((offer, idx) => (

@@ -1,5 +1,6 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
 
 class AuthStore {
   user = null;
@@ -15,12 +16,19 @@ class AuthStore {
       signup: action,
       login: action,
       logout: action,
-      autoLogin: action
+      autoLogin: action,
+      userID: computed
     });
   }
 
+  get userID() {
+    const userToken = Cookies.get("EasyRidingUserToken");
+    return userToken ? jwt_decode(userToken).sub : null;
+  }
+
   get isLogged() {
-    return !!this.user?.id;
+    const userToken = Cookies.get("EasyRidingUserToken");
+    return !!this.user?.id || !!userToken ;
   }
 
   signup = async (email, password, passwordConfirmation, termsAccepted) => {
@@ -119,7 +127,7 @@ class AuthStore {
 
     try {
       await fetch('/api/logout', {
-        method: 'delete',
+        method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${userToken}`
         },

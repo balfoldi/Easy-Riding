@@ -11,51 +11,18 @@
 
     }
   }
-  #controlled-tab-example-tab-ProfileInfo, #controlled-tab-example-tab-Garage, #controlled-tab-example-tab-MyOffers, #controlled-tab-example-tab-Favorites, #controlled-tab-example-tab-MyBookings {
+  #controlled-tab-example-tab-mon-garage, #controlled-tab-example-tab-mes-annonces, #controlled-tab-example-tab-reservations-recues, #controlled-tab-example-tab-reservations-envoyees {
     font-size:1rem;
     border-radius:15px 15px 0 0;
+    font-family:'Roboto', sans-serif;
+    width:25%;
+    color:white;
+    background-color:$borderGrey;
+    &:hover {
+      background-color:$myBlack;
+    }
     &:focus {
       outline:none;
-    }
-  }
-  #controlled-tab-example-tab-ProfileInfo {
-    width:20%;
-    color:white;
-    background-color:rgb(125, 159, 211);
-    &:hover {
-      background-color:rgb(51, 68, 94);
-    }
-  }
-  #controlled-tab-example-tab-Garage {
-    width:20%;
-    color:white;
-    background-color:rgb(223, 184, 102);
-    &:hover {
-      background-color:rgb(131, 109, 62);
-    }
-  }
-  #controlled-tab-example-tab-MyOffers {
-    width:20%;
-    color:white;
-    background-color:rgb(219, 163, 117);
-    &:hover {
-      background-color:rgb(168, 110, 63);
-    }
-  }
-  #controlled-tab-example-tab-Favorites {
-    width:20%;
-    color:white;
-    background-color:rgb(226, 139, 133);
-    &:hover {
-      background-color:rgb(165, 70, 64);
-    }
-  }
-  #controlled-tab-example-tab-MyBookings {
-    width:20%;
-    color:white;
-    background-color:rgb(112, 112, 112);
-    &:hover {
-      background-color:rgb(59, 53, 53);
     }
   }
 }

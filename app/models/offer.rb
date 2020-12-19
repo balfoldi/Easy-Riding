@@ -8,10 +8,10 @@ class Offer < ApplicationRecord
     has_many :join_table_favorites_offers
     has_many :users, through: :join_table_favorites_offers
 
-    validates :title, length: { in: 10..30 }, presence:true
+    validates :title, length: { in: 10..40 }, presence:true
     validates :description, length: { in: 20..3000}
     validates :daily_price, numericality: { greater_than_or_equal_to: 10, less_than_or_equal_to: 2000 }, presence: true
-    
+
     validates :start_date, presence: true
     validate :start_date_not_past
     validates :end_date, presence: true
@@ -30,7 +30,7 @@ class Offer < ApplicationRecord
             pictures_urls.push(generate_url(picture))
         end
 
-        
+
         with_relations[:pictures] = pictures_urls
 
         return with_relations
