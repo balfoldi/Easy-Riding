@@ -2,27 +2,41 @@ import Calendar from "react-calendar";
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import { Row, Col } from "reactstrap";
-import ReactDOM from "react-dom";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import OfferFormModal from "../OfferFormModal";
 import BookingModal from '../../../Offer/BookingModal'
 import { motion } from "framer-motion";
+import authStore from "../../../../stores/Auth";
+import { useHistory } from "react-router-dom";
 
 const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
   const [carouselCount, setCarouselCount] = useState(0);
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  const history = useHistory();
+
+  const toggle = () => {
+    if (!authStore.isLogged) {
+      history.push('/connexion', {
+        message: "Vous devez être connecté pour pouvoir réserver une moto"
+      })
+    }
+    setModal(!modal);
+  }
 
   useEffect(() => {
     setCarouselCount(carouselCount - 1);
   }, [offer]);
 
-  const formatter = (current, total) => `Image: ${current} sur: ${total}`;
+  const formatter = (current, total) => `Image: ${current} sur ${total}`;
   return (
-    <motion.div key={offer}  animate={{ x: 10, opacity: [0, 1]}} transition={{ duration: 0.5 }}>
+    <motion.div key={offer} animate={{ x: 10, opacity: [0, 1] }} transition={{ duration: 0.5 }}>
       <Card>
-        <Carousel selectedItem={carouselCount} statusFormatter={formatter}>
+        <Carousel
+          selectedItem={carouselCount}
+          statusFormatter={formatter}
+          showThumbs={false}
+        >
           {offer.pictures &&
             offer.pictures.map((picture, idx) => (
               <div key={idx}>
@@ -49,14 +63,13 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
           </Col>
           <Col sm="6">
             <Container>
-              {consumer && < Button onClick={toggle} > Demande de réservation </Button>}
+              {consumer && <Button onClick={toggle}> Demande de réservation </Button>}
               <ul>
                 <h4>Détails de l'annonce</h4>
-                <p>Prix journalier : {offer.daily_price} </p>
-                <p>Ville : {offer.city}</p>
-                <p>Zip code : {offer.zip_code}</p>
-                <p>Rue : {offer.street}</p>
-                <p>Région : {offer.region}</p>
+                {offer.daily_price && <p>Prix journalier : {offer.daily_price} €</p>}
+                {offer.city && <p>Ville : {offer.city}</p>}
+                {offer.zip_code && <p>Code postal : {offer.zip_code}</p>}
+                {offer.region && <p>Région : {offer.region}</p>}
               </ul>
               <ul>
                 <hr></hr>
@@ -65,13 +78,13 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
                   <strong>{offer.bike.model}</strong>
                 </h5>
                 <hr></hr>
-                <p>Kilométrage : {offer.bike.kilometrage} </p>
-                <p>Marque : {offer.bike.company_name}</p>
-                <p>Catégorie : {offer.bike.body_type}</p>
-                <p>Cylindrée : {offer.bike.displacement}</p>
-                <p>Puissance : {offer.bike.maximum_power}</p>
-                <p>Torque : {offer.bike.maximum_torque}</p>
-                <p>0 à 100 : {offer.bike.zero_to_100}</p>
+                {offer.bike.kilometrage && <p>Kilométrage : {offer.bike.kilometrage}</p>}
+                {offer.bike.company_name && <p>Marque : {offer.bike.company_name}</p>}
+                {offer.bike.body_type && <p>Catégorie : {offer.bike.body_type}</p>}
+                {offer.bike.displacement && <p>Cylindrée : {offer.bike.displacement}</p>}
+                {offer.bike.maximum_power && <p>Puissance : {offer.bike.maximum_power}</p>}
+                {offer.bike.maximum_torque && <p>Couple : {offer.bike.maximum_torque}</p>}
+                {offer.bike.zero_to_100 && <p>0 à 100 : {offer.bike.zero_to_100}</p>}
               </ul>
             </Container>
           </Col>
@@ -88,13 +101,13 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
               offer={offer}
             />
           </>
-        ):(
-          <BookingModal
-          modal={modal}
-          toggle={toggle}
-          offer={offer}
-          />
-        )}
+        ) : (
+            <BookingModal
+              modal={modal}
+              toggle={toggle}
+              offer={offer}
+            />
+          )}
       </Card>
     </motion.div>
   );
