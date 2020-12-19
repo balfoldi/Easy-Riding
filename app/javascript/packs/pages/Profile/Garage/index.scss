@@ -17,7 +17,7 @@
   #left-part {
     @include sm-desktop {
       margin-top:6.5vh;
-      margin-right:-10vw;
+
     }
     #bike-control{
       border-radius: 25px;
@@ -66,7 +66,8 @@
         transition:0.2s;
       }
       @include tablet-phone {
-        margin:0 auto;
+        display:flex;
+        margin:1em auto;
       }
     }
     #bike-img {

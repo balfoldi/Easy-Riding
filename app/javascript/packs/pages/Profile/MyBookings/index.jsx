@@ -27,23 +27,17 @@ const MyBookings = ({consumer}) => {
     <Container>
       <div id="booking">
         <div className="col-sm-3" id="booking-list">
-          <Card>
-            <Card.Title>
-              <h2>Mes réservations</h2>
-            </Card.Title>
-            <Card.Body>
-            {bookings?.map((booking, idx)=>(
-              <Card key={booking.id} id="booking-thumbnail" onClick={()=>setBooking(booking)}>
-                <Card.Body id="booking-date">
-                  <p>{booking.start_date}</p>
-                </Card.Body>
-                <Card.Body id="booking-name">
-                  {booking.offer.title}
-                </Card.Body>
-              </Card>
-            ))}
-            </Card.Body>
-          </Card>
+          <h2>Réservations</h2>
+          {bookings?.map((booking, idx)=>(
+            <Card key={booking.id} id="booking-thumbnail" onClick={()=>setBooking(booking)}>
+            {console.log(booking)}
+              <Card.Body id="booking-info">
+                <p>{new Date(booking.start_date).toLocaleDateString()} - {new Date(booking.offer.end_date).toLocaleDateString()}</p>
+              <hr></hr>
+                {booking.offer.title}
+              </Card.Body>
+            </Card>
+          ))}
         </div>
         <div className="col-sm-9" id="booking-detail">
           <BookingShow booking={booking}  fetchMyBookings={fetchMyBookings} consumer={consumer}/>
