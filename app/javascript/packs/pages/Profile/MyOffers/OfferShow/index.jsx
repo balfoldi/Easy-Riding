@@ -3,23 +3,33 @@ import Calendar from "react-calendar";
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import { Row, Col } from "reactstrap";
-import ReactDOM from "react-dom";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import OfferFormModal from "../OfferFormModal";
 import BookingModal from "../../../Offer/BookingModal";
 import { motion } from "framer-motion";
+import authStore from "../../../../stores/Auth";
+import { useHistory } from "react-router-dom";
 
 const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
   const [carouselCount, setCarouselCount] = useState(0);
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  const history = useHistory();
+
+  const toggle = () => {
+    if (!authStore.isLogged) {
+      history.push('/connexion', {
+        message: "Vous devez être connecté pour pouvoir réserver une moto"
+      })
+    }
+    setModal(!modal);
+  }
 
   useEffect(() => {
     setCarouselCount(carouselCount - 1);
   }, [offer]);
 
-  const formatter = (current, total) => `Image: ${current} sur: ${total}`;
+  const formatter = (current, total) => `Image: ${current} sur ${total}`;
   return (
     <motion.div key={offer} animate={{ x: 10, opacity: [0, 1] }} transition={{ duration: 0.5 }}>
       <h1 id="offer-title">Mes annonces</h1>
@@ -68,20 +78,13 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
           </Col>
           <Col sm="6">
             <Container>
+              {consumer && <Button onClick={toggle}> Demande de réservation </Button>}
               <ul>
                 <h4>Détails de l'annonce</h4>
-                <p>
-                  Prix journalier : <span>{offer.daily_price} €/j.</span>{" "}
-                </p>
-                <p>
-                  Ville : <span>{offer.city}</span>
-                </p>
-                <p>
-                  Zip code : <span>{offer.zip_code}</span>
-                </p>
-                <p>
-                  Région : <span>{offer.region}</span>
-                </p>
+                {offer.daily_price && <p>Prix journalier : <span>{offer.daily_price}</span> €</p>}
+                {offer.city && <p>Ville : <span>{offer.city}</span></p>}
+                {offer.zip_code && <p>Code postal : <span>{offer.zip_code}</span></p>}
+                {offer.region && <p>Région : <span>{offer.region}</span></p>}
               </ul>
               <ul>
                 <hr></hr>
@@ -92,28 +95,13 @@ const OfferShow = ({ offer, fetchMyOffers, consumer }) => {
                   </strong>
                 </h5>
                 <hr></hr>
-                <p>
-                  Kilométrage : <span>{offer.bike.kilometrage} km</span>{" "}
-                </p>
-                <p>
-                  Marque : <span>{offer.bike.company_name}</span>
-                </p>
-                <p>
-                  Catégorie : <span>{offer.bike.body_type}</span>
-                </p>
-                <p>
-                  Cylindrée : <span>{offer.bike.displacement}</span>
-                </p>
-                <p>
-                  Puissance : <span>{offer.bike.maximum_power}</span>
-                </p>
-                <p>
-                  Torque : <span>{offer.bike.maximum_torque}</span>
-                </p>
-                <p>
-                  0 à 100 : <span>{offer.bike.zero_to_100}</span>
-                </p>
-                {consumer && <Button variant="success" onClick={toggle}> Demande de réservation </Button>}
+                {offer.bike.kilometrage && <p>Kilométrage : <span>{offer.bike.kilometrage}</span></p>}
+                {offer.bike.company_name && <p>Marque : <span>{offer.bike.company_name}</span></p>}
+                {offer.bike.body_type && <p>Catégorie : <span>{offer.bike.body_type}</span></p>}
+                {offer.bike.displacement && <p>Cylindrée : <span>{offer.bike.displacement}</span></p>}
+                {offer.bike.maximum_power && <p>Puissance : <span>{offer.bike.maximum_power}</span></p>}
+                {offer.bike.maximum_torque && <p>Couple : <span>{offer.bike.maximum_torque}</span></p>}
+                {offer.bike.zero_to_100 && <p>0 à 100 : <span>{offer.bike.zero_to_100}</span></p>}
               </ul>
             </Container>
           </Col>

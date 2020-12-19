@@ -6,15 +6,15 @@
 }
 
 .map__image path{
-  fill:  #e3e3e3;
+  fill:  #cfcfcf;
   stroke: hsl(0, 0%, 95%);
-  stroke-width: 2px;
+  stroke-width: 1 px;
   transition: fill 0,3s;
   shape-rendering: crispEdges;
 }
 
 .map__image path:hover{
-  fill: hsl(0, 0%, 100%);
+  fill: #f3b600;
 }
 
 .map__list {
