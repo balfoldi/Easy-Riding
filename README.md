@@ -1,8 +1,4 @@
-# README
-
-**Easy Riding**
-
-<p align="center"><img width=60% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/EasyRiding_logo.png"></p>
+<p align="center"><img width=100% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/EasyRiding_logo.png"></p>
 
 Made in Ruby on Rails, Vanilla JS6 on React and Webpack. 
 
