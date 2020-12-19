@@ -44,7 +44,9 @@ const BikeShow = (props) => {
 
       <Card id="right-part">
       <h1 id="bike-title">{bike.model}</h1>
-        <Carousel id="carousel" selectedItem={carouselCount} statusFormatter={formatter}>
+      <hr></hr>
+        <Carousel id="carousel" showThumbs={false}
+        selectedItem={carouselCount}  statusFormatter={formatter}>
           {bike.pictures &&
             bike.pictures.map((picture) => (
               <div id="carousel-img" key={picture.id}>

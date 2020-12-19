@@ -1,0 +1,16 @@
+@import "../../../../index.scss";
+
+#booking-global {
+  @include tablet-phone {
+    min-width:60vw;
+    display:flex;
+    margin:0 auto;
+  }
+  box-shadow: 2px 2px 15px rgb(201, 201, 201);
+  border-radius:25px;
+  font-family: 'Roboto', sans-serif;
+  border:none;
+  span {
+    font-weight:300;
+  }
+}
