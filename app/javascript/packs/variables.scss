@@ -6,6 +6,7 @@ $borderGrey:rgb(131, 126, 126);
 $phone: 512px;
 $tablet-phone: 768px;
 $sm-desktop: 769px;
+$md-desktop: 1180px;
 $lg-desktop: 1440px;
 
 @mixin phone {
@@ -22,6 +23,12 @@ $lg-desktop: 1440px;
 
 @mixin sm-desktop {
   @media (min-width: $sm-desktop) {
+    @content;
+  }
+}
+
+@mixin lp-special {
+  @media (min-width: $sm-desktop) and (max-width: $md-desktop) {
     @content;
   }
 }
