@@ -2,8 +2,6 @@
 
 Made in Ruby on Rails, Vanilla JS6 on React and Webpack. 
 
-## Basic Overview
-
 _Rent motorbikes and visit France ! Easy Riding is the bike sharing application for bike lovers, by bike lovers._
 
 <br>
@@ -22,11 +20,15 @@ horsepower or speed to find the exact bike you are looking for.
 Request a booking and wait for the confirmation Email once the owner accepted !
 Arrange a meet-up at a convenient location of your choice and meet him or her and start your ride.
 
-_«I don’t want to share my bike, but I would love to showcase my garage »_
+_«I don’t want to share my bike, but I would love to showcase my garage »_<br>
+
 Well then you are at the right place, start adding your bikes in the garage category,
-you can can change your mind and rent it later by simply clicking to the « Offer section ».
-_« Well that is truly fantastic. »_
-Thank you mate ! Easy Riding is all about an easy User Experience.
+you can can change your mind and rent it later by simply clicking to the « Offer section ».<br>
+
+_« Well that is truly fantastic. »_<br>
+
+Thank you mate ! Easy Riding is all about an easy User Experience.<br>
+
 _« What a rollercoaster of emotions.»_
 
 ## Last Stable release
