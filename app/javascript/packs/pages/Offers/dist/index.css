@@ -1,11 +1,11 @@
-@import "../../variables.scss";
+a {
+  font-weight: 100 !important;
+}
 
 #offers-container {
   position: relative;
   min-height: 100vh;
-
 }
-
 
 .loading {
   margin: auto;
