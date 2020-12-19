@@ -1,0 +1,25 @@
+@import "../../../../index.scss";
+
+#form-container {
+    margin:auto;
+    min-height:auto;
+    #img-circle {
+      display:flex;
+      width:20%;
+      margin:auto;
+      margin-top:1em;
+      border-radius:50%;
+      border:1px solid $borderGrey;
+    }
+    #modal-content {
+    padding-top:2vh;
+    padding-bottom:2vh;
+    }
+    #form-title {
+        font-size:2rem;
+        margin:auto;
+    }
+}
+
+
+

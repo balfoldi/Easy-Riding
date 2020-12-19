@@ -1,0 +1,28 @@
+.breadcrumb {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  text-transform: uppercase;
+  background-color: transparent !important;
+  color: #e9e9e9;
+  font-size: 0,2rem;
+    a {
+      color:#d7d7d7 !important;
+      &:hover {
+        text-decoration: none;
+        color:#595959 !important;
+        transition:0.3s;
+    }
+  }
+}
+
+.breadcrumb >.active {
+  color: #e9e9e9 !important;
+}
+
+.breadcrumb >.a {
+  color: #dadada !important;
+}
+
+.breadcrumb >.hover {
+  color: #dadada !important;
+}

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'webpacker', '~> 5.x'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise-jwt', '~> 0.7.0'
@@ -10,12 +11,19 @@ gem 'puma', '~> 4.1'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "dotenv"
+gem "activerecord"
+gem "aws-sdk-s3", require: false
+gem "faker"
+gem 'table_print'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'table_print'
   gem 'dotenv'
+  gem 'letter_opener'
 end
 
 group :development do

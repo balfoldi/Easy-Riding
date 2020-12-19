@@ -1,0 +1,87 @@
+@import "../../../variables.scss";
+
+#main-footer-container {
+  margin-top: 10vh;
+  background-color: $myBlack !important;
+}
+
+#main-footer {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  line-height: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  background-color: $myBlack;
+  .container {
+    display: flex;
+    @include sm-desktop {
+      flex-direction: row;
+      #col-1 {
+        margin-right: auto;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      #col-2 {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      a {
+        color:white;
+        &:hover {
+          color:white;
+          text-decoration: underline;
+        }
+      }
+      }
+      #col-3 {
+        margin-left: auto;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      .footer-title {
+        font-family: 'Stint Ultra Expanded', cursive;
+        font-size: 2rem;
+      }
+      .light_text {
+        font-weight: 100 !important;
+      }
+      .contributors {
+        margin-right: auto;
+        font-size: 2rem;
+      }
+    }
+    @include tablet-phone {
+      flex-direction: column;
+      #col-1, #col-2, #col-3 {
+        margin:auto;
+        text-align: center;
+        a {
+          color:white;
+          &:hover {
+            color:white;
+            text-decoration: underline;
+          }
+        }
+      }
+      .footer-title, .contributors {
+        margin-right: auto;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
