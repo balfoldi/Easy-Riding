@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :update, :destroy, :authenticate_user_included!]
   before_action :authenticate_user!
   before_action :authenticate_user_included!, only:  [:patch, :destroy]
+
   # GET /bookings
   def index
     if params[:format] === "received"
@@ -13,7 +14,6 @@ class BookingsController < ApplicationController
     else
       bookings = Booking.all
     end
-    
     render json: bookings.map{|booking|booking.build("offer")}
   end
 
@@ -42,6 +42,10 @@ class BookingsController < ApplicationController
 
   # DELETE /bookings/1
   def destroy
+    if params[:format] === "accept"
+      UserMailer.tenant_booking_email(@booking).deliver_now
+      UserMailer.owner_booking_email(@booking).deliver_now
+    end
     @booking.destroy
   end
 
