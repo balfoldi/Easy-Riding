@@ -40,16 +40,16 @@ Easy Riding is a Full Stack application so you will have to launch two servers :
 
 ### Back-end : start the rails App
 
-```bundle install```
-```rails db:create```
-```rails db:migrate```
-```rails db:seed all=true```
-```rails s```
+`` bundle install ``
+`` rails db:create ``
+`` rails db:migrate ``
+`` rails db:seed all=true ``
+`` rails s ``
 
 ### Front-end : start React App on Webpack
 
-```yarn install```
-```./bin/webpack-dev-server```
+`` yarn install ``
+``./bin/webpack-dev-server ``
 <br>
 
 ## Database
