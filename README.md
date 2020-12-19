@@ -1,4 +1,4 @@
-<p align="center"><img width=100% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/EasyRiding_logo.png"></p>
+<p align="center"><img width=90% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/EasyRiding_logo.png"></p>
 
 Made in Ruby on Rails, Vanilla JS6 on React and Webpack. 
 
@@ -10,7 +10,7 @@ _Rent motorbikes and visit France ! Easy Riding is the bike sharing application 
 
 <br>
 
-## Practical Use
+## EASY-RIDING.COM
 
 Visit the official website easy-riding.com and roll it caballero : sign in for the full experience : )
 
@@ -40,22 +40,16 @@ Easy Riding is a Full Stack application so you will have to launch two servers :
 
 ### Back-end : start the rails App
 
-```bundle install
-```
-```rails db:create
-```
-```rails db:migrate
-```
-```rails db:seed all=true
-```
-```rails s
-```
+```bundle install```
+```rails db:create```
+```rails db:migrate```
+```rails db:seed all=true```
+```rails s```
+
 ### Front-end : start React App on Webpack
 
-```yarn install
-```
-```./bin/webpack-dev-server
-```
+```yarn install```
+```./bin/webpack-dev-server```
 <br>
 
 ## Database
@@ -64,8 +58,7 @@ Easy Riding is a Full Stack application so you will have to launch two servers :
 ## The V1
 Overview of the UX and UI
 
-
 ##Contributors
 Boris Alföldi, Maxime Castillo, Lucas Gautier, Stéphane Ravoninjatovo
 
-<p align="center"><img width=60% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/Easy_Riding_Readme.png"></p>
+<p align="center"><img width=90% src="https://github.com/balfoldi/Easy-Riding/blob/develop/app/assets/images/Easy_Riding_Readme.png"></p>
