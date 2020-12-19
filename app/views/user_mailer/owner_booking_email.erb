@@ -7,8 +7,8 @@
 <h1>Bonjour <%= "#{@owner.username}"%>, Vos coordonées on bien été envoyés à <%= @tenant.username%> pour votre annonce : <%= @offer.title %></h1>
   <p>Voici les coordonées du locataire</p>
   <ul>
-    <%= "Email : " + @owner.email %>
-    <%= "Téléphone : " + @owner.phone_number if @owner.phone_number%>
+    <%= "Email : " + @tenant.email %>
+    <%= "Téléphone : " + @tenant.phone_number if @tenant.phone_number%>
   </ul>
   </body>
 </html>
