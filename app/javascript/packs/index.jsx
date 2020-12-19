@@ -29,6 +29,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <PrivateRoute path="/mon-compte" component={Profile} />
             <Route path="/annonces" component={Offers} />
+            <Route path="/annonce" component={Offer} />
             <Route path="/connexion" component={Login} />
             <Route path="/inscription" component={Signup} />
             <Route path="/conditions-générales-d-utilisation" component={TermsOfService} />
