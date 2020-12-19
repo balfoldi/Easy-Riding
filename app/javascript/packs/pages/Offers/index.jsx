@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import BikeList from "./BikeList";
 import useGetData from "../../hooks/useGetData";
-import UseAnimations from 'react-useanimations'
-import loading from 'react-useanimations/lib/loading'
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 
 const Offers = () => {
   const [input, setInput] = useState({
