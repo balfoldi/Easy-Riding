@@ -23,16 +23,6 @@ if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
 end
 
 
-if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
-    Tag.destroy_all
-    tag_names = ["commuting", "adventure", "touring", "harley-boy", "everyday", "track", "highway", "666", "wheely", "safe", "heritage", "sport", "collection", "hard_to_ride", "easy_to_ride"]
-    tag_names.each do |tag_name|
-        Tag.create( name: tag_name, color: Faker::Color.hex_color )
-    end
-    puts "Tags done"
-end
-
-
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
@@ -62,7 +52,6 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
                 kilometrage: rand(20000),
                 owner: User.all.sample,
                 description: Faker::Movies::StarWars.quote,
-                tags: Tag.all.sample(rand(1..3)),
                 model: spec.model,
                 company_name: spec.company_name,
                 body_type: spec.body_type,
