@@ -28,10 +28,11 @@ Rails.application.routes.draw do
   get "/annonces/normandie" => "front_app#react"
   get "/annonces/pays-de-la-loire" => "front_app#react"
   get "/annonces/provence-alpes-cote-dazur" => "front_app#react"
+
   scope '/api', defaults: { format: :json } do
     resources :bookings
     resources :offers
-        resources :bikes
+    resources :bikes
   end
 
   namespace :api, defaults: { format: :json } do

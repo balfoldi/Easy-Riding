@@ -47,8 +47,8 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
                 kilometrage: rand(20000),
                 owner: User.all.sample,
                 description: Faker::Movies::StarWars.quote,
-                model: companies.sample,
-                company_name: models.sample,
+                model: models.sample,
+                company_name: companies.sample,
                 body_type: "2 wheels",
                 maximum_power: "100 hp",
                 maximum_torque: "20 Nm",
@@ -75,7 +75,7 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
-            title: "#{Faker::Lorem.word}",
+            title: "Location moto #{bike.model}",
             description: descriptions.sample,
             daily_price: rand(20..300),
             start_date: Date.today,
