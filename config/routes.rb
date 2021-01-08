@@ -31,8 +31,7 @@ Rails.application.routes.draw do
   scope '/api', defaults: { format: :json } do
     resources :bookings
     resources :offers
-      resources :specs
-    resources :bikes
+        resources :bikes
   end
 
   namespace :api, defaults: { format: :json } do
