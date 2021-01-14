@@ -73,13 +73,19 @@ const SearchBar = ({ offers, input, setInput }) => {
   };
 
   const fetchSearchAttributes = () => {
-    fetch("/api/specs.1")
+    fetch("/api/offers")
       .then((response) => response.json())
       .then((response) => {
+        const bodyTypesList = [];
+        const companyNamesList = [];
+        response.forEach((offer) => {
+          bodyTypesList.push(offer.bike.body_type)
+          companyNamesList.push(offer.bike.company_name)
+        })
         setSearchAttributes({
           ...SearchAttributes,
-          bodyTypes: response.body_types,
-          companyNames: response.company_names,
+          bodyTypes: [...new Set(bodyTypesList)],
+          companyNames: [...new Set(companyNamesList)],
         });
       });
   };

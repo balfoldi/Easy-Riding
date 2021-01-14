@@ -7,7 +7,6 @@ import DeleteButton from "../../../../../components/Buttons/DeleteButton"
 
 const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMyBikes }) => {
   const [input, setInput] = useState({});
-  const [spec, setSpec] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [newPictures, setNewPictures] = useState([]);
   const [currentPictures, setCurrentPictures] = useState([]);
@@ -40,13 +39,6 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
       })
     );
   }, [modal]);
-
-  useEffect(() => {
-    setInput({
-      ...input,
-      ...spec,
-    });
-  }, [spec]);
 
   useEffect(() => {
     if (modal) {
@@ -82,7 +74,7 @@ const BikeEditFormModal = ({ toggle, modal, setModal, fetchMyBike, bike, fetchMy
       .then((response) => response.json())
       .then((response) => {
         if (!response.errors) {
-          setAlerts([{ variant: "success", message: "Moto mise à joure" }]);
+          setAlerts([{ variant: "success", message: "Moto mise à jour" }]);
           fetchMyBike();
           setTimeout(() => {
             setModal(false);
