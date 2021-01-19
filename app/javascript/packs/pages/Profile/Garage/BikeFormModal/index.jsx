@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from "reactstrap";
 import { Button, Form, Alert } from "react-bootstrap";
-import ModelAutocompleteInput from "./ModelAutocompleteInput";
 import Cookies from "js-cookie";
 import PictureInput from "./PicturesInput";
 
 const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
-  const [input, setInput] = useState({
-    description: "",
-    kilometrage: "",
-    model: "",
-    company_name: "",
-    body_type: "",
-    maximum_power: "",
-    maximum_torque: "",
-    zero_to_100: "",
-    displacement: "",
-  });
-  const [spec, setSpec] = useState([]);
+  const [input, setInput] = useState({});
+
   const [alerts, setAlerts] = useState([]);
   const [pictures, setPictures] = useState([]);
 
@@ -27,20 +16,6 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
       [event.target.name]: event.target.value,
     });
   };
-
-  const handleChildrenInputChange = (content) => {
-    setInput({
-      ...input,
-      model: content,
-    });
-  };
-
-  useEffect(() => {
-    setInput({
-      ...input,
-      ...spec,
-    });
-  }, [spec]);
 
   useEffect(() => {
     if (modal) {
@@ -107,18 +82,19 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                 onChange={handleInputChange}
                 name="description"
                 placeholder="Bon état, la moto a toujours dormi au sec."
-                value={input.description}
+                value={input.description || ""}
               />
             </Form.Group>
             <Row>
               <Col sm="6">
                 <Form.Group>
                   <Form.Label>Modèle</Form.Label>
-                  <ModelAutocompleteInput
-                    masterInput={input}
-                    setSpec={setSpec}
-                    handleChildrenInputChange={handleChildrenInputChange}
-                    modal={modal}
+                  <Form.Control
+                    onChange={handleInputChange}
+                    name="model"
+                    type="text"
+                    placeholder="CB 500"
+                    value={input.model || ""}
                   />
                 </Form.Group>
               </Col>
@@ -131,7 +107,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="company_name"
                     type="text"
                     placeholder="Honda"
-                    value={input.company_name}
+                    value={input.company_name || ""}
                   />
                 </Form.Group>
               </Col>
@@ -143,8 +119,9 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                   <Form.Control
                     onChange={handleInputChange}
                     name="kilometrage"
-                    type="text-field"
+                    type="text"
                     placeholder="20500km"
+                    value={input.kilometrage || ""}
                   />
                 </Form.Group>
               </Col>
@@ -156,7 +133,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="zero_to_100"
                     type="text"
                     placeholder="5,4 sec"
-                    value={input.zero_to_100}
+                    value={input.zero_to_100 || ""}
                   />
                 </Form.Group>
               </Col>
@@ -168,7 +145,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="body_type"
                     type="text"
                     placeholder="Roadster"
-                    value={input.body_type}
+                    value={input.body_type || ""}
                   />
                 </Form.Group>
               </Col>
@@ -180,7 +157,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="displacement"
                     type="text"
                     placeholder="471 m³"
-                    value={input.displacement}
+                    value={input.displacement || ""}
                   />
                 </Form.Group>
               </Col>
@@ -194,7 +171,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="maximum_power"
                     type="text"
                     placeholder="35 kW à 8 600 tr/min"
-                    value={input.maximum_power}
+                    value={input.maximum_power || ""}
                   />
                 </Form.Group>
               </Col>
@@ -207,7 +184,7 @@ const BikeFormModal = ({ toggle, modal, setModal, fetchMyBikes }) => {
                     name="maximum_torque"
                     type="text"
                     placeholder="43 Nm à 6 500 tr/min"
-                    value={input.maximum_torque}
+                    value={input.maximum_torque || ""}
                   />
                 </Form.Group>
               </Col>

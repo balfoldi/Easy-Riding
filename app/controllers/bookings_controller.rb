@@ -3,7 +3,6 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_user_included!, only:  [:patch, :destroy]
 
-  # GET /bookings
   def index
     if params[:format] === "received"
       bookings = Booking.all.select do | booking|
@@ -17,12 +16,10 @@ class BookingsController < ApplicationController
     render json: bookings.map{|booking|booking.build("offer")}
   end
 
-  # GET /bookings/1
   def show
     render_jsonapi_response(@booking)
   end
 
-  # POST /bookings
   def create
     puts current_user
     @booking = Booking.new(booking_params)
@@ -31,7 +28,6 @@ class BookingsController < ApplicationController
     render_jsonapi_response(@booking)
   end
 
-  # PATCH/PUT /bookings/1
   def update
     if @booking.update(booking_params)
       render json: @booking
@@ -40,7 +36,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  # DELETE /bookings/1
   def destroy
     if params[:format] === "accept"
       UserMailer.tenant_booking_email(@booking).deliver_now
@@ -50,7 +45,6 @@ class BookingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
     end
@@ -59,7 +53,6 @@ class BookingsController < ApplicationController
       return current_user === @booking.tenant || current_user === @booking.offer.bike.owner
     end
 
-    # Only allow a trusted parameter "white list" through.
     def booking_params
       params.require(:booking).permit(:tenant_id_id, :start_date, :end_date, :offer_id)
     end

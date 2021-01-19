@@ -3,36 +3,6 @@ require 'faker'
 regions = ["Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté","Bretagne","Centre-Val de Loire","Corse","Grand Est","Hauts-de-France","Île-de-France","Normandie","Nouvelle-Aquitaine","Occitanie","Pays de la Loire","Provence-Alpes-Côte d'Azur"]
 
 
-if !Spec.last || ENV["specs"] === "true" || ENV["all"] === "true"
-    Spec.delete_all
-    require "csv"
-    datas = CSV.read(Rails.root.join('db', 'assets', "csv", "Bike_data.csv"))[1..-1]
-    datas.each do |data|
-
-        Spec.create(
-            model: data[2],
-            company_name: data[1],
-            body_type: data[5],
-            maximum_power: data[11] === "NaN" ? "" : data[11],
-            maximum_torque: data[12] === "NaN" ? "" : data[12],
-            zero_to_100: data[31] === "NaN" ? "" : data[31],
-            displacement: data[10] === "NaN" ? "" : data[10]
-        )
-    end
-    puts "Specs done"
-end
-
-
-if !Tag.last || ENV["tags"] === "true" || ENV["all"] === "true"
-    Tag.destroy_all
-    tag_names = ["commuting", "adventure", "touring", "harley-boy", "everyday", "track", "highway", "666", "wheely", "safe", "heritage", "sport", "collection", "hard_to_ride", "easy_to_ride"]
-    tag_names.each do |tag_name|
-        Tag.create( name: tag_name, color: Faker::Color.hex_color )
-    end
-    puts "Tags done"
-end
-
-
 if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     User.delete_all
     10.times do
@@ -51,24 +21,38 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     puts "Users done"
 end
 
+companies = [
+  "BMW",
+  "Honda",
+  "Kawasaki",
+  "Suzuki",
+  "Harley Davidson"
+]
+
+models = [
+  "S 1000",
+  "CB 500",
+  "KXF 250",
+  "SV 650",
+  "Iron 883"
+]
+
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
     all_images = Dir.entries("db/assets/images/motor_bike_pics").select { |f| File.file? File.join("db/assets/images/motor_bike_pics", f) }
     regions.each do
         10.times do
-            spec = Spec.all.sample
             bike = Bike.new(
                 kilometrage: rand(20000),
                 owner: User.all.sample,
                 description: Faker::Movies::StarWars.quote,
-                tags: Tag.all.sample(rand(1..3)),
-                model: spec.model,
-                company_name: spec.company_name,
-                body_type: spec.body_type,
-                maximum_power: spec.maximum_power,
-                maximum_torque: spec.maximum_torque,
-                zero_to_100: spec.zero_to_100
+                model: models.sample,
+                company_name: companies.sample,
+                body_type: "2 wheels",
+                maximum_power: "100 hp",
+                maximum_torque: "20 Nm",
+                zero_to_100: "4 sec"
             )
             images = all_images.sample(3)
             images.each do |image|
@@ -91,7 +75,7 @@ if !Offer.last || ENV["offers"] === "true" || ENV["all"] === "true"
         zip_code=""
         5.times { zip_code += rand(9).to_s}
         offer = Offer.new(
-            title: "#{Faker::Lorem.word} #{Spec.all.sample.model}",
+            title: "Location moto #{bike.model}",
             description: descriptions.sample,
             daily_price: rand(20..300),
             start_date: Date.today,
