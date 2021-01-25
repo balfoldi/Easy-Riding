@@ -21,8 +21,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
-  gem 'table_print'
-  gem 'dotenv'
   gem 'letter_opener'
 end
 
@@ -37,7 +35,6 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'faker'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'vcr'

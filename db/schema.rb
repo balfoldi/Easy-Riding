@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_025458) do
+ActiveRecord::Schema.define(version: 2021_01_25_131444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,17 +38,15 @@ ActiveRecord::Schema.define(version: 2020_12_14_025458) do
 
   create_table "bikes", force: :cascade do |t|
     t.text "description"
-    t.integer "kilometrage"
     t.bigint "owner_id"
     t.string "model"
-    t.string "company_name"
-    t.string "body_type"
-    t.string "maximum_power"
-    t.string "maximum_torque"
-    t.string "zero_to_100"
     t.string "displacement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "mileage"
+    t.string "brand"
+    t.string "category"
+    t.integer "year"
     t.index ["owner_id"], name: "index_bikes_on_owner_id"
   end
 
@@ -61,15 +59,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_025458) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["offer_id"], name: "index_bookings_on_offer_id"
     t.index ["tenant_id"], name: "index_bookings_on_tenant_id"
-  end
-
-  create_table "join_table_bikes_tags", force: :cascade do |t|
-    t.bigint "bike_id"
-    t.bigint "tag_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bike_id"], name: "index_join_table_bikes_tags_on_bike_id"
-    t.index ["tag_id"], name: "index_join_table_bikes_tags_on_tag_id"
   end
 
   create_table "join_table_favorites_offers", force: :cascade do |t|
@@ -101,25 +90,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_025458) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bike_id"], name: "index_offers_on_bike_id"
-  end
-
-  create_table "specs", force: :cascade do |t|
-    t.string "model"
-    t.string "company_name"
-    t.string "body_type"
-    t.string "maximum_power"
-    t.string "maximum_torque"
-    t.string "zero_to_100"
-    t.string "displacement"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.string "color"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

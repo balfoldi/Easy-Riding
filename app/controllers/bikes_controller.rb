@@ -37,14 +37,12 @@ class BikesController < ApplicationController
   def update
     @bike.update(params.permit(
       :description,
-      :kilometrage,
+      :brand,
       :model,
-      :company_name,
-      :body_type,
-      :maximum_power,
-      :maximum_torque,
-      :zero_to_100,
       :displacement,
+      :mileage,
+      :year,
+      :category,
     ))
 
     puts params[:new_pictures]
@@ -86,14 +84,12 @@ class BikesController < ApplicationController
     def bike_params
       params.permit(
         :description,
-        :kilometrage,
+        :brand,
         :model,
-        :company_name,
-        :body_type,
-        :maximum_power,
-        :maximum_torque,
-        :zero_to_100,
         :displacement,
+        :mileage,
+        :year,
+        :category,
         pictures: []
       )
     end

@@ -21,7 +21,7 @@ if !User.last || ENV["users"] === "true" || ENV["all"] === "true"
     puts "Users done"
 end
 
-companies = [
+brands = [
   "BMW",
   "Honda",
   "Kawasaki",
@@ -37,6 +37,27 @@ models = [
   "Iron 883"
 ]
 
+categories = [
+  "Routière",
+  "Sportive",
+  "Roadster",
+  "Custom",
+  "Tout-terrain",
+  "Trail",
+  "Supermotard"
+]
+
+displacements = [
+  400,
+  500,
+  600,
+  600,
+  650,
+  750,
+  800,
+  1000
+]
+
 
 if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     Bike.delete_all
@@ -44,15 +65,14 @@ if !Bike.last || ENV["bikes"] === "true" || ENV["all"] === "true"
     regions.each do
         10.times do
             bike = Bike.new(
-                kilometrage: rand(20000),
-                owner: User.all.sample,
-                description: Faker::Movies::StarWars.quote,
-                model: models.sample,
-                company_name: companies.sample,
-                body_type: "2 wheels",
-                maximum_power: "100 hp",
-                maximum_torque: "20 Nm",
-                zero_to_100: "4 sec"
+              owner: User.all.sample,
+              description: Faker::Movies::StarWars.quote,
+              brand: brands.sample,
+              model: models.sample,
+              displacement: displacements.sample,
+              mileage: rand(20000),
+              year: rand(1995..2020),
+              category: categories.sample
             )
             images = all_images.sample(3)
             images.each do |image|
